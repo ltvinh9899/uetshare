@@ -1,4 +1,4 @@
-package java.spring.uetshare.entity;
+package com.example.uetshare.entity;
 
 import lombok.Getter;
 import lombok.Setter;
