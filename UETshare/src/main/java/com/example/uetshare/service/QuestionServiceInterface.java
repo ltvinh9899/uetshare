@@ -10,8 +10,8 @@ import java.util.Optional;
 public interface QuestionServiceInterface {
 
     public void createQuestion(Question question);
-    public List<Question> getAllQuestion();
+    public List<Question> getAllQuestion(Integer index);
     public Question getQuestionById(Long Id);
-    public List<Question> getQuestionByCategory(Integer category_id);
+    public List<Question> getQuestionByCategory(Long category_id, Integer index);
 
 }

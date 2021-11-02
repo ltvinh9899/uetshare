@@ -20,12 +20,11 @@ public class QuestionService implements QuestionServiceInterface {
     }
 
     @Override
-    public List<Question> getAllQuestion() {
+    public List<Question> getAllQuestion(Integer index) {
         try {
-            return questionRepositoryInterface.findAll();
+            return questionRepositoryInterface.getAllQuestion(index);
 
         } catch (Exception e){
-            System.out.println("hello");
             System.out.println(e);
             return null;
         }
@@ -44,7 +43,7 @@ public class QuestionService implements QuestionServiceInterface {
     }
 
     @Override
-    public List<Question> getQuestionByCategory(Integer category_id) {
-        return questionRepositoryInterface.getByCategory(category_id);
+    public List<Question> getQuestionByCategory(Long category_id, Integer index) {
+        return questionRepositoryInterface.getByCategory(category_id, index);
     }
 }
