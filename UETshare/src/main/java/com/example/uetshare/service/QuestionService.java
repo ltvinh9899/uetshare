@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class QuestionService implements QuestionServiceInterface {
@@ -20,6 +21,30 @@ public class QuestionService implements QuestionServiceInterface {
 
     @Override
     public List<Question> getAllQuestion() {
-        return questionRepositoryInterface.findAll();
+        try {
+            return questionRepositoryInterface.findAll();
+
+        } catch (Exception e){
+            System.out.println("hello");
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
+    @Override
+    public Question getQuestionById(Long question_id) {
+        try{
+            return questionRepositoryInterface.getQuestionById(question_id);
+        } catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
+    @Override
+    public List<Question> getQuestionByCategory(Integer category_id) {
+        return questionRepositoryInterface.getByCategory(category_id);
     }
 }

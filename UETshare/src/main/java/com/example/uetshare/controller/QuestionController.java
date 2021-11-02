@@ -2,6 +2,8 @@ package com.example.uetshare.controller;
 
 import com.example.uetshare.entity.Question;
 import com.example.uetshare.response.QuestionResponse;
+import com.example.uetshare.response.dto.QuestionDto;
+import com.example.uetshare.response.mapper.QuestionMapper;
 import com.example.uetshare.service.QuestionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,16 +26,16 @@ public class QuestionController {
     @PostMapping("/create")
     public ResponseEntity<?> createQuestion(@RequestBody Question question, QuestionResponse  questionResponse){
 
-        List<Question> questionListResponse = new ArrayList<>();
-
         try {
 
             questionServiceInterface.createQuestion(question);
-            questionListResponse.add(question);
 
             questionResponse.setSuccess(true);
             questionResponse.setMessage("Create question success");
-            questionResponse.setQuestion(questionListResponse);
+
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+            questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            questionResponse.setQuestionDtoList(questionDtoList);
 
             return ResponseEntity.ok(questionResponse);
 
@@ -41,7 +43,7 @@ public class QuestionController {
 
             questionResponse.setSuccess(false);
             questionResponse.setMessage(e.toString());
-            questionResponse.setQuestion(questionListResponse);
+
 
             return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -50,14 +52,23 @@ public class QuestionController {
     @GetMapping("")
     public ResponseEntity<?> getAllQuestion(QuestionResponse  questionResponse){
 
-        List<Question> questionList = new ArrayList<>();
+
+
+//        List<QuestionResponse> questionListResponse = new ArrayList<>();
 
         try {
 
-            questionList = questionServiceInterface.getAllQuestion();
+            List<Question> questionList = questionServiceInterface.getAllQuestion();
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+
+            for(Question question : questionList){
+                questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            }
+
             questionResponse.setSuccess(true);
             questionResponse.setMessage("success to get all question");
-            questionResponse.setQuestion(questionList);
+            questionResponse.setQuestionDtoList(questionDtoList);
+
 
             return ResponseEntity.ok(questionResponse);
 
@@ -66,10 +77,62 @@ public class QuestionController {
 
             questionResponse.setSuccess(false);
             questionResponse.setMessage(e.toString());
-            questionResponse.setQuestion(questionList);
 
             return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> getQuestionById(@PathVariable Long id, QuestionResponse  questionResponse){
+        try {
+            Question question = questionServiceInterface.getQuestionById(id);
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success to get question");
+
+            if(question != null){
+                List<QuestionDto> questionDtoList = new ArrayList<>();
+                questionDtoList.add(QuestionMapper.toQuestionDto(question));
+                questionResponse.setQuestionDtoList(questionDtoList);
+            }
+
+
+            return ResponseEntity.ok(questionResponse);
+
+        } catch (Exception e){
+            System.out.println(e);
+            questionResponse.setSuccess(false);
+            questionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/category/{category_id}")
+    public ResponseEntity<?> getQuestionByCategory(@PathVariable int category_id, QuestionResponse  questionResponse) {
+
+        List<Question> questionList = new ArrayList<>();
+
+        try {
+
+            questionList = questionServiceInterface.getQuestionByCategory(category_id);
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success get all question");
+//            questionResponse.setQuestion(questionList);
+
+            return ResponseEntity.ok(questionResponse);
+
+        } catch (Exception e){
+            questionResponse.setSuccess(false);
+            questionResponse.setMessage(e.toString());
+//            questionResponse.setQuestion(questionList);
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+
     }
 
 }

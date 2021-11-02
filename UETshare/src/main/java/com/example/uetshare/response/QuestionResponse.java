@@ -1,7 +1,10 @@
 package com.example.uetshare.response;
 
 
+import com.example.uetshare.entity.Account;
+import com.example.uetshare.entity.Comment;
 import com.example.uetshare.entity.Question;
+import com.example.uetshare.response.dto.QuestionDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +22,5 @@ public class QuestionResponse {
 
         private boolean success;
         private String message;
-        private List<Question> question;
+        private List<QuestionDto> questionDtoList;
 }
