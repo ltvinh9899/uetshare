@@ -21,7 +21,6 @@ public class AccountController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AccountDto account){
         System.out.println("controller: /register");
-        log.info("controller: /register");
         log.info("username: "+ account.getUsername());
         return ResponseEntity.ok(accountService.register(account));
     }
@@ -29,11 +28,17 @@ public class AccountController {
     public ResponseEntity<?> getInfo(@RequestBody AccountDto accountDto){
         System.out.println("controller: /login");
         log.info("controller: /login");
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(accountService.login(accountDto));
     }
     @GetMapping("/user")
     public ResponseEntity<?> getUser(){
         System.out.println("controller: /user");
+        log.info("controller: /user");
+        return ResponseEntity.ok(true);
+    }
+    @GetMapping("/userInfo/")
+    public ResponseEntity<?> getUserInfo(){
+        System.out.println("controller: /userInfo");
         log.info("controller: /user");
         return ResponseEntity.ok(true);
     }
