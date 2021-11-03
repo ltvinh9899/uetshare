@@ -24,6 +24,10 @@ public class QuestionMapper {
             questionDto.setContent(question.getContent());
         }
 
+        if (question.getTitle() != null){
+            questionDto.setTitle(question.getTitle());
+        }
+
         if (question.getImage() != null){
             questionDto.setImage(question.getImage());
         }

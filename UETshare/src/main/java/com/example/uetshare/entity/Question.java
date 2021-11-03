@@ -17,6 +17,9 @@ public class Question extends Base{
     private String content;
 
     @Column
+    private String title;
+
+    @Column
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
