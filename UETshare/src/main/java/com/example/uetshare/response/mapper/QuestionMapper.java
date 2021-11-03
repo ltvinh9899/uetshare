@@ -17,7 +17,9 @@ public class QuestionMapper {
         }
 
         if(question.getAccount() != null){
-            questionDto.setAccount(question.getAccount());
+            if(question.getAccount().getId() != null){
+                questionDto.setAccount_id(question.getAccount().getId());
+            }
         }
 
         if (question.getContent() != null){
