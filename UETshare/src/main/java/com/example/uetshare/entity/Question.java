@@ -30,5 +30,6 @@ public class Question extends Base{
     @JoinTable(name = "category_question",
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> category = new ArrayList<>();
+//    private List<Category> category = new ArrayList<>();
+    private List<Category> category;
 }
