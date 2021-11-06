@@ -61,6 +61,7 @@ public class CommentController {
 
             commentResponse.setSuccess(true);
             commentResponse.setMessage("Get comment success");
+            commentResponse.setResult_quantity(commentDtoList.size());
             commentResponse.setCommentDtoList(commentDtoList);
 
             return ResponseEntity.ok(commentResponse);

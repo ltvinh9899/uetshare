@@ -66,6 +66,7 @@ public class QuestionController {
 
             questionResponse.setSuccess(true);
             questionResponse.setMessage("success to get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
             questionResponse.setQuestionDtoList(questionDtoList);
 
 
@@ -117,6 +118,7 @@ public class QuestionController {
 
             questionResponse.setSuccess(true);
             questionResponse.setMessage("success get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
 
             for(Question question : questionList){
                 questionDtoList.add(QuestionMapper.toQuestionDto(question));

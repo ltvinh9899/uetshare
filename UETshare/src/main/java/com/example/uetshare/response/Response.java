@@ -15,4 +15,5 @@ import javax.persistence.MappedSuperclass;
 public class Response {
     private boolean success;
     private String message;
+    private Integer result_quantity;
 }
