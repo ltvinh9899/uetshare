@@ -15,10 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class CategoryResponse {
+public class CategoryResponse extends Response{
 
-    private boolean success;
-    private String message;
     private List<CategoryDto> categoryDtoList;
 
 }

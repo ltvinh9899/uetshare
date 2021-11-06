@@ -26,6 +26,10 @@ public class Question extends Base{
     @JoinColumn(name = "account_id")
     private Account account;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_content_id")
+    private TypeContent type_content;
+
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Comment> comment;
 

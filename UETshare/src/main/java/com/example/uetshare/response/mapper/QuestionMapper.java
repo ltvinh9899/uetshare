@@ -34,6 +34,12 @@ public class QuestionMapper {
             questionDto.setImage(question.getImage());
         }
 
+        if (question.getType_content() != null) {
+            if(question.getType_content().getId() != null){
+                questionDto.setType_content_id(question.getType_content().getId());
+            }
+        }
+
         if (question.getCategory() != null){
             List<Long> categoryIdList = new ArrayList<>();
             for(Category category : question.getCategory()){

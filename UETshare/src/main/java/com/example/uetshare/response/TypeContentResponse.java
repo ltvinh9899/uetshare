@@ -1,6 +1,6 @@
 package com.example.uetshare.response;
 
-import com.example.uetshare.response.dto.CommentDto;
+import com.example.uetshare.response.dto.TypeContentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class CommentResponse extends Response{
-
-    private List<CommentDto> commentDtoList;
-
+public class TypeContentResponse extends Response{
+    private List<TypeContentDto> typeContentDto;
 }
