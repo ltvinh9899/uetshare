@@ -1,6 +1,6 @@
 package com.example.uetshare.controller;
 
-import com.example.uetshare.dto.AccountDto;
+import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.service.AccountService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +17,15 @@ public class AccountController {
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
-
+    @GetMapping(value = {"/",""})
+    public ResponseEntity<?> getHome(){
+        return ResponseEntity.ok(true);
+    }
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AccountDto account){
+    public ResponseEntity<?> register(@RequestBody AccountDto accountDto){
         System.out.println("controller: /register");
-        log.info("username: "+ account.getUsername());
-        return ResponseEntity.ok(accountService.register(account));
+        log.info(accountDto.getUsername());
+        return ResponseEntity.ok(accountService.register(accountDto));
     }
     @PostMapping("/login")
     public ResponseEntity<?> getInfo(@RequestBody AccountDto accountDto){
@@ -30,9 +33,8 @@ public class AccountController {
         log.info("controller: /login");
         return ResponseEntity.ok(accountService.login(accountDto));
     }
-    @GetMapping("/user")
+    @PostMapping("/user")
     public ResponseEntity<?> getUser(){
-        System.out.println("controller: /user");
         log.info("controller: /user");
         return ResponseEntity.ok(true);
     }
@@ -42,4 +44,5 @@ public class AccountController {
         log.info("controller: /user");
         return ResponseEntity.ok(true);
     }
+
 }

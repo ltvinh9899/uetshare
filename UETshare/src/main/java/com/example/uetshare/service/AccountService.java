@@ -1,8 +1,10 @@
 package com.example.uetshare.service;
 
-import com.example.uetshare.dto.AccountDto;
+import com.example.uetshare.response.AccountResponse;
+import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.repository.AccountRepository;
+import com.example.uetshare.response.mapper.AccountMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +17,15 @@ public class AccountService {
      * Đăng ký tài khoản
      * @return
      */
-    public boolean register(AccountDto accountDto){
-        if(checkOfExists(accountDto)){
-            return false;
+    public AccountResponse register(AccountDto accountDto){
+        Account account = checkOfExists(accountDto);
+        if(account!=null){
+            return new AccountResponse(false,"Đăng ký thất bại!",null);
         }else{
             addAccount(accountDto);
-            return true;
+            Account accountGet = accountRepository.getAccountByUsername(account.getUsername());
+            AccountResponse accountResponse = new AccountResponse(true,"Đăng ký thành công!",AccountMapper.toAccountDto(accountGet));
+            return accountResponse;
         }
     }
 
@@ -28,14 +33,14 @@ public class AccountService {
      * Kiểm tra sự tồn tại của tài khoản
      * @return
      */
-    public boolean checkOfExists(AccountDto accountDto){
+    public Account checkOfExists(AccountDto accountDto){
         Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
         if(account!=null){
             System.out.println("tai khoan ton tai username: "+ account.getUsername());
-            return true;
+            return account;
         }else{
             System.out.println("tai khoan chua ton tai");
-            return false;
+            return null;
         }
     }
 
@@ -52,30 +57,18 @@ public class AccountService {
      * @param accountDto
      * @return
      */
-//    public boolean login(AccountDto accountDto){
-//        if(checkOfExists(accountDto)){
-//
-//        }else{
-//            addAccount(accountDto);
-//            return true;
-//        }
-//    }
-    public short login(AccountDto accountDto){
+    public AccountResponse login(AccountDto accountDto){
         Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
         if(account!=null){
             if(accountDto.getPassword().equals(account.getPassword())){
-                accountDto.setId(account.getId());
-                log.info("usernamedto: "+accountDto.getUsername()+ "pass: "+accountDto.getPassword());
-                log.info("username: "+account.getUsername()+ "pass: "+account.getPassword());
-                return 1;
+                AccountResponse accountResponse = new AccountResponse(true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
+                return accountResponse;
             }else{
-                log.info("usernamedto: "+accountDto.getUsername()+ "pass: "+accountDto.getPassword());
-                log.info("username: "+account.getUsername()+ "pass: "+account.getPassword());
-                return 0;
+                return new AccountResponse(false,"Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
             }
         }else{
             System.out.println("tai khoan khong ton tai");
-            return -1;
+            return new AccountResponse(false,"Tài khoản không tồn tại!", null);
         }
     }
 }
