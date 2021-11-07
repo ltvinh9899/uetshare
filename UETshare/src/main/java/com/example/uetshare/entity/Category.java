@@ -17,6 +17,7 @@ public class Category extends Base{
     private String category;
 
     @ManyToMany(mappedBy = "category")
-    private List<Question> question = new ArrayList<>();
+    private List<Question> questions;
+//    private List<Question> question = new ArrayList<>();
 
 }
