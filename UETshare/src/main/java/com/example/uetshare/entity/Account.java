@@ -27,4 +27,6 @@ public class Account extends Base{
     private List<Question> question;
     @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Comment> comment;
+//    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    private List<ReactIcon> reactIcon;
 }

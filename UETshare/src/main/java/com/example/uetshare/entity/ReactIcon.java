@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table
-public class React extends Base{
+public class ReactIcon extends Base{
 
     @Column
-    private boolean like;
+    private Boolean react_icon;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
