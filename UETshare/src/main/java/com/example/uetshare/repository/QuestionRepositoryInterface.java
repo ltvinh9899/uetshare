@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface QuestionRepositoryInterface extends JpaRepository<Question, Integer> {
 
-    @Query(value = "select * from uetshare.question limit ?1, 10", nativeQuery = true)
+    @Query(value = "select * from uetshare.question limit 0, ?1", nativeQuery = true)
     List<Question> getAllQuestion(Integer index);
 
     @Query(value = "select * from uetshare.question inner join uetshare.category_question " +

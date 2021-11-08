@@ -22,7 +22,7 @@ public class QuestionController {
     @Autowired
     private QuestionServiceInterface questionServiceInterface;
 
-    private final Integer limitItemInPage = 10;
+    private final Integer limit = 10;
 //    @Autowired
 //    private QuestionResponse  questionResponse;
 
@@ -56,7 +56,7 @@ public class QuestionController {
     public ResponseEntity<?> getAllQuestion(QuestionResponse  questionResponse, @Param("index") Integer index){
 
         try {
-            Integer indexToQuery = (index-1)*limitItemInPage;
+            Integer indexToQuery = index*limit;
             List<Question> questionList = questionServiceInterface.getAllQuestion(indexToQuery); // index trong sql bắt đầu từ 0 nên phải trừ 1
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
@@ -112,7 +112,7 @@ public class QuestionController {
     public ResponseEntity<?> getQuestionByCategory(@PathVariable Long category_id, QuestionResponse  questionResponse, @Param("index") Integer index) {
 
         try {
-            Integer indexToQuery = (index-1)*limitItemInPage;
+            Integer indexToQuery = index*limit;
             List<Question> questionList = questionServiceInterface.getQuestionByCategory(category_id, indexToQuery);
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
