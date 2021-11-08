@@ -39,4 +39,8 @@ public class Question extends Base{
             inverseJoinColumns = @JoinColumn(name = "category_id"))
 //    private List<Category> category = new ArrayList<>();
     private List<Category> category;
+    private List<Category> category = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<ReactIcon> reactIcon;
 }
