@@ -116,14 +116,13 @@ public class QuestionController {
             List<Question> questionList = questionServiceInterface.getQuestionByCategory(category_id, indexToQuery);
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
-            questionResponse.setSuccess(true);
-            questionResponse.setMessage("success get all question");
-            questionResponse.setResult_quantity(questionDtoList.size());
-
             for(Question question : questionList){
                 questionDtoList.add(QuestionMapper.toQuestionDto(question));
             }
 
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
             questionResponse.setQuestionDtoList(questionDtoList);
 
             return ResponseEntity.ok(questionResponse);
@@ -135,7 +134,36 @@ public class QuestionController {
             return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
 
+    @GetMapping("/type-content/{id}")
+    public ResponseEntity<?> getQuestionByTypeContent(@PathVariable Long id, QuestionResponse questionResponse, @Param("index") Integer index){
+
+        try {
+
+            Integer indexToQuery = index*limit;
+            List<Question> questionList = questionServiceInterface.getQuestionByContentType(id, indexToQuery);
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+
+            for(Question question : questionList){
+                questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            }
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
+
+            questionResponse.setQuestionDtoList(questionDtoList);
+
+            return ResponseEntity.ok(questionResponse);
+
+        } catch (Exception e){
+
+            questionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
 
     }
 
