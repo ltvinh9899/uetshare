@@ -5,6 +5,7 @@ import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.repository.AccountRepository;
 import com.example.uetshare.response.mapper.AccountMapper;
+import com.example.uetshare.utils.EncoderUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,10 @@ public class AccountService {
     public AccountResponse register(AccountDto accountDto){
         Account account = checkOfExists(accountDto);
         if(account!=null){
-            return new AccountResponse(false,"Đăng ký thất bại!",null);
+            return new AccountResponse(false,"Tài khoản đã tồn tại!",null);
         }else{
             addAccount(accountDto);
-            Account accountGet = accountRepository.getAccountByUsername(account.getUsername());
+            Account accountGet = accountRepository.getAccountByUsername(accountDto.getUsername());
             AccountResponse accountResponse = new AccountResponse(true,"Đăng ký thành công!",AccountMapper.toAccountDto(accountGet));
             return accountResponse;
         }
@@ -48,7 +49,7 @@ public class AccountService {
      * Thêm tài khoản vào Database
      */
     public void addAccount(AccountDto accountDto){
-        Account account = new Account(accountDto.getUsername(),accountDto.getPassword());
+        Account account = new Account(accountDto.getUsername(), EncoderUtils.encoderPassword(accountDto.getPassword()));
         accountRepository.save(account);
     }
 

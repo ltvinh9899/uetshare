@@ -13,7 +13,7 @@ import java.util.List;
 public class Account extends Base{
     @Column(length = 30)
     private String username;
-    @Column(length = 15)
+    @Column
     private String password;
     @Column()
     private String avatar;
