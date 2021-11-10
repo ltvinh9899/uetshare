@@ -46,4 +46,9 @@ public class QuestionService implements QuestionServiceInterface {
     public List<Question> getQuestionByCategory(Long category_id, Integer index) {
         return questionRepositoryInterface.getByCategory(category_id, index);
     }
+
+    @Override
+    public List<Question> getQuestionByContentType(Long type_content_id, Integer index) {
+        return questionRepositoryInterface.getQuestionByTypeContentId(type_content_id, index);
+    }
 }
