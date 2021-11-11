@@ -21,4 +21,7 @@ public class Comment extends Base {
     private Account account;
     @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ReactIcon> reactIcon;
+    @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<SubComment> subComment;
+
 }

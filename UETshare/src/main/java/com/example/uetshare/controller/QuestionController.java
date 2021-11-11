@@ -159,6 +159,7 @@ public class QuestionController {
 
         } catch (Exception e){
 
+            questionResponse.setSuccess(false);
             questionResponse.setMessage(e.toString());
 
             return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
