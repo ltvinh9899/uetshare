@@ -12,8 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "persistent_logins")
-public class PersistentLogin {
-    @Id
+public class PersistentLogin extends Base{
     @Column(name = "series", nullable = false)
     private String series;
     @Column(name = "username",nullable = false)

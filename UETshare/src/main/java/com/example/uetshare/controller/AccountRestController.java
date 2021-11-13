@@ -51,7 +51,6 @@ public class AccountRestController {
     }
     @GetMapping("/login-failed")
     public ResponseEntity<?> loginFailed(){
-        System.out.println("controller: /login");
         log.info("controller: /login-failed");
         return ResponseEntity.ok(false);
     }
@@ -64,7 +63,7 @@ public class AccountRestController {
     public ResponseEntity<?> logoutSuccess(){
         System.out.println("controller: /out");
         log.info("controller: /logout-success");
-        return ResponseEntity.ok("success");
+        return ResponseEntity.ok(true);
     }
     @GetMapping("/403")
     public ResponseEntity<?> accessDenined(){

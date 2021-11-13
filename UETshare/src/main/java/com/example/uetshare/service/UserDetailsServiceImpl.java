@@ -26,6 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private RoleRepository roleRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Username: "+username);
         Account account = this.accountRepository.getAccountByUsername(username);
         if (account == null) {
             System.out.println("User not found! " + username);
