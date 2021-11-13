@@ -17,11 +17,8 @@ public class Account extends Base{
     private String password;
     @Column()
     private String avatar;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "account_role",
-    joinColumns = @JoinColumn(name = "account_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    private List<AccountRole> accountRole;
     @OneToOne(fetch = FetchType.LAZY)
     private UserProfile userProfile;
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL,fetch = FetchType.LAZY)

@@ -11,4 +11,5 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     public Account getAccountByUsername(String username);
 //    @Query(value = "select * from account a inner join ",nativeQuery = true)
 //    public Account getAccountAndRole(String username);
+
 }
