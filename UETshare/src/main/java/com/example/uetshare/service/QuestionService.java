@@ -53,7 +53,7 @@ public class QuestionService implements QuestionServiceInterface {
     }
 
     @Override
-    public List<Question> getQuestionByText(Integer index, String text) {
-       return questionRepositoryInterface.getQuestionByText(index, text);
+    public List<Question> getQuestionByText(Integer index, String text, Long type_content_id) {
+       return questionRepositoryInterface.getQuestionByText(index, text, type_content_id);
     }
 }

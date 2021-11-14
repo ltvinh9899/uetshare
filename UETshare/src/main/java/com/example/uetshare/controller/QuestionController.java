@@ -169,7 +169,7 @@ public class QuestionController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> getQuestionByText(QuestionResponse questionResponse, @Param("index") Integer index, @Param("text") String text){
+    public ResponseEntity<?> getQuestionByText(QuestionResponse questionResponse, @Param("index") Integer index, @Param("text") String text, @Param("type_content_id") Long type_content_id){
         try {
             Integer indexToQuery = index*limit;
 
@@ -177,7 +177,7 @@ public class QuestionController {
 
             System.out.println(textToQuery);
 
-            List<Question> questionList = questionServiceInterface.getQuestionByText(indexToQuery, textToQuery);
+            List<Question> questionList = questionServiceInterface.getQuestionByText(indexToQuery, textToQuery, type_content_id);
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
             for(Question question : questionList){

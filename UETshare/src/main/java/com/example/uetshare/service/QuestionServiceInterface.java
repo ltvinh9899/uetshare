@@ -14,5 +14,5 @@ public interface QuestionServiceInterface {
     public Question getQuestionById(Long Id);
     public List<Question> getQuestionByCategory(Long category_id, Integer index);
     public List<Question> getQuestionByContentType(Long type_content_id, Integer index);
-    public List<Question> getQuestionByText(Integer index, String text);
+    public List<Question> getQuestionByText(Integer index, String text, Long type_content_id);
 }
