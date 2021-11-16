@@ -22,10 +22,10 @@ public class Account extends Base{
     @OneToOne(fetch = FetchType.LAZY)
     private UserProfile userProfile;
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Document> document;
-    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Exam> exam;
-    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    private List<Document> document;
+//    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    private List<Exam> exam;
+//    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Question> question;
     @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Comment> comment;
@@ -38,4 +38,6 @@ public class Account extends Base{
     public Account() {
 
     }
+   @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+   private List<ReactIcon> reactIcon;
 }
