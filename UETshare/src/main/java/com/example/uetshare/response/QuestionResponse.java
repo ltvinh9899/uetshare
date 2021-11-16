@@ -18,9 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class QuestionResponse {
+public class QuestionResponse extends Response{
 
-        private boolean success;
-        private String message;
         private List<QuestionDto> questionDtoList;
 }

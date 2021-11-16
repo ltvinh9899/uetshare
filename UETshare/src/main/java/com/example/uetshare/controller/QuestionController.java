@@ -22,7 +22,7 @@ public class QuestionController {
     @Autowired
     private QuestionServiceInterface questionServiceInterface;
 
-    private final Integer limitItemInPage = 10;
+    private final Integer limit = 10;
 //    @Autowired
 //    private QuestionResponse  questionResponse;
 
@@ -56,7 +56,7 @@ public class QuestionController {
     public ResponseEntity<?> getAllQuestion(QuestionResponse  questionResponse, @Param("index") Integer index){
 
         try {
-            Integer indexToQuery = (index-1)*limitItemInPage;
+            Integer indexToQuery = index*limit;
             List<Question> questionList = questionServiceInterface.getAllQuestion(indexToQuery); // index trong sql bắt đầu từ 0 nên phải trừ 1
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
@@ -66,6 +66,7 @@ public class QuestionController {
 
             questionResponse.setSuccess(true);
             questionResponse.setMessage("success to get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
             questionResponse.setQuestionDtoList(questionDtoList);
 
 
@@ -111,17 +112,17 @@ public class QuestionController {
     public ResponseEntity<?> getQuestionByCategory(@PathVariable Long category_id, QuestionResponse  questionResponse, @Param("index") Integer index) {
 
         try {
-            Integer indexToQuery = (index-1)*limitItemInPage;
+            Integer indexToQuery = index*limit;
             List<Question> questionList = questionServiceInterface.getQuestionByCategory(category_id, indexToQuery);
             List<QuestionDto> questionDtoList = new ArrayList<>();
-
-            questionResponse.setSuccess(true);
-            questionResponse.setMessage("success get all question");
 
             for(Question question : questionList){
                 questionDtoList.add(QuestionMapper.toQuestionDto(question));
             }
 
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
             questionResponse.setQuestionDtoList(questionDtoList);
 
             return ResponseEntity.ok(questionResponse);
@@ -133,8 +134,73 @@ public class QuestionController {
             return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
 
+    @GetMapping("/type-content/{id}")
+    public ResponseEntity<?> getQuestionByTypeContent(@PathVariable Long id, QuestionResponse questionResponse, @Param("index") Integer index){
+
+        try {
+
+            Integer indexToQuery = index*limit;
+            List<Question> questionList = questionServiceInterface.getQuestionByContentType(id, indexToQuery);
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+
+            for(Question question : questionList){
+                questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            }
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success get all question");
+            questionResponse.setResult_quantity(questionDtoList.size());
+
+            questionResponse.setQuestionDtoList(questionDtoList);
+
+            return ResponseEntity.ok(questionResponse);
+
+        } catch (Exception e){
+
+            questionResponse.setSuccess(false);
+            questionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
 
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> getQuestionByText(QuestionResponse questionResponse, @Param("index") Integer index, @Param("text") String text, @Param("type_content_id") Long type_content_id){
+        try {
+            Integer indexToQuery = index*limit;
+
+            String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+
+            System.out.println(textToQuery);
+
+            List<Question> questionList = questionServiceInterface.getQuestionByText(indexToQuery, textToQuery, type_content_id);
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+
+            for(Question question : questionList){
+                questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            }
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success to get question");
+            questionResponse.setResult_quantity(questionDtoList.size());
+            questionResponse.setQuestionDtoList(questionDtoList);
+
+
+            return ResponseEntity.ok(questionResponse);
+
+
+        } catch (Exception e){
+
+            questionResponse.setSuccess(false);
+            questionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

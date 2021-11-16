@@ -1,7 +1,6 @@
 package com.example.uetshare.response;
 
-import com.example.uetshare.entity.Category;
-import com.example.uetshare.response.dto.CategoryDto;
+import com.example.uetshare.response.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class CategoryResponse extends Response{
+public class CommentResponse extends Response{
 
-    private List<CategoryDto> categoryDtoList;
+    private List<CommentDto> commentDtoList;
 
 }

@@ -17,15 +17,27 @@ public class QuestionMapper {
         }
 
         if(question.getAccount() != null){
-            questionDto.setAccount(question.getAccount());
+            if(question.getAccount().getId() != null){
+                questionDto.setAccount_id(question.getAccount().getId());
+            }
         }
 
         if (question.getContent() != null){
             questionDto.setContent(question.getContent());
         }
 
+        if (question.getTitle() != null){
+            questionDto.setTitle(question.getTitle());
+        }
+
         if (question.getImage() != null){
             questionDto.setImage(question.getImage());
+        }
+
+        if (question.getType_content() != null) {
+            if(question.getType_content().getId() != null){
+                questionDto.setType_content_id(question.getType_content().getId());
+            }
         }
 
         if (question.getCategory() != null){
