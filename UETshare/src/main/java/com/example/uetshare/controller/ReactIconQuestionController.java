@@ -4,7 +4,7 @@ import com.example.uetshare.entity.ReactIconQuestion;
 import com.example.uetshare.response.ReactIconResponse;
 import com.example.uetshare.response.dto.ReactIconDto;
 import com.example.uetshare.response.mapper.ReactIconMapper;
-import com.example.uetshare.service.ReactIconServiceInterface;
+import com.example.uetshare.service.ReactIconQuestionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -15,20 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/react-icon")
-public class ReactIconController {
+@RequestMapping("/react-icon-question")
+public class ReactIconQuestionController {
 
     @Autowired
-    private ReactIconServiceInterface reactIconServiceInterface;
+    private ReactIconQuestionServiceInterface reactIconQuestionServiceInterface;
 
     private final Integer limit = 10;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createReactInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconResponse reactIconResponse) {
+    public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconResponse reactIconResponse) {
 
         try {
 
-            reactIconServiceInterface.createReactIcon(reactIcon);
+            reactIconQuestionServiceInterface.createReactIcon(reactIcon);
 
             reactIconResponse.setSuccess(true);
             reactIconResponse.setMessage("create success");
@@ -59,11 +59,11 @@ public class ReactIconController {
 //    }
 
     @GetMapping("/question/{id}")
-    public ResponseEntity<?> getReactByQuestionId(@PathVariable Long id, @Param("index") Integer index, ReactIconResponse reactIconResponse) {
+    public ResponseEntity<?> getReactIconByQuestionId(@PathVariable Long id, @Param("index") Integer index, ReactIconResponse reactIconResponse) {
 
         try {
             Integer indexToQuery = index*limit;
-            List<ReactIconQuestion> reactIconList = reactIconServiceInterface.getReactIconByQuestionId(id, index);
+            List<ReactIconQuestion> reactIconList = reactIconQuestionServiceInterface.getReactIconByQuestionId(id, index);
             List<ReactIconDto> reactIconDtoList = new ArrayList<>();
 
             for(ReactIconQuestion reactIcon : reactIconList){

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface ReactIconServiceInterface {
+public interface ReactIconQuestionServiceInterface {
 
     public void createReactIcon(ReactIconQuestion reactIcon);
     public List<ReactIconQuestion> getReactIconByQuestionId(Long question_id, Integer index);

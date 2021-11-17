@@ -1,26 +1,26 @@
 package com.example.uetshare.service;
 
 import com.example.uetshare.entity.ReactIconQuestion;
-import com.example.uetshare.repository.ReactIconRepositoryInterface;
+import com.example.uetshare.repository.ReactIconQuestionRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ReactIconService implements ReactIconServiceInterface{
+public class ReactIconQuestionService implements ReactIconQuestionServiceInterface {
 
     @Autowired
-    private ReactIconRepositoryInterface reactIconRepositoryInterface;
+    private ReactIconQuestionRepositoryInterface reactIconQuestionRepositoryInterface;
 
     @Override
     public void createReactIcon(ReactIconQuestion reactIcon) {
-        reactIconRepositoryInterface.save(reactIcon);
+        reactIconQuestionRepositoryInterface.save(reactIcon);
     }
 
     @Override
     public List<ReactIconQuestion> getReactIconByQuestionId(Long question_id, Integer index) {
-        return reactIconRepositoryInterface.getReactIconByQuestionId(question_id, index);
+        return reactIconQuestionRepositoryInterface.getReactIconByQuestionId(question_id, index);
     }
 
 //    @Override
