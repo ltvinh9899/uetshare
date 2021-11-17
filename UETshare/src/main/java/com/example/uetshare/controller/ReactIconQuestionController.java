@@ -1,9 +1,9 @@
 package com.example.uetshare.controller;
 
 import com.example.uetshare.entity.ReactIconQuestion;
-import com.example.uetshare.response.ReactIconResponse;
-import com.example.uetshare.response.dto.ReactIconDto;
-import com.example.uetshare.response.mapper.ReactIconMapper;
+import com.example.uetshare.response.ReactIconQuestionResponse;
+import com.example.uetshare.response.dto.ReactIconQuestionDto;
+import com.example.uetshare.response.mapper.ReactIconQuestionMapper;
 import com.example.uetshare.service.ReactIconQuestionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -24,28 +24,28 @@ public class ReactIconQuestionController {
     private final Integer limit = 10;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconResponse reactIconResponse) {
+    public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconQuestionResponse reactIconQuestionResponse) {
 
         try {
 
             reactIconQuestionServiceInterface.createReactIcon(reactIcon);
 
-            reactIconResponse.setSuccess(true);
-            reactIconResponse.setMessage("create success");
+            reactIconQuestionResponse.setSuccess(true);
+            reactIconQuestionResponse.setMessage("create success");
 
-            List<ReactIconDto> reactIconDtoList = new ArrayList<>();
-            reactIconDtoList.add(ReactIconMapper.toReactIconDto(reactIcon));
-            reactIconResponse.setReactIconDtoList(reactIconDtoList);
+            List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
+            reactIconQuestionDtoList.add(ReactIconQuestionMapper.toReactIconDto(reactIcon));
+            reactIconQuestionResponse.setReactIconQuestionDtoList(reactIconQuestionDtoList);
 
-            return ResponseEntity.ok(reactIconResponse);
+            return ResponseEntity.ok(reactIconQuestionResponse);
 
         } catch (Exception e){
 
-            reactIconResponse.setSuccess(false);
-            reactIconResponse.setMessage(e.toString());
+            reactIconQuestionResponse.setSuccess(false);
+            reactIconQuestionResponse.setMessage(e.toString());
 
 
-            return new ResponseEntity<>(reactIconResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(reactIconQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
 
@@ -59,32 +59,32 @@ public class ReactIconQuestionController {
 //    }
 
     @GetMapping("/question/{id}")
-    public ResponseEntity<?> getReactIconByQuestionId(@PathVariable Long id, @Param("index") Integer index, ReactIconResponse reactIconResponse) {
+    public ResponseEntity<?> getReactIconByQuestionId(@PathVariable Long id, @Param("index") Integer index, ReactIconQuestionResponse reactIconQuestionResponse) {
 
         try {
             Integer indexToQuery = index*limit;
             List<ReactIconQuestion> reactIconList = reactIconQuestionServiceInterface.getReactIconByQuestionId(id, index);
-            List<ReactIconDto> reactIconDtoList = new ArrayList<>();
+            List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
 
             for(ReactIconQuestion reactIcon : reactIconList){
-                reactIconDtoList.add(ReactIconMapper.toReactIconDto(reactIcon));
+                reactIconQuestionDtoList.add(ReactIconQuestionMapper.toReactIconDto(reactIcon));
             }
 
-            reactIconResponse.setSuccess(true);
-            reactIconResponse.setMessage("success to get");
-            reactIconResponse.setResult_quantity(reactIconDtoList.size());
-            reactIconResponse.setReactIconDtoList(reactIconDtoList);
+            reactIconQuestionResponse.setSuccess(true);
+            reactIconQuestionResponse.setMessage("success to get");
+            reactIconQuestionResponse.setResult_quantity(reactIconQuestionDtoList.size());
+            reactIconQuestionResponse.setReactIconQuestionDtoList(reactIconQuestionDtoList);
 
 
-            return ResponseEntity.ok(reactIconResponse);
+            return ResponseEntity.ok(reactIconQuestionResponse);
 
 
         } catch (Exception e){
 
-            reactIconResponse.setSuccess(false);
-            reactIconResponse.setMessage(e.toString());
+            reactIconQuestionResponse.setSuccess(false);
+            reactIconQuestionResponse.setMessage(e.toString());
 
-            return new ResponseEntity<>(reactIconResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(reactIconQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

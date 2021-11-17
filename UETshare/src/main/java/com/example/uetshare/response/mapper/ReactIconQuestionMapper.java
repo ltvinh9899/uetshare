@@ -1,26 +1,26 @@
 package com.example.uetshare.response.mapper;
 
 import com.example.uetshare.entity.ReactIconQuestion;
-import com.example.uetshare.response.dto.ReactIconDto;
+import com.example.uetshare.response.dto.ReactIconQuestionDto;
 
-public interface ReactIconMapper {
+public interface ReactIconQuestionMapper {
 
-    public static ReactIconDto toReactIconDto(ReactIconQuestion reactIconQuestion){
-        ReactIconDto reactIconDto = new ReactIconDto();
+    public static ReactIconQuestionDto toReactIconDto(ReactIconQuestion reactIconQuestion){
+        ReactIconQuestionDto reactIconQuestionDto = new ReactIconQuestionDto();
 
         if(reactIconQuestion.getId() != null){
-            reactIconDto.setId(reactIconQuestion.getId());
+            reactIconQuestionDto.setId(reactIconQuestion.getId());
         }
 
         if(reactIconQuestion.getAccount() != null){
             if(reactIconQuestion.getAccount().getId() != null){
-                reactIconDto.setAccount_id(reactIconQuestion.getAccount().getId());
+                reactIconQuestionDto.setAccount_id(reactIconQuestion.getAccount().getId());
             }
         }
 
         if(reactIconQuestion.getQuestion() != null){
             if(reactIconQuestion.getQuestion().getId() != null){
-                reactIconDto.setQuestion_id(reactIconQuestion.getQuestion().getId());
+                reactIconQuestionDto.setQuestion_id(reactIconQuestion.getQuestion().getId());
             }
         }
 
@@ -30,7 +30,7 @@ public interface ReactIconMapper {
 //            }
 //        }
 
-        return reactIconDto;
+        return reactIconQuestionDto;
 
     }
 

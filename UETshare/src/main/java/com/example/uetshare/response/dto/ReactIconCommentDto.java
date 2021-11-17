@@ -9,11 +9,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReactIconDto {
+public class ReactIconCommentDto {
 
     private Long id;
     private Long account_id;
-    private Long question_id;
-//    private Long comment_id;
+    private Long comment_id;
 
 }
