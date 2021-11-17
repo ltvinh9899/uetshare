@@ -15,9 +15,7 @@ public interface QuestionRepositoryInterface extends JpaRepository<Question, Int
     @Query(value = "select * from uetshare.question limit 0, ?1", nativeQuery = true)
     List<Question> getAllQuestion(Integer index);
 
-    @Query(value = "select * from uetshare.question inner join uetshare.category_question " +
-            "on uetshare.question.id = uetshare.category_question.question_id " +
-            "where uetshare.category_question.category_id = ?1 limit 0, ?2", nativeQuery = true)
+    @Query(value = "select * from uetshare.question where uetshare.question.category_id = ?1 limit 0, ?2", nativeQuery = true)
     List<Question> getByCategory( Long category_id, Integer index);
 
     @Query(value = "select * from uetshare.question where uetshare.question.id = ?1", nativeQuery = true)

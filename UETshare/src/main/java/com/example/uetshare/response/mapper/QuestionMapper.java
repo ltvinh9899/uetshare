@@ -42,7 +42,7 @@ public class QuestionMapper {
 
         if (question.getCategory() != null){
             if(question.getCategory().getId() != null){
-                questionDto.setCategoryId(question.getCategory().getId());
+                questionDto.setCategory_id(question.getCategory().getId());
             }
         }
 

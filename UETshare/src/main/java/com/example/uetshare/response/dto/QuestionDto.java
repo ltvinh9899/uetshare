@@ -20,6 +20,6 @@ public class QuestionDto {
     private String image;
     private Long account_id;
     private Long type_content_id;
-    private Long categoryId;
+    private Long category_id;
 
 }
