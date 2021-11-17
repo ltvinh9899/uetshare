@@ -19,9 +19,11 @@ public class Comment extends Base {
     private Question question;
     @ManyToOne(fetch = FetchType.LAZY)
     private Account account;
-    @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<ReactIcon> reactIcon;
+//    @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    private List<ReactIconQuestion> reactIcon;
     @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<SubComment> subComment;
+    @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<NotificationComment> notificationCommentList;
 
 }

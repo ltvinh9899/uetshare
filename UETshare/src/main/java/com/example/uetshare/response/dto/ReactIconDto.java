@@ -14,6 +14,6 @@ public class ReactIconDto {
     private Long id;
     private Long account_id;
     private Long question_id;
-    private Long comment_id;
+//    private Long comment_id;
 
 }

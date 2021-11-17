@@ -41,11 +41,9 @@ public class QuestionMapper {
         }
 
         if (question.getCategory() != null){
-            List<Long> categoryIdList = new ArrayList<>();
-            for(Category category : question.getCategory()){
-                categoryIdList.add(category.getId());
+            if(question.getCategory().getId() != null){
+                questionDto.setCategoryId(question.getCategory().getId());
             }
-            questionDto.setCategoryIdList(categoryIdList);
         }
 
         return questionDto;

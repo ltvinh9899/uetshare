@@ -42,5 +42,5 @@ public class Account extends Base{
 
     }
    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-   private List<ReactIcon> reactIcon;
+   private List<ReactIconQuestion> reactIcon;
 }

@@ -16,8 +16,8 @@ public class Category extends Base{
     @Column
     private String category;
 
-    @ManyToMany(mappedBy = "category")
-    private List<Question> questions;
-//    private List<Question> question = new ArrayList<>();
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Question> questionList;
+
 
 }

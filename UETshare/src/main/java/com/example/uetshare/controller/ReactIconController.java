@@ -1,10 +1,8 @@
 package com.example.uetshare.controller;
 
-import com.example.uetshare.entity.Question;
-import com.example.uetshare.entity.ReactIcon;
+import com.example.uetshare.entity.ReactIconQuestion;
 import com.example.uetshare.response.ReactIconResponse;
 import com.example.uetshare.response.dto.ReactIconDto;
-import com.example.uetshare.response.mapper.QuestionMapper;
 import com.example.uetshare.response.mapper.ReactIconMapper;
 import com.example.uetshare.service.ReactIconServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class ReactIconController {
     private final Integer limit = 10;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createReactInQuestion(@RequestBody ReactIcon reactIcon, ReactIconResponse reactIconResponse) {
+    public ResponseEntity<?> createReactInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconResponse reactIconResponse) {
 
         try {
 
@@ -65,10 +63,10 @@ public class ReactIconController {
 
         try {
             Integer indexToQuery = index*limit;
-            List<ReactIcon> reactIconList = reactIconServiceInterface.getReactIconByQuestionId(id, index);
+            List<ReactIconQuestion> reactIconList = reactIconServiceInterface.getReactIconByQuestionId(id, index);
             List<ReactIconDto> reactIconDtoList = new ArrayList<>();
 
-            for(ReactIcon reactIcon : reactIconList){
+            for(ReactIconQuestion reactIcon : reactIconList){
                 reactIconDtoList.add(ReactIconMapper.toReactIconDto(reactIcon));
             }
 
@@ -92,35 +90,35 @@ public class ReactIconController {
 
 
 
-    @GetMapping("/comment/{id}")
-    public ResponseEntity<?> getReactByCommentId(@PathVariable Long id, @Param("index") Integer index, ReactIconResponse reactIconResponse) {
-
-        try {
-            Integer indexToQuery = index*limit;
-            List<ReactIcon> reactIconList = reactIconServiceInterface.getReactIconByCommentId(id, index);
-            List<ReactIconDto> reactIconDtoList = new ArrayList<>();
-
-            for(ReactIcon reactIcon : reactIconList){
-                reactIconDtoList.add(ReactIconMapper.toReactIconDto(reactIcon));
-            }
-
-            reactIconResponse.setSuccess(true);
-            reactIconResponse.setMessage("success to get");
-            reactIconResponse.setResult_quantity(reactIconDtoList.size());
-            reactIconResponse.setReactIconDtoList(reactIconDtoList);
-
-
-            return ResponseEntity.ok(reactIconResponse);
-
-
-        } catch (Exception e){
-
-            reactIconResponse.setSuccess(false);
-            reactIconResponse.setMessage(e.toString());
-
-            return new ResponseEntity<>(reactIconResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-    }
+//    @GetMapping("/comment/{id}")
+//    public ResponseEntity<?> getReactByCommentId(@PathVariable Long id, @Param("index") Integer index, ReactIconResponse reactIconResponse) {
+//
+//        try {
+//            Integer indexToQuery = index*limit;
+//            List<ReactIconQuestion> reactIconList = reactIconServiceInterface.getReactIconByCommentId(id, index);
+//            List<ReactIconDto> reactIconDtoList = new ArrayList<>();
+//
+//            for(ReactIconQuestion reactIcon : reactIconList){
+//                reactIconDtoList.add(ReactIconMapper.toReactIconDto(reactIcon));
+//            }
+//
+//            reactIconResponse.setSuccess(true);
+//            reactIconResponse.setMessage("success to get");
+//            reactIconResponse.setResult_quantity(reactIconDtoList.size());
+//            reactIconResponse.setReactIconDtoList(reactIconDtoList);
+//
+//
+//            return ResponseEntity.ok(reactIconResponse);
+//
+//
+//        } catch (Exception e){
+//
+//            reactIconResponse.setSuccess(false);
+//            reactIconResponse.setMessage(e.toString());
+//
+//            return new ResponseEntity<>(reactIconResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//    }
 
 }
