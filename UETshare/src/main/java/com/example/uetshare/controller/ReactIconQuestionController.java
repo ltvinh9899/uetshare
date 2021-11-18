@@ -63,7 +63,7 @@ public class ReactIconQuestionController {
 
         try {
             Integer indexToQuery = index*limit;
-            List<ReactIconQuestion> reactIconList = reactIconQuestionServiceInterface.getReactIconByQuestionId(id, index);
+            List<ReactIconQuestion> reactIconList = reactIconQuestionServiceInterface.getReactIconByQuestionId(id, indexToQuery);
             List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
 
             for(ReactIconQuestion reactIcon : reactIconList){
