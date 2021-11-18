@@ -15,6 +15,6 @@ import java.util.List;
 public class Role extends Base{
     @Column
     private String roleName;
-    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
-    private List<Account> accounts;
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    private List<AccountRole> accountRole;
 }

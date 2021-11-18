@@ -10,17 +10,23 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class UserDetailServiceImpl implements UserDetailsService {
+@Component
+public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
+
+    public UserDetailsServiceImpl() {
+    }
+
     @Autowired
     private RoleRepository roleRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Username: "+username);
         Account account = this.accountRepository.getAccountByUsername(username);
         if (account == null) {
             System.out.println("User not found! " + username);
