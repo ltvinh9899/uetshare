@@ -15,6 +15,17 @@ public class NotificationComment extends Base{
     @JoinColumn(name = "comment_id")
     private Comment comment;
 
+    @Column(length = 30)
+    private String username;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private ActionType action_type;
+
+    @Column
+    private String avatar;
+
+    @Column
     private Boolean seen;
 
 }
