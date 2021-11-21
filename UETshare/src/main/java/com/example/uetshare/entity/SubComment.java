@@ -20,4 +20,7 @@ public class SubComment extends Base{
     @ManyToOne(fetch = FetchType.LAZY)
     private Comment comment;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Account account;
+
 }
