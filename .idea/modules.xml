@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SpringbootSecurity/SpringbootSecurity.iml" filepath="$PROJECT_DIR$/SpringbootSecurity/SpringbootSecurity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UETshare/uetshare.iml" filepath="$PROJECT_DIR$/UETshare/uetshare.iml" />
+    </modules>
+  </component>
+</project>
