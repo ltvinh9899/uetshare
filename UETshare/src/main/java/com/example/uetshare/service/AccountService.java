@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Log4j2
@@ -117,5 +118,9 @@ public class AccountService {
             System.out.println("tai khoan khong ton tai");
             return new AccountResponse(false,"Chưa đăng nhập!", null);
         }
+    }
+
+    public List<Account> getAccountByText(Integer index, String text){
+        return accountRepository.getAccountByText(index, text);
     }
 }

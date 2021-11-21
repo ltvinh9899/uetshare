@@ -6,12 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountResponse extends Response{
+public class AccountListResponse extends Response{
+
     private boolean success;
     private String message;
-    private AccountDto accountDto;
+    private List<AccountDto> accountDtoList;
+
 }
