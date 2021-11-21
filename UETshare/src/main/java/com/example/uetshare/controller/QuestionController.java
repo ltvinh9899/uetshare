@@ -202,5 +202,36 @@ public class QuestionController {
         }
     }
 
+    @GetMapping("/account/{id}")
+    public ResponseEntity<?> getQuestionByAccountId(@PathVariable("id") Long id, QuestionResponse questionResponse, @Param("index") Integer index){
+
+        try {
+
+            Integer indexToQuery = index*limit;
+            List<Question> questionList = questionServiceInterface.getQuestionByAccountId(id, indexToQuery);
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+
+            for(Question question : questionList){
+                questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            }
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success to get question");
+            questionResponse.setResult_quantity(questionDtoList.size());
+            questionResponse.setQuestionDtoList(questionDtoList);
+
+
+            return ResponseEntity.ok(questionResponse);
+
+        } catch (Exception e) {
+
+            questionResponse.setSuccess(false);
+            questionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
+    }
 
 }
