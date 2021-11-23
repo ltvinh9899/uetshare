@@ -19,5 +19,7 @@ public class Category extends Base{
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Question> questionList;
 
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Subject> subjectList;
 
 }
