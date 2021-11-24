@@ -3,7 +3,7 @@ package com.example.uetshare.response.mapper;
 import com.example.uetshare.entity.ReactIconQuestion;
 import com.example.uetshare.response.dto.ReactIconQuestionDto;
 
-public interface ReactIconQuestionMapper {
+public class ReactIconQuestionMapper {
 
     public static ReactIconQuestionDto toReactIconDto(ReactIconQuestion reactIconQuestion){
         ReactIconQuestionDto reactIconQuestionDto = new ReactIconQuestionDto();

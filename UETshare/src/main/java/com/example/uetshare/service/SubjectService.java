@@ -39,19 +39,14 @@ public class SubjectService implements SubjectServiceInterface{
 
         subjectRepositoryInterface.save(subjectData);
 
-        System.out.println("hello");
-        System.out.println(subject.getCategory());
-
         return subjectData;
     }
 
     @Override
     public Subject deleteSubject(Long id) {
         Subject subject = subjectRepositoryInterface.getSubjectById(id);
-        System.out.println("hello1");
         subjectRepositoryInterface.deleteBySubjectId(id);
-        System.out.println("hello2");
-        System.out.println(subject);
+
         return subject;
     }
 }

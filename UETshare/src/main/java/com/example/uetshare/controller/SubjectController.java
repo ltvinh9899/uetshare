@@ -85,7 +85,7 @@ public class SubjectController {
             Subject subjectFromDb =  subjectServiceInterface.updateSubject(id, subject);
 
             subjectResponse.setSuccess(true);
-            subjectResponse.setMessage("create subject success");
+            subjectResponse.setMessage("update subject success");
 
             List<SubjectDto> subjectDtoList = new ArrayList<>();
             subjectDtoList.add(SubjectMapper.toSubjectDto(subjectFromDb));
@@ -110,7 +110,7 @@ public class SubjectController {
             Subject subject = subjectServiceInterface.deleteSubject(id);
 
             subjectResponse.setSuccess(true);
-            subjectResponse.setMessage("create subject success");
+            subjectResponse.setMessage("delete subject success");
 
             List<SubjectDto> subjectDtoList = new ArrayList<>();
             subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
