@@ -1,25 +1,21 @@
 package com.example.uetshare.response.dto;
 
-import com.example.uetshare.entity.Account;
+import com.example.uetshare.entity.ExamDocumentType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionDto {
+public class ExamDocumentDto {
 
     private Long id;
-    private String content;
-    private String title;
-    private String image;
+    private String link;
+    private ExamDocumentType type;
     private Long account_id;
-    private Long type_content_id;
-    private Long category_id;
+    private Long subject_id;
 
 }

@@ -1,6 +1,6 @@
 package com.example.uetshare.response;
 
-import com.example.uetshare.response.dto.ReactIconDto;
+import com.example.uetshare.response.dto.NotificationCommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class ReactIconResponse extends Response{
+public class NotificationCommentResponse extends Response{
 
-    private List<ReactIconDto> reactIconDtoList;
+    private List<NotificationCommentDto> notificationCommentDtoList;
 
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,14 +32,14 @@ public class Question extends Base{
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Comment> comment;
 
-    @ManyToMany
-    @JoinTable(name = "category_question",
-            joinColumns = @JoinColumn(name = "question_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-//    private List<Category> category = new ArrayList<>();
-    private List<Category> category;
-//    private List<Category> category = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
 
     @OneToMany(mappedBy = "question",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<ReactIcon> reactIcon;
+    private List<ReactIconQuestion> reactIconQuestions;
+
+    @OneToMany(mappedBy = "question",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<NotificationQuestion> notificationQuestionList;
 }

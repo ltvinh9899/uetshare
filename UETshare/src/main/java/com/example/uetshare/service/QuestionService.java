@@ -56,4 +56,9 @@ public class QuestionService implements QuestionServiceInterface {
     public List<Question> getQuestionByText(Integer index, String text, Long type_content_id) {
        return questionRepositoryInterface.getQuestionByText(index, text, type_content_id);
     }
+
+    @Override
+    public List<Question> getQuestionByAccountId(Long account_id, Integer index) {
+        return questionRepositoryInterface.getQuestionByAccountId(account_id, index);
+    }
 }

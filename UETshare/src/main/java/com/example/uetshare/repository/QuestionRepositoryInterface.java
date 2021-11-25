@@ -15,9 +15,7 @@ public interface QuestionRepositoryInterface extends JpaRepository<Question, Int
     @Query(value = "select * from uetshare.question limit 0, ?1", nativeQuery = true)
     List<Question> getAllQuestion(Integer index);
 
-    @Query(value = "select * from uetshare.question inner join uetshare.category_question " +
-            "on uetshare.question.id = uetshare.category_question.question_id " +
-            "where uetshare.category_question.category_id = ?1 limit 0, ?2", nativeQuery = true)
+    @Query(value = "select * from uetshare.question where uetshare.question.category_id = ?1 limit 0, ?2", nativeQuery = true)
     List<Question> getByCategory( Long category_id, Integer index);
 
     @Query(value = "select * from uetshare.question where uetshare.question.id = ?1", nativeQuery = true)
@@ -28,4 +26,8 @@ public interface QuestionRepositoryInterface extends JpaRepository<Question, Int
 
     @Query(value = "select * from uetshare.question where (uetshare.question.type_content_id = ?3) and (uetshare.question.title like ?2 or uetshare.question.content like ?2) limit 0, ?1", nativeQuery = true)
     List<Question> getQuestionByText(Integer index, String text, Long type_content_id);
+
+    @Query(value ="select * from uetshare.question where uetshare.question.account_id = ?1 limit 0, ?2", nativeQuery = true)
+    List<Question> getQuestionByAccountId(Long account_id, Integer index);
+
 }

@@ -1,5 +1,6 @@
 package com.example.uetshare.response.dto;
 
+import com.example.uetshare.entity.ActionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,13 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReactIconDto {
+public class NotificationCommentDto {
 
     private Long id;
-    private Long account_id;
-    private Long question_id;
     private Long comment_id;
+    private String username;
+    private String avatar;
+    private Boolean seen;
+    private ActionType action_type;
 
 }
