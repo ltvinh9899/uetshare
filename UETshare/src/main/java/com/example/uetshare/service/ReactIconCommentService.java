@@ -28,7 +28,7 @@ public class ReactIconCommentService implements ReactIconCommentServiceInterface
 
     @Override
     public ReactIconComment deleteReactIconComment(Long id) {
-        ReactIconComment reactIconComment = reactIconCommentRepositoryInterface.getSubjectById(id);
+        ReactIconComment reactIconComment = reactIconCommentRepositoryInterface.getReactIconCommentById(id);
         reactIconCommentRepositoryInterface.deleteByReactIconId(id);
 
         return reactIconComment;

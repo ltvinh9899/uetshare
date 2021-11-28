@@ -17,7 +17,7 @@ public interface ReactIconCommentRepositoryInterface extends JpaRepository<React
     List<ReactIconComment> getReactIconByCommentId(Long comment_id, Integer index);
 
     @Query(value = "select * from react_icon_comment where react_icon_comment.id = ?1", nativeQuery = true)
-    ReactIconComment getSubjectById(Long id);
+    ReactIconComment getReactIconCommentById(Long id);
 
     @Modifying
     @Transactional
