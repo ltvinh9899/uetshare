@@ -17,7 +17,7 @@ public class QuestionDto {
     private Long id;
     private String content;
     private String title;
-    private String image;
+//    private String image;
     private Long account_id;
     private Long type_content_id;
     private Long category_id;
