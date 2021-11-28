@@ -34,6 +34,10 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
             examDocumentData.setLink(examDocument.getLink());
         }
 
+        if (examDocument.getName() != null){
+            examDocumentData.setName(examDocument.getName());
+        }
+
         if(examDocument.getExamDocumentType() != null){
             examDocumentData.setExamDocumentType(examDocument.getExamDocumentType());
         }
