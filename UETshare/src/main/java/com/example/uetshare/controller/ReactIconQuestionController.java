@@ -1,8 +1,12 @@
 package com.example.uetshare.controller;
 
+import com.example.uetshare.entity.ReactIconComment;
 import com.example.uetshare.entity.ReactIconQuestion;
+import com.example.uetshare.response.ReactIconCommentResponse;
 import com.example.uetshare.response.ReactIconQuestionResponse;
+import com.example.uetshare.response.dto.ReactIconCommentDto;
 import com.example.uetshare.response.dto.ReactIconQuestionDto;
+import com.example.uetshare.response.mapper.ReactIconCommentMapper;
 import com.example.uetshare.response.mapper.ReactIconQuestionMapper;
 import com.example.uetshare.service.ReactIconQuestionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +92,31 @@ public class ReactIconQuestionController {
         }
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteReactIcon(@PathVariable("id") Long id, ReactIconQuestionResponse reactIconQuestionResponse){
+        try {
+
+            ReactIconQuestion reactIconQuestion = reactIconQuestionServiceInterface.deleteReactIconQuestion(id);
+
+            reactIconQuestionResponse.setSuccess(true);
+            reactIconQuestionResponse.setMessage("success to get");
+
+            List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
+            reactIconQuestionDtoList.add(ReactIconQuestionMapper.toReactIconDto(reactIconQuestion));
+            reactIconQuestionResponse.setResult_quantity(reactIconQuestionDtoList.size());
+            reactIconQuestionResponse.setReactIconQuestionDtoList(reactIconQuestionDtoList);
+
+            return ResponseEntity.ok(reactIconQuestionResponse);
+
+
+        } catch (Exception e){
+
+            reactIconQuestionResponse.setSuccess(false);
+            reactIconQuestionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(reactIconQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 //    @GetMapping("/comment/{id}")
