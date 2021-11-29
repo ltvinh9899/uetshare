@@ -16,12 +16,12 @@ public interface ReactIconCommentRepositoryInterface extends JpaRepository<React
     @Query(value = "select * from react_icon_comment where react_icon_comment.comment_id = ?1 limit 0, ?2", nativeQuery = true)
     List<ReactIconComment> getReactIconByCommentId(Long comment_id, Integer index);
 
-    @Query(value = "select * from react_icon_comment where react_icon_comment.id = ?1", nativeQuery = true)
-    ReactIconComment getReactIconCommentById(Long id);
+    @Query(value = "select * from react_icon_comment where react_icon_comment.account_id = ?1 and react_icon_comment.comment_id = ?2", nativeQuery = true)
+    ReactIconComment getReactIconCommentByAccountAndComment(Long account_id, Long comment_id);
 
     @Modifying
     @Transactional
-    @Query(value = "delete from react_icon_comment where react_icon_comment.id = ?1", nativeQuery = true)
-    void deleteByReactIconId(Long id);
+    @Query(value = "delete from react_icon_comment where react_icon_comment.account_id = ?1 and react_icon_comment.comment_id = ?2", nativeQuery = true)
+    void deleteByReactIconId(Long account_id, Long comment_id);
 
 }

@@ -89,11 +89,11 @@ public class ReactIconCommentController {
 
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<?> deleteReactIcon(@PathVariable("id") Long id, ReactIconCommentResponse reactIconCommentResponse){
+    @DeleteMapping("account/{account_id}/comment/{comment_id}")
+    public ResponseEntity<?> deleteReactIcon(@PathVariable("account_id") Long account_id, @PathVariable("account_id") Long comment_id, ReactIconCommentResponse reactIconCommentResponse){
         try {
 
-            ReactIconComment reactIconComment = reactIconCommentServiceInterface.deleteReactIconComment(id);
+            ReactIconComment reactIconComment = reactIconCommentServiceInterface.deleteReactIconComment(account_id, account_id);
 
             reactIconCommentResponse.setSuccess(true);
             reactIconCommentResponse.setMessage("success to get");
