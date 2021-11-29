@@ -89,4 +89,30 @@ public class ReactIconCommentController {
 
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteReactIcon(@PathVariable("id") Long id, ReactIconCommentResponse reactIconCommentResponse){
+        try {
+
+            ReactIconComment reactIconComment = reactIconCommentServiceInterface.deleteReactIconComment(id);
+
+            reactIconCommentResponse.setSuccess(true);
+            reactIconCommentResponse.setMessage("success to get");
+
+            List<ReactIconCommentDto> reactIconCommentDtoList = new ArrayList<>();
+            reactIconCommentDtoList.add(ReactIconCommentMapper.toReactIconCommentDto(reactIconComment));
+            reactIconCommentResponse.setResult_quantity(reactIconCommentDtoList.size());
+            reactIconCommentResponse.setReactIconCommentDtoList(reactIconCommentDtoList);
+
+            return ResponseEntity.ok(reactIconCommentResponse);
+
+
+        } catch (Exception e){
+
+            reactIconCommentResponse.setSuccess(false);
+            reactIconCommentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(reactIconCommentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

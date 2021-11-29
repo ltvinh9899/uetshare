@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface SubjectRepositoryInterface extends JpaRepository<Subject, Integer> {
 
-    @Query(value = "select * from subject where subject.category_id = ?1 limit 0, ?1", nativeQuery = true)
+    @Query(value = "select * from subject where subject.category_id = ?1 limit 0, ?2", nativeQuery = true)
     List<Subject> getAllSubjectByCategoryId(Long category_id, Integer index);
 
     @Query(value = "select * from subject where subject.id = ?1", nativeQuery = true)

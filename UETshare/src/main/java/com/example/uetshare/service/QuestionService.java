@@ -61,4 +61,9 @@ public class QuestionService implements QuestionServiceInterface {
     public List<Question> getQuestionByAccountId(Long account_id, Integer index) {
         return questionRepositoryInterface.getQuestionByAccountId(account_id, index);
     }
+
+    @Override
+    public Question getQuestionByCommentId(Long comment_id) {
+        return questionRepositoryInterface.getQuestionByCommentId(comment_id);
+    }
 }

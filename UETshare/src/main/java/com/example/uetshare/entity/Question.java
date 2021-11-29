@@ -18,8 +18,8 @@ public class Question extends Base{
     @Column
     private String title;
 
-    @Column
-    private String image;
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Image> image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")

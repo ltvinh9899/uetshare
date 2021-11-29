@@ -14,6 +14,9 @@ public class ExamDocument extends Base{
     @Column
     private String link;
 
+    @Column
+    private String name;
+
     @Enumerated(EnumType.STRING)
     private ExamDocumentType examDocumentType;
 

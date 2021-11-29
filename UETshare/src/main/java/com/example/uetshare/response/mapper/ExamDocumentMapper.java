@@ -18,6 +18,10 @@ public class ExamDocumentMapper {
             examDocumentDto.setLink(examDocument.getLink());
         }
 
+        if(examDocument.getName() != null){
+            examDocumentDto.setName(examDocument.getName());
+        }
+
         if(examDocument.getExamDocumentType() != null){
             examDocumentDto.setType(examDocument.getExamDocumentType());
         }

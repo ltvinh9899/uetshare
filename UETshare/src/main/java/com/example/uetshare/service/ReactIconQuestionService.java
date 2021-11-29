@@ -1,5 +1,6 @@
 package com.example.uetshare.service;
 
+import com.example.uetshare.entity.ReactIconComment;
 import com.example.uetshare.entity.ReactIconQuestion;
 import com.example.uetshare.repository.ReactIconQuestionRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,14 @@ public class ReactIconQuestionService implements ReactIconQuestionServiceInterfa
     @Override
     public List<ReactIconQuestion> getReactIconByQuestionId(Long question_id, Integer index) {
         return reactIconQuestionRepositoryInterface.getReactIconByQuestionId(question_id, index);
+    }
+
+    @Override
+    public ReactIconQuestion deleteReactIconQuestion(Long id) {
+        ReactIconQuestion reactIconQuestion = reactIconQuestionRepositoryInterface.getReactIconQuestionById(id);
+        reactIconQuestionRepositoryInterface.deleteByReactIconQuestionId(id);
+
+        return reactIconQuestion;
     }
 
 //    @Override

@@ -234,4 +234,33 @@ public class QuestionController {
 
     }
 
+    @GetMapping("/comment/{id}")
+    public ResponseEntity<?> getQuestionByCommentId(@PathVariable("id") Long id, QuestionResponse questionResponse){
+
+        try {
+
+            Question question = questionServiceInterface.getQuestionByCommentId(id);
+
+            questionResponse.setSuccess(true);
+            questionResponse.setMessage("success to get question");
+
+            List<QuestionDto> questionDtoList = new ArrayList<>();
+            questionDtoList.add(QuestionMapper.toQuestionDto(question));
+            questionResponse.setResult_quantity(questionDtoList.size());
+            questionResponse.setQuestionDtoList(questionDtoList);
+
+
+            return ResponseEntity.ok(questionResponse);
+
+        } catch (Exception e) {
+
+            questionResponse.setSuccess(false);
+            questionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(questionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
+    }
+
 }

@@ -11,5 +11,6 @@ public interface ReactIconQuestionServiceInterface {
     public void createReactIcon(ReactIconQuestion reactIcon);
     public List<ReactIconQuestion> getReactIconByQuestionId(Long question_id, Integer index);
 //    public List<ReactIconQuestion> getReactIconByCommentId(Long comment_id, Integer index);
+    public ReactIconQuestion deleteReactIconQuestion(Long id);
 
 }
