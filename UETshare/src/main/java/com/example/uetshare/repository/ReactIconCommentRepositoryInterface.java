@@ -22,6 +22,6 @@ public interface ReactIconCommentRepositoryInterface extends JpaRepository<React
     @Modifying
     @Transactional
     @Query(value = "delete from react_icon_comment where react_icon_comment.account_id = ?1 and react_icon_comment.comment_id = ?2", nativeQuery = true)
-    void deleteByReactIconId(Long account_id, Long comment_id);
+    void deleteReactIconComment(Long account_id, Long comment_id);
 
 }

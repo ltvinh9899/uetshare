@@ -25,9 +25,9 @@ public class ReactIconQuestionService implements ReactIconQuestionServiceInterfa
     }
 
     @Override
-    public ReactIconQuestion deleteReactIconQuestion(Long id) {
-        ReactIconQuestion reactIconQuestion = reactIconQuestionRepositoryInterface.getReactIconQuestionById(id);
-        reactIconQuestionRepositoryInterface.deleteByReactIconQuestionId(id);
+    public ReactIconQuestion deleteReactIconQuestion(Long account_id, Long question_id) {
+        ReactIconQuestion reactIconQuestion = reactIconQuestionRepositoryInterface.getReactIconQuestionByByAccountAndComment(account_id, question_id);
+        reactIconQuestionRepositoryInterface.deleteReactIconQuestion(account_id, question_id);
 
         return reactIconQuestion;
     }
