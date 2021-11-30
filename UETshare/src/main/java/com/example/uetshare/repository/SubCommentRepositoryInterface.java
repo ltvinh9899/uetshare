@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface SubCommentRepositoryInterface extends JpaRepository<SubComment, Integer>{
 
-    @Query(value = "select * from uetshare.sub_comment where uetshare.sub_comment.comment_id = ?1 limit 0, ?2", nativeQuery = true)
+    @Query(value = "select * from sub_comment where sub_comment.comment_id = ?1 order by sub_comment.id desc limit 0, ?2", nativeQuery = true)
     List<SubComment> getSubCommentByCommentId(Long comment_id, Integer index);
 
 }

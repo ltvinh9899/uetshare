@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface ExamDocumentRepositoryInterface extends JpaRepository<ExamDocument, Integer> {
 
-    @Query(value = "select * from exam_document where exam_document.subject_id = ?1 and exam_document.exam_document_type = ?2 limit 0, ?3", nativeQuery = true)
+    @Query(value = "select * from exam_document where exam_document.subject_id = ?1 and exam_document.exam_document_type = ?2 order by exam_document.id desc limit 0, ?3", nativeQuery = true)
     List<ExamDocument> getExamDocumentBySubjectIdAndType(Long subject_id, String type, Integer index);
 
     @Query(value = "select * from exam_document where exam_document.id = ?1", nativeQuery = true)
