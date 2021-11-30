@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CommentRepositoryInterface extends JpaRepository<Comment, Integer> {
 
-    @Query(value = "select * from uetshare.comment where uetshare.comment.question_id = ?2 order by commnent.id desc limit 0, ?1", nativeQuery = true)
+    @Query(value = "select * from comment where uetshare.comment.question_id = ?2 order by comment.id desc limit 0, ?1", nativeQuery = true)
     List<Comment> getCommentByQuestionId(Integer index, Long question_id);
 
 }
