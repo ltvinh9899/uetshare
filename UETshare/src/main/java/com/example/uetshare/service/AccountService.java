@@ -1,17 +1,23 @@
 package com.example.uetshare.service;
 
+import com.example.uetshare.entity.AccountRole;
+import com.example.uetshare.entity.Role;
 import com.example.uetshare.repository.AccountRoleRepository;
 import com.example.uetshare.repository.PersistentLoginsRepository;
+import com.example.uetshare.repository.RoleRepository;
 import com.example.uetshare.response.AccountResponse;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.repository.AccountRepository;
 import com.example.uetshare.response.mapper.AccountMapper;
+import com.example.uetshare.utils.CallApi;
 import com.example.uetshare.utils.EncoderUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -27,6 +33,8 @@ public class AccountService {
     private AccountRoleRepository accountRoleRepository;
     @Autowired
     PersistentLoginsRepository persistentLoginsRepository;
+    @Autowired
+    private RoleRepository roleRepository;
     /**
      * Đăng ký tài khoản
      * @return
@@ -64,16 +72,24 @@ public class AccountService {
     public void addAccount(AccountDto accountDto){
         Account account = new Account(accountDto.getUsername(), EncoderUtils.encoderPassword(accountDto.getPassword()));
         accountRepository.save(account);
+        Account accountGet = accountRepository.getAccountByUsername(accountDto.getUsername());
+        Role role = new Role();
+        role.setId(1L);
+        role.setRoleName("ROLE_USER");
+        AccountRole accountRole = new AccountRole();
+        accountRole.setAccount(accountGet);
+        accountRole.setRole(role);
+        accountRoleRepository.save(accountRole);
 
         /**
          * đang dở phần này, thêm role khi đăng ký user
          * Nên thêm model account_role
          */
-        CompletableFuture<Account> future1 = CompletableFuture.supplyAsync(() -> getAccountFromMysql(account.getUsername()));
-        future1.thenAccept((result)->{
-            accountRoleRepository.insertRole(result.getId());
-
-        }).join();
+//        CompletableFuture<Account> future1 = CompletableFuture.supplyAsync(() -> getAccountFromMysql(account.getUsername()));
+//        future1.thenAccept((result)->{
+//            accountRoleRepository.insertRole(result.getId());
+//
+//        }).join();
     }
     public Account getAccountFromMysql(String username){
         Account accountGet = accountRepository.getAccountByUsername(username);
@@ -101,7 +117,14 @@ public class AccountService {
     }
     public AccountResponse getAccount(String cookie){
         String cookieSplit[] = cookie.split(";");
-        String rememberMeSplit[] = cookieSplit[0].split("=");
+        String rememberMeSplit[] = new String[]{};
+        for (String cookieIndex:cookieSplit
+             ) {
+            if(cookieIndex.contains("remember-me")){
+                rememberMeSplit = cookieIndex.split("=");
+
+            }
+        }
         String rememberMeToken = rememberMeSplit[1];
         byte[] decodedBytes = Base64.getDecoder().decode(rememberMeToken);
         String rememberMeDecode[] = new String(decodedBytes).split(":");
