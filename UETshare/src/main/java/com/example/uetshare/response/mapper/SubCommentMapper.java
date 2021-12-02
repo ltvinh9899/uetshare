@@ -26,6 +26,10 @@ public class SubCommentMapper {
             }
         }
 
+        if (subComment.getTime() != null){
+            subCommentDto.setTime(subComment.getTime());
+        }
+
         return subCommentDto;
 
     }

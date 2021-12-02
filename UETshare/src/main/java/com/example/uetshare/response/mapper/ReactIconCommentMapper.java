@@ -26,6 +26,10 @@ public class ReactIconCommentMapper {
             }
         }
 
+        if (reactIconComment.getTime() != null){
+            reactIconCommentDto.setTime(reactIconComment.getTime());
+        }
+
         return reactIconCommentDto;
 
     }

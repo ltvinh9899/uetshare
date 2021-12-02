@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class CommentController {
     public ResponseEntity<?> createComment(@RequestBody Comment comment, CommentResponse commentResponse){
 
         try {
-
+            comment.setTime(Calendar.getInstance());
             commentServiceInterface.createComment(comment);
 
             commentResponse.setSuccess(true);

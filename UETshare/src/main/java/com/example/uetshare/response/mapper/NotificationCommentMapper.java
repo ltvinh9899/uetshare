@@ -36,6 +36,10 @@ public class NotificationCommentMapper {
             }
         }
 
+        if (notificationComment.getTime() != null){
+            notificationCommentDto.setTime(notificationComment.getTime());
+        }
+
         return notificationCommentDto;
 
     }

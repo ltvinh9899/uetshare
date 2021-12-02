@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,7 @@ public class SubjectController {
     @PostMapping("")
     public ResponseEntity<?> createSubject(@RequestBody Subject subject, SubjectResponse subjectResponse){
         try {
-
+            subject.setTime(Calendar.getInstance());
             subjectServiceInterface.createSubject(subject);
 
             subjectResponse.setSuccess(true);

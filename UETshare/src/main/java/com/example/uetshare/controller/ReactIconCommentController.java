@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,7 @@ public class ReactIconCommentController {
 
         try {
 
+            reactIcon.setTime(Calendar.getInstance());
             reactIconCommentServiceInterface.createReactIcon(reactIcon);
 
             reactIconCommentResponse.setSuccess(true);

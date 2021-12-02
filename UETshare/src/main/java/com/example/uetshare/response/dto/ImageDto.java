@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -13,5 +15,5 @@ public class ImageDto {
 
     private Long id;
     private String image;
-
+    private Calendar time;
 }

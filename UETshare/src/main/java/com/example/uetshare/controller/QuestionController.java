@@ -16,7 +16,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,7 +41,7 @@ public class QuestionController {
     public ResponseEntity<?> createQuestion(@RequestBody Question question, QuestionResponse  questionResponse){
 
         try {
-
+            question.setTime(Calendar.getInstance());
             Question questionInDb = questionServiceInterface.createQuestion(question);
 
             for(Image image : question.getImage()){

@@ -30,12 +30,9 @@ public class QuestionMapper {
             questionDto.setTitle(question.getTitle());
         }
 
-//        if (question.getImage() != null){
-//            if (question.getImage().getId() != null){
-//                questionDto.setImage(question.getImage());
-//            }
-//
-//        }
+        if (question.getTime() != null){
+            questionDto.setTime(question.getTime());
+        }
 
         if (question.getType_content() != null) {
             if(question.getType_content().getId() != null){

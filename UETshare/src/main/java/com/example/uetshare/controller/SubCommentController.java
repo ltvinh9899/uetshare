@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class SubCommentController {
     @PostMapping("/create")
     public ResponseEntity<?> createSubComment(@RequestBody SubComment subComment, SubCommentResponse subCommentResponse){
         try {
-
+            subComment.setTime(Calendar.getInstance());
             subCommentServiceInterface.createSubComment(subComment);
 
             subCommentResponse.setSuccess(true);

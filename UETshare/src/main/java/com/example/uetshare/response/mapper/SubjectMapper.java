@@ -23,6 +23,10 @@ public class SubjectMapper {
             }
         }
 
+        if (subject.getTime() != null){
+            subjectDto.setTime(subject.getTime());
+        }
+
         return subjectDto;
 
     }

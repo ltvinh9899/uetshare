@@ -34,6 +34,10 @@ public class NotificationQuestionMapper {
             }
         }
 
+        if (notificationQuestion.getTime() != null){
+            notificationQuestionDto.setTime(notificationQuestion.getTime());
+        }
+
         return notificationQuestionDto;
 
     }
