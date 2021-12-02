@@ -15,8 +15,8 @@ public class QuestionService implements QuestionServiceInterface {
     private QuestionRepositoryInterface questionRepositoryInterface;
 
     @Override
-    public void createQuestion(Question question) {
-        questionRepositoryInterface.save(question);
+    public Question createQuestion(Question question) {
+       return questionRepositoryInterface.save(question);
     }
 
     @Override
