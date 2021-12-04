@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -16,5 +18,5 @@ public class CommentDto {
     private String image;
     private Long question_id;
     private Long account_id;
-
+    private Calendar time;
 }

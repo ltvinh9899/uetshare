@@ -16,6 +16,10 @@ public class TypeContentMapper {
             typeContentDto.setType_content(typeContent.getType_content());
         }
 
+        if (typeContent.getTime() != null){
+            typeContentDto.setTime(typeContent.getTime());
+        }
+
         return typeContentDto;
     }
 

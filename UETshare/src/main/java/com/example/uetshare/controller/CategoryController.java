@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,7 @@ public class CategoryController {
 
 
         try {
-
+            category.setTime(Calendar.getInstance());
             categoryServiceInterface.createCategory(category);
 
             categoryResponse.setSuccess(true);

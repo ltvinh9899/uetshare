@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class ReactIconQuestionController {
     public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconQuestionResponse reactIconQuestionResponse) {
 
         try {
-
+            reactIcon.setTime(Calendar.getInstance());
             reactIconQuestionServiceInterface.createReactIcon(reactIcon);
 
             reactIconQuestionResponse.setSuccess(true);

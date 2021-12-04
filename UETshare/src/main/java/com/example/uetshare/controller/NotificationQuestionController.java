@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -31,6 +32,7 @@ public class NotificationQuestionController {
     public ResponseEntity<?> createNotificationQuestion(@RequestBody NotificationQuestion notificationQuestion, NotificationQuestionResponse notificationQuestionResponse){
         try {
             notificationQuestion.setSeen(false);
+            notificationQuestion.setTime(Calendar.getInstance());
             notificationQuestionServiceInterface.createNotificationQuestion(notificationQuestion);
 
             notificationQuestionResponse.setSuccess(true);

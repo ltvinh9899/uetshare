@@ -24,6 +24,10 @@ public class ReactIconQuestionMapper {
             }
         }
 
+        if (reactIconQuestion.getTime() != null){
+            reactIconQuestionDto.setTime(reactIconQuestion.getTime());
+        }
+
 //        if(reactIcon.getComment() != null){
 //            if(reactIcon.getComment().getId() != null){
 //                reactIconDto.setComment_id(reactIcon.getComment().getId());

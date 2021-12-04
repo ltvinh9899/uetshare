@@ -1,6 +1,5 @@
 package com.example.uetshare.response.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,9 @@ import java.util.Calendar;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDto {
+public class ImageDto {
 
     private Long id;
-    private String category;
+    private String image;
     private Calendar time;
 }

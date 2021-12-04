@@ -38,6 +38,10 @@ public class ExamDocumentMapper {
             }
         }
 
+        if (examDocument.getTime() != null){
+            examDocumentDto.setTime(examDocument.getTime());
+        }
+
         return examDocumentDto;
 
     }

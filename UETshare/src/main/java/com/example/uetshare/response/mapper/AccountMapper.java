@@ -16,9 +16,15 @@ public class AccountMapper {
         if (account.getUsername() != null){
             accountDto.setUsername(account.getUsername());
         }
+
         if (account.getAvatar() != null){
             accountDto.setAvatar(account.getAvatar());
         }
+
+        if (account.getTime() != null){
+            accountDto.setTime(account.getTime());
+        }
+
         return accountDto;
 
     }

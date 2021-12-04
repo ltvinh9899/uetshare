@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Setter
@@ -17,9 +18,10 @@ public class QuestionDto {
     private Long id;
     private String content;
     private String title;
-//    private String image;
+    private Calendar time;
     private Long account_id;
     private Long type_content_id;
     private Long category_id;
+    private List<ImageDto> imageDtoList;
 
 }

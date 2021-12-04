@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -14,6 +16,6 @@ public class ReactIconQuestionDto {
     private Long id;
     private Long account_id;
     private Long question_id;
-//    private Long comment_id;
+    private Calendar time;
 
 }

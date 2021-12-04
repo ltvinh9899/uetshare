@@ -20,8 +20,6 @@ public class CommentMapper {
             commentDto.setImage(comment.getImage());
         }
 
-        System.out.println(comment.getQuestion().getId());
-
         if (comment.getQuestion() != null){
             if(comment.getQuestion().getId() != null){
                 commentDto.setQuestion_id(comment.getQuestion().getId());
@@ -32,6 +30,10 @@ public class CommentMapper {
             if (comment.getAccount().getId() != null){
                 commentDto.setAccount_id(comment.getAccount().getId());
             }
+        }
+
+        if (comment.getTime() != null){
+            commentDto.setTime(comment.getTime());
         }
 
         return commentDto;

@@ -16,6 +16,10 @@ public class CategoryMapper {
             categoryDto.setCategory(category.getCategory());
         }
 
+        if (category.getTime() != null){
+            categoryDto.setTime(category.getTime());
+        }
+
         return categoryDto;
 
     }
