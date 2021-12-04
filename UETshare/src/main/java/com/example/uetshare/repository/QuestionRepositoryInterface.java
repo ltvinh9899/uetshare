@@ -24,13 +24,9 @@ public interface QuestionRepositoryInterface extends JpaRepository<Question, Int
     @Query(value = "select * from question where question.type_content_id = ?1 order by question.id desc limit 0, ?2", nativeQuery = true)
     List<Question> getQuestionByTypeContentId(Long type_content_id, Integer index);
 
-<<<<<<< HEAD
 
-    @Query(value = "select * from question where (question.type_content_id = ?3) and (question.title like ?2 or question.content like ?2) order by question.id DESC limit 0, ?1", nativeQuery = true)
-
-=======
     @Query(value = "select * from question where (question.type_content_id = ?3) and (question.title like ?2 or question.content like ?2) order by question.id desc limit 0, ?1", nativeQuery = true)
->>>>>>> ltvinh
+
     List<Question> getQuestionByText(Integer index, String text, Long type_content_id);
 
     @Query(value ="select * from question where question.account_id = ?1 order by question.id desc limit 0, ?2", nativeQuery = true)
