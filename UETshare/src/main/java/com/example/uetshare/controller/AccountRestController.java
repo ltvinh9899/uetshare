@@ -2,25 +2,19 @@ package com.example.uetshare.controller;
 
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.response.AccountListResponse;
-import com.example.uetshare.response.AccountResponse;
-import com.example.uetshare.response.QuestionResponse;
+import com.example.uetshare.response.SessionRespone;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.response.mapper.AccountMapper;
 import com.example.uetshare.service.AccountService;
-import com.example.uetshare.service.UserDetailsServiceImpl;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Log4j2
 @RestController
@@ -41,16 +35,15 @@ public class AccountRestController {
     }
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AccountDto accountDto){
-        System.out.println("controller: /register");
-        log.info(accountDto.getUsername());
+        log.info("/register with username: "+accountDto.getUsername()+" | password: "+ accountDto.getPassword());
         return ResponseEntity.ok(accountService.register(accountDto));
     }
-//    @PostMapping("/login")
-//    public ResponseEntity<?> getInfo(@RequestBody AccountDto accountDto){
-//        System.out.println("controller: /login");
-//        log.info("controller: /login");
-//        return ResponseEntity.ok(accountService.login(accountDto));
-//    }
+    @GetMapping("/login")
+    public ResponseEntity<?> login(){
+        SessionRespone sessionRespone = new SessionRespone();
+        sessionRespone.setLogin(false);
+        return ResponseEntity.ok(sessionRespone);
+    }
     @GetMapping("/user")
     public ResponseEntity<?> getUser(){
         log.info("controller: /user");
@@ -58,8 +51,9 @@ public class AccountRestController {
     }
     @GetMapping("/login-failed")
     public ResponseEntity<?> loginFailed(){
-        log.info("controller: /login-failed");
-        return ResponseEntity.ok(false);
+        SessionRespone sessionRespone = new SessionRespone();
+        sessionRespone.setLogin(false);
+        return ResponseEntity.ok(sessionRespone);
     }
     @GetMapping("/login-success")
     public ResponseEntity<?> getSuccess(@RequestHeader(value ="cookie") String cookie){
@@ -68,13 +62,15 @@ public class AccountRestController {
     }
     @GetMapping("/logout-success")
     public ResponseEntity<?> logoutSuccess(){
-        System.out.println("controller: /out");
-        log.info("controller: /logout-success");
-        return ResponseEntity.ok(true);
+        SessionRespone sessionRespone = new SessionRespone();
+        sessionRespone.setLogout(true);
+        return ResponseEntity.ok(sessionRespone);
     }
     @GetMapping("/403")
     public ResponseEntity<?> accessDenined(){
-        return ResponseEntity.ok("Access denined!");
+        SessionRespone sessionRespone = new SessionRespone();
+        sessionRespone.setLogin(true);
+        return ResponseEntity.ok(sessionRespone);
     }
 
     @GetMapping("/getAccount")
