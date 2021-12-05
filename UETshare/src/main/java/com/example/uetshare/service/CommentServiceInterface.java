@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface CommentServiceInterface {
 
-    public void createComment(Comment comment);
+    public Comment createComment(Comment comment);
     public List<Comment> getCommentByQuestionId(Integer index, Long question_id);
-
+    public Comment updateComment(Long id,Comment comment);
 }

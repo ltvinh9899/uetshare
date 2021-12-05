@@ -1,5 +1,6 @@
 package com.example.uetshare.controller;
 
+import com.example.uetshare.entity.Comment;
 import com.example.uetshare.entity.Image;
 import com.example.uetshare.entity.Question;
 import com.example.uetshare.response.QuestionResponse;
@@ -9,13 +10,21 @@ import com.example.uetshare.response.mapper.ImageMapper;
 import com.example.uetshare.response.mapper.QuestionMapper;
 import com.example.uetshare.service.ImageServiceInterface;
 import com.example.uetshare.service.QuestionServiceInterface;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -33,16 +42,48 @@ public class QuestionController {
     @Autowired
     private ImageServiceInterface imageServiceInterface;
 
+    @Value("${file.upload-dir}")
+    String FILE_DIRECTORY;
+
     private final Integer limit = 10;
 //    @Autowired
 //    private QuestionResponse  questionResponse;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createQuestion(@RequestBody Question question, QuestionResponse  questionResponse){
+    public ResponseEntity<?> createQuestion(@RequestParam("Question") String questionJson, @RequestParam("image_files") List<MultipartFile> image_files, QuestionResponse  questionResponse){
 
         try {
+
+            Question question = new ObjectMapper().readValue(questionJson, Question.class);
             question.setTime(Calendar.getInstance());
             Question questionInDb = questionServiceInterface.createQuestion(question);
+
+
+            String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
+            List<Image> imageList = new ArrayList<>();
+            for (MultipartFile image_file : image_files){
+//                String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
+//                Path path = Paths.get(pathDirectoryString);
+//                Files.createDirectories(path);
+//
+//                String pathFileString = pathDirectoryString + image_file.getOriginalFilename();
+//                File myFile = new File(pathFileString);
+//                myFile.createNewFile();
+//                System.out.println("hello1");
+//                FileOutputStream fos =new FileOutputStream(myFile);
+//                System.out.println("hello2");
+//                fos.write(image_file.getBytes());
+//                System.out.println("hello3");
+//                fos.close();
+                String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
+
+                Image image = new Image();
+                image.setImage(pathFileString);
+                imageList.add(image);
+
+            }
+
+            questionInDb.setImage(imageList);
 
             for(Image image : question.getImage()){
                 image.setQuestion(questionInDb);
@@ -53,7 +94,7 @@ public class QuestionController {
             questionResponse.setMessage("Create question success");
 
             List<QuestionDto> questionDtoList = new ArrayList<>();
-            questionDtoList.add(mapperDto(question));
+            questionDtoList.add(mapperDto(questionInDb));
             questionResponse.setQuestionDtoList(questionDtoList);
 
             return ResponseEntity.ok(questionResponse);

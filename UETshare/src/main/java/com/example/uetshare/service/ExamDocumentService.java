@@ -17,8 +17,8 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
     private ExamDocumentRepositoryInterface examDocumentRepositoryInterface;
 
     @Override
-    public void createExamDocument(ExamDocument examDocument) {
-        examDocumentRepositoryInterface.save(examDocument);
+    public ExamDocument createExamDocument(ExamDocument examDocument) {
+        return examDocumentRepositoryInterface.save(examDocument);
     }
 
     @Override
