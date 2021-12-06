@@ -1,5 +1,6 @@
 package com.example.uetshare.controller;
 
+import com.example.uetshare.entity.Comment;
 import com.example.uetshare.entity.ExamDocument;
 import com.example.uetshare.entity.ExamDocumentType;
 import com.example.uetshare.entity.Subject;
@@ -10,11 +11,14 @@ import com.example.uetshare.response.mapper.ExamDocumentMapper;
 import com.example.uetshare.response.mapper.SubjectMapper;
 import com.example.uetshare.service.ExamDocumentServiceInterface;
 import com.example.uetshare.service.SubjectServiceInterface;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,20 +31,30 @@ public class ExamDocumentController {
     @Autowired
     private ExamDocumentServiceInterface examDocumentServiceInterface;
 
+    @Value("${file.upload-dir}")
+    String FILE_DIRECTORY;
+
     private final Integer limit = 10;
 
     @PostMapping("")
-    public ResponseEntity<?> createExamDocument(@RequestBody ExamDocument examDocument, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam("file") MultipartFile file, ExamDocumentResponse examDocumentResponse){
 
         try {
+            ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
             examDocument.setTime(Calendar.getInstance());
-            examDocumentServiceInterface.createExamDocument(examDocument);
+            ExamDocument examDocumentFromDb = examDocumentServiceInterface.createExamDocument(examDocument);
+
+            String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
+            String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+            examDocumentFromDb.setLink(pathFileString);
+
+            ExamDocument examDocumentAfterUpdate = examDocumentServiceInterface.updateExamDocument(examDocument.getId(),examDocumentFromDb);
 
             examDocumentResponse.setSuccess(true);
             examDocumentResponse.setMessage("create exam document success");
 
             List<ExamDocumentDto> examDocumentDtoList = new ArrayList<>();
-            examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
+            examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocumentAfterUpdate));
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 
             return ResponseEntity.ok(examDocumentResponse);
