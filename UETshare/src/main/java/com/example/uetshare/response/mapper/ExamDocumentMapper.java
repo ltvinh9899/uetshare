@@ -5,6 +5,8 @@ import com.example.uetshare.entity.Subject;
 import com.example.uetshare.response.dto.ExamDocumentDto;
 import com.example.uetshare.response.dto.SubjectDto;
 
+import java.util.Calendar;
+
 public class ExamDocumentMapper {
 
     public static ExamDocumentDto toExamDocumentDto(ExamDocument examDocument){
@@ -39,6 +41,7 @@ public class ExamDocumentMapper {
         }
 
         if (examDocument.getTime() != null){
+            examDocument.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             examDocumentDto.setTime(examDocument.getTime());
         }
 

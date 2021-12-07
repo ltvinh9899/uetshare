@@ -3,6 +3,8 @@ package com.example.uetshare.response.mapper;
 import com.example.uetshare.entity.ReactIconQuestion;
 import com.example.uetshare.response.dto.ReactIconQuestionDto;
 
+import java.util.Calendar;
+
 public class ReactIconQuestionMapper {
 
     public static ReactIconQuestionDto toReactIconDto(ReactIconQuestion reactIconQuestion){
@@ -25,6 +27,7 @@ public class ReactIconQuestionMapper {
         }
 
         if (reactIconQuestion.getTime() != null){
+            reactIconQuestion.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             reactIconQuestionDto.setTime(reactIconQuestion.getTime());
         }
 

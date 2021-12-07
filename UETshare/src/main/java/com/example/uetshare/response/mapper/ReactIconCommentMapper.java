@@ -5,6 +5,8 @@ import com.example.uetshare.entity.ReactIconQuestion;
 import com.example.uetshare.response.dto.ReactIconCommentDto;
 import com.example.uetshare.response.dto.ReactIconQuestionDto;
 
+import java.util.Calendar;
+
 public class ReactIconCommentMapper {
 
     public static ReactIconCommentDto toReactIconCommentDto(ReactIconComment reactIconComment){
@@ -27,6 +29,7 @@ public class ReactIconCommentMapper {
         }
 
         if (reactIconComment.getTime() != null){
+            reactIconComment.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             reactIconCommentDto.setTime(reactIconComment.getTime());
         }
 

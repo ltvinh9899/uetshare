@@ -5,6 +5,8 @@ import com.example.uetshare.entity.Subject;
 import com.example.uetshare.response.dto.CategoryDto;
 import com.example.uetshare.response.dto.SubjectDto;
 
+import java.util.Calendar;
+
 public class SubjectMapper {
     public static SubjectDto toSubjectDto(Subject subject){
         SubjectDto subjectDto = new SubjectDto();
@@ -24,6 +26,7 @@ public class SubjectMapper {
         }
 
         if (subject.getTime() != null){
+            subject.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             subjectDto.setTime(subject.getTime());
         }
 

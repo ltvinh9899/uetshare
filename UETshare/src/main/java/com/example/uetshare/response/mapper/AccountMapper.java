@@ -5,6 +5,8 @@ import com.example.uetshare.entity.Category;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.response.dto.CategoryDto;
 
+import java.util.Calendar;
+
 public class AccountMapper {
     public static AccountDto toAccountDto(Account account){
         AccountDto accountDto= new AccountDto();
@@ -22,6 +24,7 @@ public class AccountMapper {
         }
 
         if (account.getTime() != null){
+            account.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             accountDto.setTime(account.getTime());
         }
 

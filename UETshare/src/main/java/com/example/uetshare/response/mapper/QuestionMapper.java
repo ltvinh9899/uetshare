@@ -5,6 +5,7 @@ import com.example.uetshare.entity.Question;
 import com.example.uetshare.response.dto.QuestionDto;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class QuestionMapper {
@@ -31,6 +32,7 @@ public class QuestionMapper {
         }
 
         if (question.getTime() != null){
+            question.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             questionDto.setTime(question.getTime());
         }
 
