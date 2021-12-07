@@ -57,37 +57,26 @@ public class QuestionController {
             Question question = new ObjectMapper().readValue(questionJson, Question.class);
             question.setTime(Calendar.getInstance());
             Question questionInDb = questionServiceInterface.createQuestion(question);
+            
+            if(image_files.isEmpty()) {
+                String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
+                List<Image> imageList = new ArrayList<>();
+                for (MultipartFile image_file : image_files) {
 
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
 
-            String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
-            List<Image> imageList = new ArrayList<>();
-            for (MultipartFile image_file : image_files){
-//                String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
-//                Path path = Paths.get(pathDirectoryString);
-//                Files.createDirectories(path);
-//
-//                String pathFileString = pathDirectoryString + image_file.getOriginalFilename();
-//                File myFile = new File(pathFileString);
-//                myFile.createNewFile();
-//                System.out.println("hello1");
-//                FileOutputStream fos =new FileOutputStream(myFile);
-//                System.out.println("hello2");
-//                fos.write(image_file.getBytes());
-//                System.out.println("hello3");
-//                fos.close();
-                String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
+                    Image image = new Image();
+                    image.setImage(pathFileString);
+                    imageList.add(image);
 
-                Image image = new Image();
-                image.setImage(pathFileString);
-                imageList.add(image);
+                }
 
-            }
+                questionInDb.setImage(imageList);
 
-            questionInDb.setImage(imageList);
-
-            for(Image image : question.getImage()){
-                image.setQuestion(questionInDb);
-                imageServiceInterface.createImage(image);
+                for (Image image : question.getImage()) {
+                    image.setQuestion(questionInDb);
+                    imageServiceInterface.createImage(image);
+                }
             }
 
             questionResponse.setSuccess(true);

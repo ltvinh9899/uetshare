@@ -44,9 +44,11 @@ public class ExamDocumentController {
             examDocument.setTime(Calendar.getInstance());
             ExamDocument examDocumentFromDb = examDocumentServiceInterface.createExamDocument(examDocument);
 
-            String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
-            String pathFileString = CommentController.writeFile(pathDirectoryString, file);
-            examDocumentFromDb.setLink(pathFileString);
+            if(file.isEmpty()) {
+                String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
+                String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+                examDocumentFromDb.setLink(pathFileString);
+            }
 
             ExamDocument examDocumentAfterUpdate = examDocumentServiceInterface.updateExamDocument(examDocument.getId(),examDocumentFromDb);
 
