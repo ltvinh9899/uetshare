@@ -45,7 +45,7 @@ public class CommentController {
             comment.setTime(Calendar.getInstance());
             Comment commentFromBb = commentServiceInterface.createComment(comment);
 
-            if (image_file.isEmpty()) {
+            if (!image_file.isEmpty()) {
                 String pathDirectoryString = FILE_DIRECTORY + "account_" + commentFromBb.getAccount().getId() + "/comment_" + commentFromBb.getId() + "/";
                 String pathFileString = writeFile(pathDirectoryString, image_file);
                 commentFromBb.setImage(pathFileString);
