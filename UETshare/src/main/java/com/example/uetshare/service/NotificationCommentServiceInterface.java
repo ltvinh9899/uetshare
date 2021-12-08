@@ -12,5 +12,6 @@ public interface NotificationCommentServiceInterface {
     public void createNotificationComment(NotificationComment notificationComment);
     public List<NotificationComment> getNotificationCommentByAuthorAccountId(Long author_account_id, Integer index);
     public NotificationComment updateSeen(Long id);
+    public List<NotificationComment> getUnseenNotificationComment(Long author_account_id, Integer index);
 
 }

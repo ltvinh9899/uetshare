@@ -3,6 +3,8 @@ package com.example.uetshare.response.mapper;
 import com.example.uetshare.entity.NotificationQuestion;
 import com.example.uetshare.response.dto.NotificationQuestionDto;
 
+import java.util.Calendar;
+
 public class NotificationQuestionMapper {
 
     public static NotificationQuestionDto toNotificationQuestionDto(NotificationQuestion notificationQuestion){
@@ -35,6 +37,7 @@ public class NotificationQuestionMapper {
         }
 
         if (notificationQuestion.getTime() != null){
+            notificationQuestion.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             notificationQuestionDto.setTime(notificationQuestion.getTime());
         }
 

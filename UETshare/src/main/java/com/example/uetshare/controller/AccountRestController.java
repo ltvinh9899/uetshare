@@ -4,8 +4,10 @@ import com.example.uetshare.entity.Account;
 import com.example.uetshare.response.AccountListResponse;
 import com.example.uetshare.response.SessionRespone;
 import com.example.uetshare.response.dto.AccountDto;
+import com.example.uetshare.response.dto.BodyFirebaseToken;
 import com.example.uetshare.response.mapper.AccountMapper;
 import com.example.uetshare.service.AccountService;
+import com.example.uetshare.service.FirebaseService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -26,6 +28,9 @@ public class AccountRestController {
     public AccountRestController(AccountService accountService) {
         this.accountService = accountService;
     }
+
+    @Autowired
+    private FirebaseService firebaseService;
 
     private final Integer limit = 10;
 
@@ -112,4 +117,8 @@ public class AccountRestController {
         }
     }
 
+    @PostMapping("/register_firebase_token")
+    public ResponseEntity<?> registerFirebaseToken(@RequestBody BodyFirebaseToken requestBody){
+        return ResponseEntity.ok(firebaseService.registerFirebaseToken(requestBody));
+    }
 }

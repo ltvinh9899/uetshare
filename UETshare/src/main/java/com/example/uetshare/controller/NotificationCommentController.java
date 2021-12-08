@@ -85,6 +85,35 @@ public class NotificationCommentController {
         }
     }
 
+    @GetMapping("/author-account/{id}/unseen")
+    public ResponseEntity<?> getUnSeenNotificationQuestion(@PathVariable Long id, @Param("index") Integer index, NotificationCommentResponse notificationCommentResponse){
+        try {
+            Integer indexToQuery = index*limit;
+            List<NotificationComment> notificationCommentList = notificationCommentServiceInterface.getUnseenNotificationComment(id, indexToQuery);
+            List<NotificationCommentDto> notificationCommentDtoList = new ArrayList<>();
+
+            for(NotificationComment notificationComment : notificationCommentList){
+                notificationCommentDtoList.add(NotificationCommentMapper.toNotificationCommentDto(notificationComment));
+            }
+
+            notificationCommentResponse.setSuccess(true);
+            notificationCommentResponse.setMessage("success to get");
+            notificationCommentResponse.setResult_quantity(notificationCommentDtoList.size());
+            notificationCommentResponse.setNotificationCommentDtoList(notificationCommentDtoList);
+
+
+            return ResponseEntity.ok(notificationCommentResponse);
+
+
+        } catch (Exception e){
+
+            notificationCommentResponse.setSuccess(false);
+            notificationCommentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(notificationCommentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/seen")
     public ResponseEntity<?> updateSeen(@RequestBody NotificationComment notificationComment, NotificationCommentResponse notificationCommentResponse){
 
