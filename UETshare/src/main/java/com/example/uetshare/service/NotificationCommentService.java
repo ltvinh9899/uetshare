@@ -34,4 +34,9 @@ public class NotificationCommentService implements NotificationCommentServiceInt
 
         return notificationComment;
     }
+
+    @Override
+    public List<NotificationComment> getUnseenNotificationComment(Long author_account_id, Integer index) {
+        return notificationCommentRepositoryInterface.getUnSeenNotification(author_account_id, index);
+    }
 }

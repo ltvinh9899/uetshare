@@ -11,5 +11,6 @@ public interface NotificationQuestionServiceInterface {
     public void createNotificationQuestion(NotificationQuestion notificationQuestion);
     public List<NotificationQuestion> getNotificationQuestionByAuthorAccountId(Long author_account_id, Integer index);
     public NotificationQuestion updateSeen(Long id);
+    public List<NotificationQuestion> getUnseenNotificationQuestion(Long author_account_id, Integer index);
 
 }

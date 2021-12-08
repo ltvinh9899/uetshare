@@ -34,4 +34,9 @@ public class NotificationQuestionService implements NotificationQuestionServiceI
 
         return notificationQuestion;
     }
+
+    @Override
+    public List<NotificationQuestion> getUnseenNotificationQuestion(Long author_account_id, Integer index) {
+        return notificationQuestionRepositoryInterface.getUnseenNotificationQuestion(author_account_id, index);
+    }
 }
