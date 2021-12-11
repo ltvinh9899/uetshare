@@ -5,6 +5,7 @@ import com.example.uetshare.response.AccountListResponse;
 import com.example.uetshare.response.SessionRespone;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.response.dto.BodyFirebaseToken;
+import com.example.uetshare.response.dto.LoginDto;
 import com.example.uetshare.response.mapper.AccountMapper;
 import com.example.uetshare.service.AccountService;
 import com.example.uetshare.service.FirebaseService;
@@ -24,6 +25,7 @@ public class AccountRestController {
     private AccountService accountService;
     @Autowired
     private UserDetailsService userDetailsService;
+
     @Autowired
     public AccountRestController(AccountService accountService) {
         this.accountService = accountService;
@@ -34,69 +36,84 @@ public class AccountRestController {
 
     private final Integer limit = 10;
 
-    @GetMapping(value = {"/",""})
-    public ResponseEntity<?> getHome(){
+    @GetMapping(value = {"/", ""})
+    public ResponseEntity<?> getHome() {
         return ResponseEntity.ok("home");
     }
+
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AccountDto accountDto){
-        log.info("/register with username: "+accountDto.getUsername()+" | password: "+ accountDto.getPassword());
+    public ResponseEntity<?> register(@RequestBody AccountDto accountDto) {
+        log.info("/register with username: " + accountDto.getUsername() + " | password: " + accountDto.getPassword());
         return ResponseEntity.ok(accountService.register(accountDto));
     }
+
     @GetMapping("/login")
-    public ResponseEntity<?> login(){
+    public ResponseEntity<?> login() {
         SessionRespone sessionRespone = new SessionRespone();
         sessionRespone.setLogin(false);
         return ResponseEntity.ok(sessionRespone);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> userLogin(@RequestBody LoginDto payload) throws Exception {
+//        SessionRespone sessionRespone = new SessionRespone();
+//        sessionRespone.setLogin(false);
+
+        return ResponseEntity.ok(this.accountService.login(payload));
+    }
+
     @GetMapping("/user")
-    public ResponseEntity<?> getUser(){
+    public ResponseEntity<?> getUser() {
         log.info("controller: /user");
         return ResponseEntity.ok("user");
     }
+
     @GetMapping("/login-failed")
-    public ResponseEntity<?> loginFailed(){
+    public ResponseEntity<?> loginFailed() {
         SessionRespone sessionRespone = new SessionRespone();
         sessionRespone.setLogin(false);
         return ResponseEntity.ok(sessionRespone);
     }
+
     @GetMapping("/login-success")
-    public ResponseEntity<?> getSuccess(@RequestHeader(value ="cookie") String cookie){
+    public ResponseEntity<?> getSuccess(@RequestHeader(value = "cookie") String cookie) {
         log.info("controller: login-success");
         return ResponseEntity.ok(accountService.getAccount(cookie));
     }
+
     @GetMapping("/logout-success")
-    public ResponseEntity<?> logoutSuccess(){
+    public ResponseEntity<?> logoutSuccess() {
         SessionRespone sessionRespone = new SessionRespone();
         sessionRespone.setLogout(true);
         return ResponseEntity.ok(sessionRespone);
     }
+
     @GetMapping("/403")
-    public ResponseEntity<?> accessDenined(){
+    public ResponseEntity<?> accessDenined() {
         SessionRespone sessionRespone = new SessionRespone();
         sessionRespone.setLogin(true);
         return ResponseEntity.ok(sessionRespone);
     }
 
     @GetMapping("/getAccount")
-    public ResponseEntity<?> getAcount(@RequestHeader(value ="cookie") String cookie) {
+    public ResponseEntity<?> getAcount(@RequestHeader(value = "cookie") String cookie) {
         return ResponseEntity.ok(accountService.getAccount(cookie));
 
     }
 
     @GetMapping("/account/search")
-    public ResponseEntity<?> searchAccount(AccountListResponse accountListResponse, @Param("index") Integer index, @Param("text") String text){
+    public ResponseEntity<?> searchAccount(AccountListResponse accountListResponse, @Param("index") Integer index, @Param("text") String text) {
 
         try {
 
-            Integer indexToQuery = index*limit;
+            Integer indexToQuery = index * limit;
 
             String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
 
             List<Account> accountList = accountService.getAccountByText(indexToQuery, textToQuery);
             List<AccountDto> accountDtoList = new ArrayList<>();
 
-            for(Account account : accountList){
+            for (Account account : accountList) {
                 accountDtoList.add(AccountMapper.toAccountDto(account));
             }
 
@@ -118,7 +135,7 @@ public class AccountRestController {
     }
 
     @PostMapping("/register_firebase_token")
-    public ResponseEntity<?> registerFirebaseToken(@RequestBody BodyFirebaseToken requestBody){
+    public ResponseEntity<?> registerFirebaseToken(@RequestBody BodyFirebaseToken requestBody) {
         return ResponseEntity.ok(firebaseService.registerFirebaseToken(requestBody));
     }
 }

@@ -9,23 +9,24 @@ import com.example.uetshare.response.AccountResponse;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.repository.AccountRepository;
+import com.example.uetshare.response.dto.LoginDto;
 import com.example.uetshare.response.mapper.AccountMapper;
-import com.example.uetshare.utils.CallApi;
+import com.example.uetshare.security.JwtTokenProvider;
+import com.example.uetshare.security.LoginResponse;
 import com.example.uetshare.utils.EncoderUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @Log4j2
 @Service
+@RequiredArgsConstructor
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
@@ -35,32 +36,58 @@ public class AccountService {
     PersistentLoginsRepository persistentLoginsRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
+//    public AccountService(AuthenticationManager authenticationManager) {
+//        this.authenticationManager = authenticationManager;
+//    }
+
+    public LoginResponse login(LoginDto payload) throws Exception {
+        Account account = this.accountRepository.getAccountByUsername(payload.getUsername());
+        if (account == null) {
+            throw new Exception("Tài khoản hoạc mật khẩu không đúng");
+        }
+        if (!EncoderUtils.encoderPassword(payload.getPassword()).equals(account.getPassword())) {
+            throw new Exception("Tài khoản hoạc mật khẩu không đúng");
+        }
+        log.info("---------------password: " + EncoderUtils.encoderPassword(payload.getPassword()).equals(account.getPassword()));
+        log.info("---------------username: " + account.getAccountRole().size());
+        String token = this.jwtTokenProvider.createToken(account.getUsername(), account.getRoles());
+        log.info("---------------token : " + token);
+        LoginResponse login = new LoginResponse();
+        login.token = token;
+        return login;
+    }
+
     /**
      * Đăng ký tài khoản
+     *
      * @return
      */
-    public AccountResponse register(AccountDto accountDto){
+    public AccountResponse register(AccountDto accountDto) {
         Account account = checkOfExists(accountDto);
-        if(account!=null){
-            return new AccountResponse(false,"Tài khoản đã tồn tại!",null);
-        }else{
+        if (account != null) {
+            return new AccountResponse(false, "Tài khoản đã tồn tại!", null);
+        } else {
             addAccount(accountDto);
             Account accountGet = accountRepository.getAccountByUsername(accountDto.getUsername());
-            AccountResponse accountResponse = new AccountResponse(true,"Đăng ký thành công!",AccountMapper.toAccountDto(accountGet));
+            AccountResponse accountResponse = new AccountResponse(true, "Đăng ký thành công!", AccountMapper.toAccountDto(accountGet));
             return accountResponse;
         }
     }
 
     /**
      * Kiểm tra sự tồn tại của tài khoản
+     *
      * @return
      */
-    public Account checkOfExists(AccountDto accountDto){
+    public Account checkOfExists(AccountDto accountDto) {
         Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
-        if(account!=null){
-            System.out.println("tai khoan ton tai username: "+ account.getUsername());
+        if (account != null) {
+            System.out.println("tai khoan ton tai username: " + account.getUsername());
             return account;
-        }else{
+        } else {
             System.out.println("tai khoan chua ton tai");
             return null;
         }
@@ -69,7 +96,7 @@ public class AccountService {
     /**
      * Thêm tài khoản vào Database
      */
-    public void addAccount(AccountDto accountDto){
+    public void addAccount(AccountDto accountDto) {
         Account account = new Account(accountDto.getUsername(), EncoderUtils.encoderPassword(accountDto.getPassword()));
         accountRepository.save(account);
         Account accountGet = accountRepository.getAccountByUsername(accountDto.getUsername());
@@ -91,36 +118,38 @@ public class AccountService {
 //
 //        }).join();
     }
-    public Account getAccountFromMysql(String username){
+
+    public Account getAccountFromMysql(String username) {
         Account accountGet = accountRepository.getAccountByUsername(username);
-        log.info("--------------------account get name: "+ accountGet.getUsername());
+        log.info("--------------------account get name: " + accountGet.getUsername());
         return accountGet;
     }
+
     /**
-     *
      * @param accountDto
      * @return
      */
-    public AccountResponse login(AccountDto accountDto){
+    public AccountResponse login(AccountDto accountDto) {
         Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
-        if(account!=null){
-            if(accountDto.getPassword().equals(account.getPassword())){
-                AccountResponse accountResponse = new AccountResponse(true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
+        if (account != null) {
+            if (accountDto.getPassword().equals(account.getPassword())) {
+                AccountResponse accountResponse = new AccountResponse(true, "Đăng nhập thành công!", AccountMapper.toAccountDto(account));
                 return accountResponse;
-            }else{
-                return new AccountResponse(false,"Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
+            } else {
+                return new AccountResponse(false, "Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
             }
-        }else{
+        } else {
             System.out.println("tai khoan khong ton tai");
-            return new AccountResponse(false,"Tài khoản không tồn tại!", null);
+            return new AccountResponse(false, "Tài khoản không tồn tại!", null);
         }
     }
-    public AccountResponse getAccount(String cookie){
+
+    public AccountResponse getAccount(String cookie) {
         String cookieSplit[] = cookie.split(";");
         String rememberMeSplit[] = new String[]{};
-        for (String cookieIndex:cookieSplit
-             ) {
-            if(cookieIndex.contains("remember-me")){
+        for (String cookieIndex : cookieSplit
+        ) {
+            if (cookieIndex.contains("remember-me")) {
                 rememberMeSplit = cookieIndex.split("=");
 
             }
@@ -130,20 +159,20 @@ public class AccountService {
         String rememberMeDecode[] = new String(decodedBytes).split(":");
         String seriesCode = rememberMeDecode[0];
         String series = java.net.URLDecoder.decode(seriesCode, StandardCharsets.UTF_8);
-        log.info("---------------series: "+ series);
+        log.info("---------------series: " + series);
         String username = persistentLoginsRepository.getUsernameBySeries(series);
-        log.info("---------------username: "+ username);
+        log.info("---------------username: " + username);
         Account account = accountRepository.getAccountByUsername(username);
-        if(account!=null){
-                AccountResponse accountResponse = new AccountResponse(true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
-                return accountResponse;
-        }else{
+        if (account != null) {
+            AccountResponse accountResponse = new AccountResponse(true, "Đăng nhập thành công!", AccountMapper.toAccountDto(account));
+            return accountResponse;
+        } else {
             System.out.println("tai khoan khong ton tai");
-            return new AccountResponse(false,"Chưa đăng nhập!", null);
+            return new AccountResponse(false, "Chưa đăng nhập!", null);
         }
     }
 
-    public List<Account> getAccountByText(Integer index, String text){
+    public List<Account> getAccountByText(Integer index, String text) {
         return accountRepository.getAccountByText(index, text);
     }
 }
