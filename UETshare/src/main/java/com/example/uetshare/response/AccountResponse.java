@@ -11,7 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountResponse extends Response{
-    private boolean success;
+    private boolean isSuccess;
+    private boolean isLogin;
     private String message;
     private AccountDto accountDto;
 }

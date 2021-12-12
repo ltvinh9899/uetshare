@@ -2,6 +2,7 @@ package com.example.uetshare.controller;
 
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.response.AccountListResponse;
+import com.example.uetshare.response.AccountResponse;
 import com.example.uetshare.response.SessionRespone;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.response.mapper.AccountMapper;
@@ -51,9 +52,10 @@ public class AccountRestController {
     }
     @GetMapping("/login-failed")
     public ResponseEntity<?> loginFailed(){
-        SessionRespone sessionRespone = new SessionRespone();
-        sessionRespone.setLogin(false);
-        return ResponseEntity.ok(sessionRespone);
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setLogin(false);
+        accountResponse.setMessage("Đăng nhập thất bại!");
+        return ResponseEntity.ok(accountResponse);
     }
     @GetMapping("/login-success")
     public ResponseEntity<?> getSuccess(@RequestHeader(value ="cookie") String cookie){
@@ -62,14 +64,17 @@ public class AccountRestController {
     }
     @GetMapping("/logout-success")
     public ResponseEntity<?> logoutSuccess(){
-        SessionRespone sessionRespone = new SessionRespone();
-        sessionRespone.setLogout(true);
-        return ResponseEntity.ok(sessionRespone);
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setLogin(false);
+        accountResponse.setSuccess(true);
+        accountResponse.setMessage("Đăng xuất thành công!");
+        return ResponseEntity.ok(accountResponse);
     }
     @GetMapping("/403")
     public ResponseEntity<?> accessDenined(){
         SessionRespone sessionRespone = new SessionRespone();
         sessionRespone.setLogin(true);
+        sessionRespone.setMessage("Không đủ quyền!");
         return ResponseEntity.ok(sessionRespone);
     }
 

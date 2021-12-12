@@ -1,5 +1,6 @@
 package com.example.uetshare.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,8 @@ public class Account extends Base{
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private List<AccountRole> accountRole;
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_profile_id")
+    @JsonBackReference(value = "userProfile-account")
     private UserProfile userProfile;
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 //    private List<Document> document;

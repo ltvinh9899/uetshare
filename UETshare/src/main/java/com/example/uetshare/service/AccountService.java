@@ -2,14 +2,14 @@ package com.example.uetshare.service;
 
 import com.example.uetshare.entity.AccountRole;
 import com.example.uetshare.entity.Role;
-import com.example.uetshare.repository.AccountRoleRepository;
-import com.example.uetshare.repository.PersistentLoginsRepository;
-import com.example.uetshare.repository.RoleRepository;
+import com.example.uetshare.entity.UserProfile;
+import com.example.uetshare.repository.*;
 import com.example.uetshare.response.AccountResponse;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.entity.Account;
-import com.example.uetshare.repository.AccountRepository;
+import com.example.uetshare.response.dto.UserProfileDto;
 import com.example.uetshare.response.mapper.AccountMapper;
+import com.example.uetshare.response.mapper.UserProfileMapper;
 import com.example.uetshare.utils.CallApi;
 import com.example.uetshare.utils.EncoderUtils;
 import lombok.extern.log4j.Log4j2;
@@ -35,6 +35,8 @@ public class AccountService {
     PersistentLoginsRepository persistentLoginsRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
     /**
      * Đăng ký tài khoản
      * @return
@@ -42,11 +44,11 @@ public class AccountService {
     public AccountResponse register(AccountDto accountDto){
         Account account = checkOfExists(accountDto);
         if(account!=null){
-            return new AccountResponse(false,"Tài khoản đã tồn tại!",null);
+            return new AccountResponse(false,false,"Tài khoản đã tồn tại!",null);
         }else{
             addAccount(accountDto);
             Account accountGet = accountRepository.getAccountByUsername(accountDto.getUsername());
-            AccountResponse accountResponse = new AccountResponse(true,"Đăng ký thành công!",AccountMapper.toAccountDto(accountGet));
+            AccountResponse accountResponse = new AccountResponse(true,false,"Đăng ký thành công!",AccountMapper.toAccountDto(accountGet));
             return accountResponse;
         }
     }
@@ -70,7 +72,12 @@ public class AccountService {
      * Thêm tài khoản vào Database
      */
     public void addAccount(AccountDto accountDto){
+        UserProfile userProfile = new UserProfile();
+        userProfile.setUsername(accountDto.getUsername());
+        userProfileRepository.save(userProfile);
+        UserProfile userProfileGet = userProfileRepository.getByUsername(accountDto.getUsername());
         Account account = new Account(accountDto.getUsername(), EncoderUtils.encoderPassword(accountDto.getPassword()));
+        account.setUserProfile(userProfileGet);
         accountRepository.save(account);
         Account accountGet = accountRepository.getAccountByUsername(accountDto.getUsername());
         Role role = new Role();
@@ -105,14 +112,14 @@ public class AccountService {
         Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
         if(account!=null){
             if(accountDto.getPassword().equals(account.getPassword())){
-                AccountResponse accountResponse = new AccountResponse(true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
+                AccountResponse accountResponse = new AccountResponse(true,true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
                 return accountResponse;
             }else{
-                return new AccountResponse(false,"Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
+                return new AccountResponse(false,false,"Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
             }
         }else{
             System.out.println("tai khoan khong ton tai");
-            return new AccountResponse(false,"Tài khoản không tồn tại!", null);
+            return new AccountResponse(false, false, "Tài khoản không tồn tại!", null);
         }
     }
     public AccountResponse getAccount(String cookie){
@@ -135,15 +142,35 @@ public class AccountService {
         log.info("---------------username: "+ username);
         Account account = accountRepository.getAccountByUsername(username);
         if(account!=null){
-                AccountResponse accountResponse = new AccountResponse(true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
+                AccountResponse accountResponse = new AccountResponse(true,true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
                 return accountResponse;
         }else{
-            System.out.println("tai khoan khong ton tai");
-            return new AccountResponse(false,"Chưa đăng nhập!", null);
+            return new AccountResponse(false,false,"Chưa đăng nhập!", null);
         }
     }
 
     public List<Account> getAccountByText(Integer index, String text){
         return accountRepository.getAccountByText(index, text);
+    }
+    public UserProfileDto getUserProfile(String username){
+        Account account = accountRepository.getAccountByUsername(username);
+        UserProfile userProfile = account.getUserProfile();
+        UserProfileDto userProfileDto = UserProfileMapper.toUserProfileDto(userProfile);
+        return userProfileDto;
+    }
+    public AccountResponse updateUserProfile(UserProfileDto userProfileDto){
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setLogin(true);
+        try{
+            UserProfile userProfile = UserProfileMapper.toUserProfile(userProfileDto);
+            userProfileRepository.save(userProfile);
+            accountResponse.setSuccess(true);
+            accountResponse.setMessage("Cập nhật thành công!");
+            return accountResponse;
+        }catch (Exception e){
+            accountResponse.setSuccess(false);
+            accountResponse.setMessage("Cập nhật thất bại!");
+            return accountResponse;
+        }
     }
 }
