@@ -33,4 +33,13 @@ public class ReactIconCommentService implements ReactIconCommentServiceInterface
 
         return reactIconComment;
     }
+
+    @Override
+    public Boolean liked(Long account_id, Long comment_id) {
+        if(reactIconCommentRepositoryInterface.getReactIconCommentByAccountAndComment(account_id, comment_id) != null){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

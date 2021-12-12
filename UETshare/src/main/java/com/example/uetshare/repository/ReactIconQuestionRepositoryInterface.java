@@ -20,7 +20,7 @@ public interface ReactIconQuestionRepositoryInterface extends JpaRepository<Reac
 //    List<ReactIconQuestion> getReactIconByCommentId(Long comment_id, Integer index);
 
     @Query(value = "select * from react_icon_question where react_icon_question.account_id = ?1 and react_icon_question.question_id = ?2", nativeQuery = true)
-    ReactIconQuestion getReactIconQuestionByByAccountAndComment(Long account_id, Long question_id);
+    ReactIconQuestion getReactIconQuestionByByAccountAndQuestion(Long account_id, Long question_id);
 
     @Modifying
     @Transactional

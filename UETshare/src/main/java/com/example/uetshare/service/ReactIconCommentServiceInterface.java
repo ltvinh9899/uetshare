@@ -12,4 +12,5 @@ public interface ReactIconCommentServiceInterface {
     public void createReactIcon(ReactIconComment reactIcon);
     public List<ReactIconComment> getReactIconByCommentId(Long comment_id, Integer index);
     public ReactIconComment deleteReactIconComment(Long account_id, Long comment_id);
+    public Boolean liked(Long account_id, Long comment_id);
 }

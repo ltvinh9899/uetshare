@@ -91,6 +91,25 @@ public class ReactIconCommentController {
 
     }
 
+    @GetMapping("/liked/account/{account_id}/comment/{comment_id}")
+    public ResponseEntity<Boolean> liked(@PathVariable("account_id") Long account_id, @PathVariable("comment_id") Long comment_id, ReactIconQuestionResponse reactIconQuestionResponse){
+        try {
+
+            Boolean liked = reactIconCommentServiceInterface.liked(account_id, comment_id);
+
+            System.out.println(liked);
+
+            return ResponseEntity.ok().body(liked);
+
+
+        } catch (Exception e){
+
+
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @DeleteMapping("account/{account_id}/comment/{comment_id}")
     public ResponseEntity<?> deleteReactIcon(@PathVariable("account_id") Long account_id, @PathVariable("account_id") Long comment_id, ReactIconCommentResponse reactIconCommentResponse){
         try {

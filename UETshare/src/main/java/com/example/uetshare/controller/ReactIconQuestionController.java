@@ -93,7 +93,27 @@ public class ReactIconQuestionController {
         }
     }
 
-    @DeleteMapping("account/{account_id}/comment/{question_id}")
+    @GetMapping("/liked/account/{account_id}/question/{question_id}")
+    public ResponseEntity<Boolean> liked(@PathVariable("account_id") Long account_id, @PathVariable("question_id") Long question_id, ReactIconQuestionResponse reactIconQuestionResponse){
+        try {
+
+            Boolean liked = reactIconQuestionServiceInterface.liked(account_id, question_id);
+
+            System.out.println(liked);
+
+            return ResponseEntity.ok().body(liked);
+
+
+        } catch (Exception e){
+
+
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @DeleteMapping("account/{account_id}/question/{question_id}")
     public ResponseEntity<?> deleteReactIcon(@PathVariable("account_id") Long account_id, @PathVariable("question_id") Long question_id, ReactIconQuestionResponse reactIconQuestionResponse){
         try {
 
