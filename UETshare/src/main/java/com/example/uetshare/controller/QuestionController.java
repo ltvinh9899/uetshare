@@ -58,11 +58,6 @@ public class QuestionController {
             question.setTime(Calendar.getInstance());
             Question questionInDb = questionServiceInterface.createQuestion(question);
 
-            System.out.println(image_files);
-            System.out.println(image_files.size());
-            System.out.println(image_files.isEmpty());
-            System.out.println(image_files.get(0).getOriginalFilename());
-
             String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
             List<Image> imageList = new ArrayList<>();
             for (MultipartFile image_file : image_files) {

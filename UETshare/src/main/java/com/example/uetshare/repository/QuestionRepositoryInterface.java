@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface QuestionRepositoryInterface extends JpaRepository<Question, Integer> {
 
-    @Query(value = "select * from question order by question.id desc limit 0, ?1", nativeQuery = true)
+    @Query(value = "select * from question inner join react_icon_question order by question.id desc limit 0, ?1", nativeQuery = true)
     List<Question> getAllQuestion(Integer index);
 
     @Query(value = "select * from question where question.category_id = ?1 order by question.id desc limit 0, ?2", nativeQuery = true)
