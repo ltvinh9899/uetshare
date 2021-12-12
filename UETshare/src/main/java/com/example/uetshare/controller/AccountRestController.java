@@ -83,7 +83,11 @@ public class AccountRestController {
         return ResponseEntity.ok(accountService.getAccount(cookie));
 
     }
+    @PutMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody AccountDto accountDto) {
+        return ResponseEntity.ok(accountService.changePassword(accountDto));
 
+    }
     @GetMapping("/account/search")
     public ResponseEntity<?> searchAccount(AccountListResponse accountListResponse, @Param("index") Integer index, @Param("text") String text){
 

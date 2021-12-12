@@ -173,4 +173,19 @@ public class AccountService {
             return accountResponse;
         }
     }
+    public AccountResponse changePassword(AccountDto accountDto){
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setLogin(true);
+        try{
+            String encodePassword = EncoderUtils.encoderPassword(accountDto.getPassword());
+            accountRepository.changePassword(accountDto.getUsername(), encodePassword);
+            accountResponse.setSuccess(true);
+            accountResponse.setMessage("Thay đổi mật khẩu thành công");
+            return accountResponse;
+        }catch (Exception e){
+            accountResponse.setSuccess(false);
+            accountResponse.setMessage("Thay đổi mật khẩu thất bại");
+            return accountResponse;
+        }
+    }
 }
