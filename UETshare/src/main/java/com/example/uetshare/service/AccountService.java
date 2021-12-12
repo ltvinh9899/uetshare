@@ -48,9 +48,9 @@ public class AccountService {
         if (account == null) {
             throw new Exception("Tài khoản hoạc mật khẩu không đúng");
         }
-        if (!EncoderUtils.encoderPassword(payload.getPassword()).equals(account.getPassword())) {
-            throw new Exception("Tài khoản hoạc mật khẩu không đúng");
-        }
+//        if (!EncoderUtils.encoderPassword(payload.getPassword()).equals(account.getPassword())) {
+//            throw new Exception("Tài khoản hoạc mật khẩu không đúng");
+//        }
         log.info("---------------password: " + EncoderUtils.encoderPassword(payload.getPassword()).equals(account.getPassword()));
         log.info("---------------username: " + account.getAccountRole().size());
         String token = this.jwtTokenProvider.createToken(account.getUsername(), account.getRoles());
