@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,7 @@ public class ReactIconCommentController {
 
         try {
 
+            reactIcon.setTime(Calendar.getInstance());
             reactIconCommentServiceInterface.createReactIcon(reactIcon);
 
             reactIconCommentResponse.setSuccess(true);
@@ -87,6 +89,32 @@ public class ReactIconCommentController {
             return new ResponseEntity<>(reactIconCommentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @DeleteMapping("account/{account_id}/comment/{comment_id}")
+    public ResponseEntity<?> deleteReactIcon(@PathVariable("account_id") Long account_id, @PathVariable("account_id") Long comment_id, ReactIconCommentResponse reactIconCommentResponse){
+        try {
+
+            ReactIconComment reactIconComment = reactIconCommentServiceInterface.deleteReactIconComment(account_id, account_id);
+
+            reactIconCommentResponse.setSuccess(true);
+            reactIconCommentResponse.setMessage("success to get");
+
+            List<ReactIconCommentDto> reactIconCommentDtoList = new ArrayList<>();
+            reactIconCommentDtoList.add(ReactIconCommentMapper.toReactIconCommentDto(reactIconComment));
+            reactIconCommentResponse.setResult_quantity(reactIconCommentDtoList.size());
+            reactIconCommentResponse.setReactIconCommentDtoList(reactIconCommentDtoList);
+
+            return ResponseEntity.ok(reactIconCommentResponse);
+
+
+        } catch (Exception e){
+
+            reactIconCommentResponse.setSuccess(false);
+            reactIconCommentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(reactIconCommentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

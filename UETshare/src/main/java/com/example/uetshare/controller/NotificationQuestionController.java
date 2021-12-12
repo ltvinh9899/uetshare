@@ -2,6 +2,7 @@ package com.example.uetshare.controller;
 
 import com.example.uetshare.entity.NotificationQuestion;
 import com.example.uetshare.entity.ReactIconQuestion;
+import com.example.uetshare.response.NotificationCommentResponse;
 import com.example.uetshare.response.NotificationQuestionResponse;
 import com.example.uetshare.response.dto.NotificationQuestionDto;
 import com.example.uetshare.response.dto.ReactIconQuestionDto;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -31,6 +33,7 @@ public class NotificationQuestionController {
     public ResponseEntity<?> createNotificationQuestion(@RequestBody NotificationQuestion notificationQuestion, NotificationQuestionResponse notificationQuestionResponse){
         try {
             notificationQuestion.setSeen(false);
+            notificationQuestion.setTime(Calendar.getInstance());
             notificationQuestionServiceInterface.createNotificationQuestion(notificationQuestion);
 
             notificationQuestionResponse.setSuccess(true);
@@ -58,6 +61,35 @@ public class NotificationQuestionController {
         try {
             Integer indexToQuery = index*limit;
             List<NotificationQuestion> notificationQuestionList = notificationQuestionServiceInterface.getNotificationQuestionByAuthorAccountId(id, indexToQuery);
+            List<NotificationQuestionDto> notificationQuestionDtoList = new ArrayList<>();
+
+            for(NotificationQuestion notificationQuestion : notificationQuestionList){
+                notificationQuestionDtoList.add(NotificationQuestionMapper.toNotificationQuestionDto(notificationQuestion));
+            }
+
+            notificationQuestionResponse.setSuccess(true);
+            notificationQuestionResponse.setMessage("success to get");
+            notificationQuestionResponse.setResult_quantity(notificationQuestionDtoList.size());
+            notificationQuestionResponse.setNotificationQuestionDtoList(notificationQuestionDtoList);
+
+
+            return ResponseEntity.ok(notificationQuestionResponse);
+
+
+        } catch (Exception e){
+
+            notificationQuestionResponse.setSuccess(false);
+            notificationQuestionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(notificationQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/author-account/{id}/unseen")
+    public ResponseEntity<?> getUnseenNotificationQuestion(@PathVariable Long id, @Param("index") Integer index, NotificationQuestionResponse notificationQuestionResponse){
+        try {
+            Integer indexToQuery = index*limit;
+            List<NotificationQuestion> notificationQuestionList = notificationQuestionServiceInterface.getUnseenNotificationQuestion(id, indexToQuery);
             List<NotificationQuestionDto> notificationQuestionDtoList = new ArrayList<>();
 
             for(NotificationQuestion notificationQuestion : notificationQuestionList){

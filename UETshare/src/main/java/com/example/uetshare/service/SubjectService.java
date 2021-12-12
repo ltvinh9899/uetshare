@@ -5,6 +5,7 @@ import com.example.uetshare.repository.SubjectRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -37,9 +38,11 @@ public class SubjectService implements SubjectServiceInterface{
             subjectData.setCategory(subject.getCategory());
         }
 
-        subjectRepositoryInterface.save(subjectData);
+        subjectData.setTime(Calendar.getInstance());
 
-        return subjectData;
+        return subjectRepositoryInterface.save(subjectData);
+
+//        return subjectData;
     }
 
     @Override

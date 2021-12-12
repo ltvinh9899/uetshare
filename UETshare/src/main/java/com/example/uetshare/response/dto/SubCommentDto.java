@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -15,5 +17,6 @@ public class SubCommentDto {
     private String content;
     private String image;
     private Long comment_id;
+    private Calendar time;
 
 }

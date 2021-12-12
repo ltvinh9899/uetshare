@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface ExamDocumentServiceInterface {
 
-    public void createExamDocument(ExamDocument examDocument);
+    public ExamDocument createExamDocument(ExamDocument examDocument);
     public List<ExamDocument> getExamDocumentBySubjectIdAndType(Long subject_id, String type, Integer index);
     public ExamDocument updateExamDocument(Long id, ExamDocument examDocument);
     public ExamDocument deleteExamDocument(Long id);

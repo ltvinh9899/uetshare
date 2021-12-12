@@ -3,6 +3,8 @@ package com.example.uetshare.response.mapper;
 import com.example.uetshare.entity.Comment;
 import com.example.uetshare.response.dto.CommentDto;
 
+import java.util.Calendar;
+
 public class CommentMapper {
 
     public static CommentDto toCommentDto(Comment comment){
@@ -20,8 +22,6 @@ public class CommentMapper {
             commentDto.setImage(comment.getImage());
         }
 
-        System.out.println(comment.getQuestion().getId());
-
         if (comment.getQuestion() != null){
             if(comment.getQuestion().getId() != null){
                 commentDto.setQuestion_id(comment.getQuestion().getId());
@@ -32,6 +32,11 @@ public class CommentMapper {
             if (comment.getAccount().getId() != null){
                 commentDto.setAccount_id(comment.getAccount().getId());
             }
+        }
+
+        if (comment.getTime() != null){
+            comment.getTime().roll(Calendar.HOUR_OF_DAY, 7);
+            commentDto.setTime(comment.getTime());
         }
 
         return commentDto;

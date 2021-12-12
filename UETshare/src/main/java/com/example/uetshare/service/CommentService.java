@@ -14,12 +14,24 @@ public class CommentService implements CommentServiceInterface{
     private CommentRepositoryInterface commentRepositoryInterface;
 
     @Override
-    public void createComment(Comment comment) {
-        commentRepositoryInterface.save(comment);
+    public Comment createComment(Comment comment) {
+        return commentRepositoryInterface.save(comment);
     }
 
     @Override
     public List<Comment> getCommentByQuestionId(Integer index, Long question_id) {
         return commentRepositoryInterface.getCommentByQuestionId(index, question_id);
+    }
+
+    @Override
+    public Comment updateComment(Long id, Comment comment) {
+        Comment commentData = commentRepositoryInterface.getCommentById(id);
+
+        if(comment.getImage() != null) {
+            commentData.setImage(comment.getImage());
+        }
+
+        return commentData;
+
     }
 }

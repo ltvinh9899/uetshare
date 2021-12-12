@@ -1,8 +1,12 @@
 package com.example.uetshare.controller;
 
+import com.example.uetshare.entity.ReactIconComment;
 import com.example.uetshare.entity.ReactIconQuestion;
+import com.example.uetshare.response.ReactIconCommentResponse;
 import com.example.uetshare.response.ReactIconQuestionResponse;
+import com.example.uetshare.response.dto.ReactIconCommentDto;
 import com.example.uetshare.response.dto.ReactIconQuestionDto;
+import com.example.uetshare.response.mapper.ReactIconCommentMapper;
 import com.example.uetshare.response.mapper.ReactIconQuestionMapper;
 import com.example.uetshare.service.ReactIconQuestionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -27,7 +32,7 @@ public class ReactIconQuestionController {
     public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconQuestionResponse reactIconQuestionResponse) {
 
         try {
-
+            reactIcon.setTime(Calendar.getInstance());
             reactIconQuestionServiceInterface.createReactIcon(reactIcon);
 
             reactIconQuestionResponse.setSuccess(true);
@@ -88,6 +93,31 @@ public class ReactIconQuestionController {
         }
     }
 
+    @DeleteMapping("account/{account_id}/comment/{question_id}")
+    public ResponseEntity<?> deleteReactIcon(@PathVariable("account_id") Long account_id, @PathVariable("question_id") Long question_id, ReactIconQuestionResponse reactIconQuestionResponse){
+        try {
+
+            ReactIconQuestion reactIconQuestion = reactIconQuestionServiceInterface.deleteReactIconQuestion(account_id, question_id);
+
+            reactIconQuestionResponse.setSuccess(true);
+            reactIconQuestionResponse.setMessage("success to get");
+
+            List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
+            reactIconQuestionDtoList.add(ReactIconQuestionMapper.toReactIconDto(reactIconQuestion));
+            reactIconQuestionResponse.setResult_quantity(reactIconQuestionDtoList.size());
+            reactIconQuestionResponse.setReactIconQuestionDtoList(reactIconQuestionDtoList);
+
+            return ResponseEntity.ok(reactIconQuestionResponse);
+
+
+        } catch (Exception e){
+
+            reactIconQuestionResponse.setSuccess(false);
+            reactIconQuestionResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(reactIconQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 //    @GetMapping("/comment/{id}")

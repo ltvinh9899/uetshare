@@ -15,8 +15,8 @@ public class QuestionService implements QuestionServiceInterface {
     private QuestionRepositoryInterface questionRepositoryInterface;
 
     @Override
-    public void createQuestion(Question question) {
-        questionRepositoryInterface.save(question);
+    public Question createQuestion(Question question) {
+       return questionRepositoryInterface.save(question);
     }
 
     @Override
@@ -60,5 +60,10 @@ public class QuestionService implements QuestionServiceInterface {
     @Override
     public List<Question> getQuestionByAccountId(Long account_id, Integer index) {
         return questionRepositoryInterface.getQuestionByAccountId(account_id, index);
+    }
+
+    @Override
+    public Question getQuestionByCommentId(Long comment_id) {
+        return questionRepositoryInterface.getQuestionByCommentId(comment_id);
     }
 }

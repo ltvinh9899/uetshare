@@ -9,11 +9,12 @@ import java.util.Optional;
 @Service
 public interface QuestionServiceInterface {
 
-    public void createQuestion(Question question);
+    public Question createQuestion(Question question);
     public List<Question> getAllQuestion(Integer index);
     public Question getQuestionById(Long Id);
     public List<Question> getQuestionByCategory(Long category_id, Integer index);
     public List<Question> getQuestionByContentType(Long type_content_id, Integer index);
     public List<Question> getQuestionByText(Integer index, String text, Long type_content_id);
     public List<Question> getQuestionByAccountId(Long account_id, Integer index);
+    public Question getQuestionByCommentId(Long comment_id);
 }

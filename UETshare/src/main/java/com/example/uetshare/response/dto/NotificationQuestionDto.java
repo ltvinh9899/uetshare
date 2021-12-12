@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -19,4 +21,5 @@ public class NotificationQuestionDto {
     private String avatar;
     private Boolean seen;
     private ActionType action_type;
+    private Calendar time;
 }

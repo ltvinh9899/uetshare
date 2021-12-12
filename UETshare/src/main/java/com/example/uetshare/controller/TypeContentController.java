@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class TypeContentController {
     @PostMapping("/create")
     public ResponseEntity<?> createTypeContent(@RequestBody TypeContent typeContent, TypeContentResponse typeContentResponse){
         try {
-
+            typeContent.setTime(Calendar.getInstance());
             typeContentServiceInterface.createTypeContent(typeContent);
 
             typeContentResponse.setSuccess(true);

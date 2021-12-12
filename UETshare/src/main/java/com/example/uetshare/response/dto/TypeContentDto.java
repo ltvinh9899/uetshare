@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -13,5 +15,6 @@ public class TypeContentDto {
 
     private Long id;
     private String type_content;
+    private Calendar time;
 
 }

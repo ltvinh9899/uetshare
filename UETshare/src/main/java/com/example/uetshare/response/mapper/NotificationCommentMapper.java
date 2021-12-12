@@ -5,6 +5,8 @@ import com.example.uetshare.entity.NotificationQuestion;
 import com.example.uetshare.response.dto.NotificationCommentDto;
 import com.example.uetshare.response.dto.NotificationQuestionDto;
 
+import java.util.Calendar;
+
 public class NotificationCommentMapper {
 
     public static NotificationCommentDto toNotificationCommentDto(NotificationComment notificationComment){
@@ -34,6 +36,11 @@ public class NotificationCommentMapper {
             if(notificationComment.getComment().getId() != null){
                 notificationCommentDto.setComment_id(notificationComment.getComment().getId());
             }
+        }
+
+        if (notificationComment.getTime() != null){
+            notificationComment.getTime().roll(Calendar.HOUR_OF_DAY, 7);
+            notificationCommentDto.setTime(notificationComment.getTime());
         }
 
         return notificationCommentDto;

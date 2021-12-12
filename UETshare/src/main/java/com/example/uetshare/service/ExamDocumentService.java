@@ -7,6 +7,7 @@ import com.example.uetshare.repository.ExamDocumentRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -16,8 +17,8 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
     private ExamDocumentRepositoryInterface examDocumentRepositoryInterface;
 
     @Override
-    public void createExamDocument(ExamDocument examDocument) {
-        examDocumentRepositoryInterface.save(examDocument);
+    public ExamDocument createExamDocument(ExamDocument examDocument) {
+        return examDocumentRepositoryInterface.save(examDocument);
     }
 
     @Override
@@ -34,6 +35,10 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
             examDocumentData.setLink(examDocument.getLink());
         }
 
+        if (examDocument.getName() != null){
+            examDocumentData.setName(examDocument.getName());
+        }
+
         if(examDocument.getExamDocumentType() != null){
             examDocumentData.setExamDocumentType(examDocument.getExamDocumentType());
         }
@@ -46,9 +51,11 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
             examDocumentData.setAccount(examDocument.getAccount());
         }
 
-        examDocumentRepositoryInterface.save(examDocumentData);
+        examDocumentData.setTime(Calendar.getInstance());
 
-        return examDocumentData;
+        return examDocumentRepositoryInterface.save(examDocumentData);
+
+//        return examDocumentData;
     }
 
     @Override
