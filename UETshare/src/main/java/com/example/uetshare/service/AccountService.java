@@ -10,19 +10,20 @@ import com.example.uetshare.entity.Account;
 import com.example.uetshare.response.dto.UserProfileDto;
 import com.example.uetshare.response.mapper.AccountMapper;
 import com.example.uetshare.response.mapper.UserProfileMapper;
-import com.example.uetshare.utils.CallApi;
 import com.example.uetshare.utils.EncoderUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @Log4j2
 @Service
@@ -37,6 +38,8 @@ public class AccountService {
     private RoleRepository roleRepository;
     @Autowired
     private UserProfileRepository userProfileRepository;
+    @Value("${folder.account.avatar}")
+    private String dataFolderPath;
     /**
      * Đăng ký tài khoản
      * @return
@@ -185,6 +188,48 @@ public class AccountService {
         }catch (Exception e){
             accountResponse.setSuccess(false);
             accountResponse.setMessage("Thay đổi mật khẩu thất bại");
+            return accountResponse;
+        }
+    }
+
+    /**
+     * 1. Ghi file ra folder
+     * 2. Cập nhật đường dẫn lên db
+     * 3. trả về 
+     * @param file
+     * @return
+     */
+    public AccountResponse updateAvatar(Long id, MultipartFile file){
+        Account oldAccount = accountRepository.getById(id);
+        String username = oldAccount.getUsername();
+        String oldAvatar = oldAccount.getAvatar();
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setLogin(true);
+
+        try{
+            try{
+                File oldFile = new File(oldAvatar);
+                oldFile.delete();
+            }catch (Exception e){
+                System.out.println("Failure delete avatar");
+            }
+            String userPath = dataFolderPath +"/" +username;
+            File f = new File(userPath);
+            f.mkdir();
+            Path path = Paths.get(userPath,file.getOriginalFilename());
+            Files.write(path, file.getBytes());
+            String avatarPath = userPath + "/" + file.getOriginalFilename();
+            accountRepository.updateAvatar(username, avatarPath);
+            Account account = accountRepository.getById(id);
+            AccountDto accountDto = AccountMapper.toAccountDto(account);
+            accountDto.setAvatar(avatarPath);
+            accountResponse.setAccountDto(accountDto);
+            accountResponse.setSuccess(true);
+            accountResponse.setMessage("Cập nhật ảnh thành công");
+            return accountResponse;
+        }catch (Exception e){
+            accountResponse.setSuccess(false);
+            accountResponse.setMessage("Cập nhật ảnh thất bại");
             return accountResponse;
         }
     }
