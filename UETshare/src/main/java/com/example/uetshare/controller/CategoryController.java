@@ -4,7 +4,9 @@ package com.example.uetshare.controller;
 import com.example.uetshare.entity.Category;
 import com.example.uetshare.response.CategoryResponse;
 import com.example.uetshare.response.dto.CategoryDto;
+import com.example.uetshare.response.dto.SubjectDto;
 import com.example.uetshare.response.mapper.CategoryMapper;
+import com.example.uetshare.response.mapper.SubjectMapper;
 import com.example.uetshare.service.CategoryServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,6 +76,35 @@ public class CategoryController {
             return new ResponseEntity<>(categoryResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<?> updateCategory(@PathVariable("id") Long id, @RequestBody Category category, CategoryResponse categoryResponse){
+
+       try {
+
+           System.out.println(category.getCategory());
+           Category categoryAfterUpdate = categoryServiceInterface.updateCategory(id, category);
+
+
+
+           categoryResponse.setSuccess(true);
+           categoryResponse.setMessage("update category success");
+
+           List<CategoryDto> categoryDtoList = new ArrayList<>();
+           categoryDtoList.add(CategoryMapper.toCategoryDto(categoryAfterUpdate));
+           categoryResponse.setCategoryDtoList(categoryDtoList);
+
+           return ResponseEntity.ok(categoryResponse);
+
+       } catch (Exception e) {
+           categoryResponse.setSuccess(false);
+           categoryResponse.setMessage(e.toString());
+
+           return new ResponseEntity<>(categoryResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+
+    }
+
 
 //    @GetMapping("id/{id}")
 //    public  ResponseEntity<?> getCategoryById()

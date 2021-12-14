@@ -5,6 +5,7 @@ import com.example.uetshare.repository.CategoryRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,25 @@ public class CategoryService implements CategoryServiceInterface {
     @Override
     public List<Category> getAllCategory() {
         return categoryRepositoryInterface.findAll();
+    }
+
+    @Override
+    public Category updateCategory(Long id, Category category) {
+
+        Category categoryData = categoryRepositoryInterface.getCategoryById(id);
+
+        if(category.getCategory() != null){
+            categoryData.setCategory(category.getCategory());
+        }
+
+        categoryData.setTime(Calendar.getInstance());
+
+        System.out.println("hello");
+        System.out.println(category.getCategory());
+        System.out.println(categoryData);
+
+        return categoryRepositoryInterface.save(categoryData);
+
     }
 
 //    @Override
