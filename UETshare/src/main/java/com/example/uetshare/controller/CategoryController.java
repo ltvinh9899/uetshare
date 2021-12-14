@@ -9,6 +9,7 @@ import com.example.uetshare.response.mapper.CategoryMapper;
 import com.example.uetshare.response.mapper.SubjectMapper;
 import com.example.uetshare.service.CategoryServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +64,34 @@ public class CategoryController {
 
             categoryResponse.setSuccess(true);
             categoryResponse.setMessage("success to get all question");
+            categoryResponse.setCategoryDtoList(categoryDtoList);
+
+            return ResponseEntity.ok(categoryResponse);
+
+
+        } catch (Exception e){
+
+            categoryResponse.setSuccess(false);
+            categoryResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(categoryResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<?> getCategoryPagination(CategoryResponse categoryResponse, @Param("index") Integer index){
+
+        try {
+            List<Category> categoryList = categoryServiceInterface.getCategoryPagination(index);
+            List<CategoryDto> categoryDtoList = new ArrayList<>();
+
+            for(Category category : categoryList){
+                categoryDtoList.add(CategoryMapper.toCategoryDto(category));
+            }
+
+            categoryResponse.setSuccess(true);
+            categoryResponse.setMessage("success to get category");
+            categoryResponse.setResult_quantity(categoryDtoList.size());
             categoryResponse.setCategoryDtoList(categoryDtoList);
 
             return ResponseEntity.ok(categoryResponse);
