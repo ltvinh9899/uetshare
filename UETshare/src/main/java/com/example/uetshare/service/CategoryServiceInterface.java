@@ -8,6 +8,7 @@ import java.util.List;
 @Service
 public interface CategoryServiceInterface {
     void createCategory(Category category);
-
     List<Category> getAllCategory();
+    Category updateCategory(Long id, Category category);
+
 }
