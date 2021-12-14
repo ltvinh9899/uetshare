@@ -11,6 +11,7 @@
 	<groupId>java.spring</groupId>
 	<artifactId>uetshare</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>uetshare</name>
 	<description>UET share app</description>
 	<properties>
@@ -82,9 +83,16 @@
 			<artifactId>converter-gson</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>2.6.1</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 
 	<build>
+		<finalName>uetshare</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -94,8 +102,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>16</source>
-					<target>16</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>

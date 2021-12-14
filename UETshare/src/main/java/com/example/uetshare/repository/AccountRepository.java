@@ -22,4 +22,9 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     @Transactional
     @Query(value = "update account set password = ?2 where username = ?1", nativeQuery = true)
     public void changePassword(String username, String password);
+    @Modifying
+    @Transactional
+    @Query(value = "update account set avatar = ?2 where username = ?1", nativeQuery = true)
+    public void updateAvatar(String username, String avatarPath);
+
 }

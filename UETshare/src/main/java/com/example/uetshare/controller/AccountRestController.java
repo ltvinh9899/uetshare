@@ -10,12 +10,16 @@ import com.example.uetshare.response.mapper.AccountMapper;
 import com.example.uetshare.service.AccountService;
 import com.example.uetshare.service.FirebaseService;
 import lombok.extern.log4j.Log4j2;
+import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import retrofit2.http.Multipart;
 
 import java.util.*;
 
@@ -32,7 +36,8 @@ public class AccountRestController {
 
     @Autowired
     private FirebaseService firebaseService;
-
+    @Value("${folder.account.avatar}")
+    private String avatarPath;
     private final Integer limit = 10;
 
     @GetMapping(value = {"/",""})
@@ -129,5 +134,9 @@ public class AccountRestController {
     @PostMapping("/register_firebase_token")
     public ResponseEntity<?> registerFirebaseToken(@RequestBody BodyFirebaseToken requestBody){
         return ResponseEntity.ok(firebaseService.registerFirebaseToken(requestBody));
+    }
+    @PostMapping("/update-avatar")
+    public ResponseEntity<?> updateAvatar(@RequestParam("avatar") MultipartFile file, @RequestParam("id") Long id){
+        return ResponseEntity.ok(accountService.updateAvatar(id, file));
     }
 }
