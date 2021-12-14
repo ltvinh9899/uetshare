@@ -30,6 +30,9 @@ public interface QuestionRepositoryInterface extends JpaRepository<Question, Int
     @Query(value ="select * from question where question.account_id = ?1 order by question.id desc limit 0, ?2", nativeQuery = true)
     List<Question> getQuestionByAccountId(Long account_id, Integer index);
 
+    @Query(value ="select * from question where question.account_id = ?1 and question.type_content_id = ?2 order by question.id desc limit 0, ?3", nativeQuery = true)
+    List<Question> getByAccountAndTypeContent(Long account_id, Long type_content_id,Integer index);
+
     @Query(value = "select  * from question inner join comment on question.id = comment.question_id where comment.id = ?1", nativeQuery = true)
     Question getQuestionByCommentId(Long comment_id);
 

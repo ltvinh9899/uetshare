@@ -262,12 +262,12 @@ public class QuestionController {
     }
 
     @GetMapping("/account/{id}")
-    public ResponseEntity<?> getQuestionByAccountId(@PathVariable("id") Long id, QuestionResponse questionResponse, @Param("index") Integer index){
+    public ResponseEntity<?> getQuestionByAccountId(@PathVariable("id") Long id, QuestionResponse questionResponse, @Param("index") Integer index, @Param("type_content_id") Long type_content_id){
 
         try {
 
             Integer indexToQuery = index*limit;
-            List<Question> questionList = questionServiceInterface.getQuestionByAccountId(id, indexToQuery);
+            List<Question> questionList = questionServiceInterface.getQuestionByAccountId(id, indexToQuery, type_content_id);
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
             if (questionList.size() > 0) {
@@ -342,5 +342,6 @@ public class QuestionController {
 
         return questionDto;
     }
+
 
 }
