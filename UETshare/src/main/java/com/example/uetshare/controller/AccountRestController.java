@@ -49,11 +49,16 @@ public class AccountRestController {
         log.info("/register with username: "+accountDto.getUsername()+" | password: "+ accountDto.getPassword());
         return ResponseEntity.ok(accountService.register(accountDto));
     }
-    @GetMapping("/login")
-    public ResponseEntity<?> login(){
-        SessionRespone sessionRespone = new SessionRespone();
-        sessionRespone.setLogin(false);
-        return ResponseEntity.ok(sessionRespone);
+//    @GetMapping("/login")
+//    public ResponseEntity<?> login(){
+//        SessionRespone sessionRespone = new SessionRespone();
+//        sessionRespone.setLogin(false);
+//        return ResponseEntity.ok(sessionRespone);
+//    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody AccountDto accountDto){
+
+        return ResponseEntity.ok(accountService.login(accountDto));
     }
     @GetMapping("/user")
     public ResponseEntity<?> getUser(){
@@ -70,6 +75,7 @@ public class AccountRestController {
     @GetMapping("/login-success")
     public ResponseEntity<?> getSuccess(@RequestHeader(value ="cookie") String cookie){
         log.info("controller: login-success");
+        System.out.println("cookies: "+ cookie);
         return ResponseEntity.ok(accountService.getAccount(cookie));
     }
     @GetMapping("/logout-success")

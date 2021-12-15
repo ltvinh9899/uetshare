@@ -28,6 +28,11 @@ public class CategoryService implements CategoryServiceInterface {
     }
 
     @Override
+    public List<Category> getCategoryPagination(Integer index) {
+        return categoryRepositoryInterface.getCategoryPagination(index);
+    }
+
+    @Override
     public Category updateCategory(Long id, Category category) {
 
         Category categoryData = categoryRepositoryInterface.getCategoryById(id);

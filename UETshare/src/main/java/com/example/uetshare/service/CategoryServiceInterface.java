@@ -9,6 +9,7 @@ import java.util.List;
 public interface CategoryServiceInterface {
     void createCategory(Category category);
     List<Category> getAllCategory();
+    List<Category> getCategoryPagination(Integer index);
     Category updateCategory(Long id, Category category);
 
 }
