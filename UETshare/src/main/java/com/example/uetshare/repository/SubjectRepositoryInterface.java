@@ -16,6 +16,9 @@ public interface SubjectRepositoryInterface extends JpaRepository<Subject, Integ
     @Query(value = "select * from subject where subject.category_id = ?1 limit 0, ?2", nativeQuery = true)
     List<Subject> getAllSubjectByCategoryId(Long category_id, Integer index);
 
+    @Query(value = "select * from subject order by subject.id desc limit ?1, 10", nativeQuery = true)
+    List<Subject> getAllSubject(Integer index);
+
     @Query(value = "select * from subject where subject.id = ?1", nativeQuery = true)
     Subject getSubjectById(Long id);
 

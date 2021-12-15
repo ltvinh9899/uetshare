@@ -79,6 +79,34 @@ public class SubjectController {
         }
     }
 
+    @GetMapping("")
+    public ResponseEntity<?> getAllSubject(@Param("index") Integer index, SubjectResponse subjectResponse) {
+        try {
+
+            List<Subject> subjectList = subjectServiceInterface.getAllSubject(index);
+
+            subjectResponse.setSuccess(true);
+            subjectResponse.setMessage("get subject success");
+
+            List<SubjectDto> subjectDtoList = new ArrayList<>();
+            for(Subject subject : subjectList) {
+                subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+            }
+            subjectResponse.setResult_quantity(subjectDtoList.size());
+            subjectResponse.setSubjectDtoList(subjectDtoList);
+
+            return ResponseEntity.ok(subjectResponse);
+
+        } catch (Exception e){
+
+            subjectResponse.setSuccess(false);
+            subjectResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<?> updateSubject(@PathVariable("id") Long id,@RequestBody Subject subject, SubjectResponse subjectResponse){
         try {

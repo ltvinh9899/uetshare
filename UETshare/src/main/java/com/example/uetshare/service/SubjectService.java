@@ -27,6 +27,11 @@ public class SubjectService implements SubjectServiceInterface{
     }
 
     @Override
+    public List<Subject> getAllSubject(Integer index) {
+        return subjectRepositoryInterface.getAllSubject(index);
+    }
+
+    @Override
     public Subject updateSubject(Long id, Subject subject) {
         Subject subjectData = subjectRepositoryInterface.getSubjectById(id);
 
