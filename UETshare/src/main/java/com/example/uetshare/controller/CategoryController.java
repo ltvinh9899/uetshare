@@ -107,6 +107,36 @@ public class CategoryController {
         }
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchCategory(CategoryResponse categoryResponse, @Param("index") Integer index, @Param("text") String text){
+
+        try {
+            Integer indexToQuery = (index - 1)*10;
+            String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            List<Category> categoryList = categoryServiceInterface.getCategoryByText(indexToQuery, textToQuery);
+            List<CategoryDto> categoryDtoList = new ArrayList<>();
+
+            for(Category category : categoryList){
+                categoryDtoList.add(CategoryMapper.toCategoryDto(category));
+            }
+
+            categoryResponse.setSuccess(true);
+            categoryResponse.setMessage("success to get category");
+            categoryResponse.setResult_quantity(categoryDtoList.size());
+            categoryResponse.setCategoryDtoList(categoryDtoList);
+
+            return ResponseEntity.ok(categoryResponse);
+
+
+        } catch (Exception e){
+
+            categoryResponse.setSuccess(false);
+            categoryResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(categoryResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<?> updateCategory(@PathVariable("id") Long id, @RequestBody Category category, CategoryResponse categoryResponse){
 
