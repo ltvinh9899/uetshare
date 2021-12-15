@@ -31,6 +31,8 @@ public class CommentService implements CommentServiceInterface{
             commentData.setImage(comment.getImage());
         }
 
+        commentRepositoryInterface.save(commentData);
+
         return commentData;
 
     }
