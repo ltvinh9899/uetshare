@@ -33,6 +33,11 @@ public class CategoryService implements CategoryServiceInterface {
     }
 
     @Override
+    public List<Category> getCategoryByText(Integer index, String text) {
+        return categoryRepositoryInterface.getCategoryByText(index, text);
+    }
+
+    @Override
     public Category updateCategory(Long id, Category category) {
 
         Category categoryData = categoryRepositoryInterface.getCategoryById(id);
