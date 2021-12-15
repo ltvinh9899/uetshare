@@ -32,6 +32,11 @@ public class SubjectService implements SubjectServiceInterface{
     }
 
     @Override
+    public List<Subject> getSubjectByText(Integer index, String text) {
+        return subjectRepositoryInterface.getSubjectByText(index, text);
+    }
+
+    @Override
     public Subject updateSubject(Long id, Subject subject) {
         Subject subjectData = subjectRepositoryInterface.getSubjectById(id);
 

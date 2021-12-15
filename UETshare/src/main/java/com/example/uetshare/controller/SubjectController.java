@@ -107,6 +107,35 @@ public class SubjectController {
         }
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchSubject(@Param("index") Integer index, @Param("text") String text, SubjectResponse subjectResponse) {
+        try {
+            Integer indexToQuery = (index - 1)*10;
+            String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            List<Subject> subjectList = subjectServiceInterface.getAllSubject(indexToQuery);
+
+            subjectResponse.setSuccess(true);
+            subjectResponse.setMessage("get subject success");
+
+            List<SubjectDto> subjectDtoList = new ArrayList<>();
+            for(Subject subject : subjectList) {
+                subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+            }
+            subjectResponse.setResult_quantity(subjectDtoList.size());
+            subjectResponse.setSubjectDtoList(subjectDtoList);
+
+            return ResponseEntity.ok(subjectResponse);
+
+        } catch (Exception e){
+
+            subjectResponse.setSuccess(false);
+            subjectResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<?> updateSubject(@PathVariable("id") Long id,@RequestBody Subject subject, SubjectResponse subjectResponse){
         try {

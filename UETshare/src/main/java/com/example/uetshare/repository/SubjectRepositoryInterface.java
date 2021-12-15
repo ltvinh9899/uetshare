@@ -1,5 +1,6 @@
 package com.example.uetshare.repository;
 
+import com.example.uetshare.entity.Category;
 import com.example.uetshare.entity.Question;
 import com.example.uetshare.entity.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +19,11 @@ public interface SubjectRepositoryInterface extends JpaRepository<Subject, Integ
 
     @Query(value = "select * from subject order by subject.id desc limit ?1, 10", nativeQuery = true)
     List<Subject> getAllSubject(Integer index);
+
+    @Query(value = "select * from subject" +
+            "inner join category on subject.category_id = category.id" +
+            " where (subject.subject_name like ?2 or category.category like ?2) order by category.id desc limit ?1, 10", nativeQuery = true)
+    List<Subject> getSubjectByText(Integer index, String text);
 
     @Query(value = "select * from subject where subject.id = ?1", nativeQuery = true)
     Subject getSubjectById(Long id);
