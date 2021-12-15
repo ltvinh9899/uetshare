@@ -82,8 +82,8 @@ public class SubjectController {
     @GetMapping("")
     public ResponseEntity<?> getAllSubject(@Param("index") Integer index, SubjectResponse subjectResponse) {
         try {
-
-            List<Subject> subjectList = subjectServiceInterface.getAllSubject(index);
+            Integer indexToQuery = (index - 1)*10;
+            List<Subject> subjectList = subjectServiceInterface.getAllSubject(indexToQuery);
 
             subjectResponse.setSuccess(true);
             subjectResponse.setMessage("get subject success");

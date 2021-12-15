@@ -100,6 +100,34 @@ public class ExamDocumentController {
         }
     }
 
+    @GetMapping("")
+    public ResponseEntity<?> getExamDocumentByType( @Param("type") String type, @Param("index") Integer index, ExamDocumentResponse examDocumentResponse){
+        try {
+            Integer indexToQuery = (index - 1)*10;
+            List<ExamDocument> examDocumentList = examDocumentServiceInterface.getExamDocumentByType(type, indexToQuery);
+
+            examDocumentResponse.setSuccess(true);
+            examDocumentResponse.setMessage("get exam document success");
+
+            List<ExamDocumentDto> examDocumentDtoList = new ArrayList<>();
+            for(ExamDocument examDocument : examDocumentList) {
+                examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
+            }
+            examDocumentResponse.setResult_quantity(examDocumentList.size());
+            examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
+
+            return ResponseEntity.ok(examDocumentResponse);
+
+        } catch (Exception e){
+
+            examDocumentResponse.setSuccess(false);
+            examDocumentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(examDocumentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestBody ExamDocument examDocument, ExamDocumentResponse examDocumentResponse){
         try {
