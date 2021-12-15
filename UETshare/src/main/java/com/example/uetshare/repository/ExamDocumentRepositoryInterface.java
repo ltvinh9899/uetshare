@@ -17,6 +17,9 @@ public interface ExamDocumentRepositoryInterface extends JpaRepository<ExamDocum
     @Query(value = "select * from exam_document where exam_document.subject_id = ?1 and exam_document.exam_document_type = ?2 order by exam_document.id desc limit 0, ?3", nativeQuery = true)
     List<ExamDocument> getExamDocumentBySubjectIdAndType(Long subject_id, String type, Integer index);
 
+    @Query(value = "select * from exam_document where exam_document.exam_document_type = ?1 order by exam_document.id desc limit ?2, 10", nativeQuery = true)
+    List<ExamDocument> getExamDocumentByType(String type, Integer index);
+
     @Query(value = "select * from exam_document where exam_document.id = ?1", nativeQuery = true)
     ExamDocument getExamDocumentById(Long id);
 

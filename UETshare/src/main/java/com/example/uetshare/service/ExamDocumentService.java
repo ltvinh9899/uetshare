@@ -27,6 +27,11 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
     }
 
     @Override
+    public List<ExamDocument> getExamDocumentByType(String type, Integer index) {
+        return examDocumentRepositoryInterface.getExamDocumentByType(type, index);
+    }
+
+    @Override
     public ExamDocument updateExamDocument(Long id, ExamDocument examDocument) {
 
         ExamDocument examDocumentData = examDocumentRepositoryInterface.getExamDocumentById(id);

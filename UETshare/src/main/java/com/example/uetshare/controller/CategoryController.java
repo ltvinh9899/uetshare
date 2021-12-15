@@ -82,7 +82,8 @@ public class CategoryController {
     public ResponseEntity<?> getCategoryPagination(CategoryResponse categoryResponse, @Param("index") Integer index){
 
         try {
-            List<Category> categoryList = categoryServiceInterface.getCategoryPagination(index);
+            Integer indexToQuery = (index - 1)*10;
+            List<Category> categoryList = categoryServiceInterface.getCategoryPagination(indexToQuery);
             List<CategoryDto> categoryDtoList = new ArrayList<>();
 
             for(Category category : categoryList){

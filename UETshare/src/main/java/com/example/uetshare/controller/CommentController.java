@@ -37,7 +37,7 @@ public class CommentController {
     private final Integer limit = 10;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createComment(@RequestParam("Comment") String commentJson, @RequestParam("image_file") MultipartFile image_file, CommentResponse commentResponse) throws IOException {
+    public ResponseEntity<?> createComment(@RequestParam("Comment") String commentJson, @RequestParam(name="image_file", required = false) MultipartFile image_file, CommentResponse commentResponse) throws IOException {
 
         try {
 
@@ -45,12 +45,13 @@ public class CommentController {
             comment.setTime(Calendar.getInstance());
             Comment commentFromBb = commentServiceInterface.createComment(comment);
 
-            if (!image_file.isEmpty()) {
-                String pathDirectoryString = FILE_DIRECTORY + "account_" + commentFromBb.getAccount().getId() + "/comment_" + commentFromBb.getId() + "/";
-                String pathFileString = writeFile(pathDirectoryString, image_file);
-                commentFromBb.setImage(pathFileString);
+            if(image_file != null) {
+                if (!image_file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + commentFromBb.getAccount().getId() + "/comment_" + commentFromBb.getId() + "/";
+                    String pathFileString = writeFile(pathDirectoryString, image_file);
+                    commentFromBb.setImage(pathFileString);
+                }
             }
-
             Comment commentAfterUpdate = commentServiceInterface.updateComment(commentFromBb.getId(),commentFromBb);
 
             commentResponse.setSuccess(true);
