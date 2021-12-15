@@ -106,25 +106,25 @@ public class AccountService {
         log.info("--------------------account get name: "+ accountGet.getUsername());
         return accountGet;
     }
-    /**
-     *
-     * @param accountDto
-     * @return
-     */
-    public AccountResponse login(AccountDto accountDto){
-        Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
-        if(account!=null){
-            if(accountDto.getPassword().equals(account.getPassword())){
-                AccountResponse accountResponse = new AccountResponse(true,true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
-                return accountResponse;
-            }else{
-                return new AccountResponse(false,false,"Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
-            }
-        }else{
-            System.out.println("tai khoan khong ton tai");
-            return new AccountResponse(false, false, "Tài khoản không tồn tại!", null);
-        }
-    }
+//    /**
+//     *
+//     * @param accountDto
+//     * @return
+//     */
+//    public AccountResponse login(AccountDto accountDto){
+//        Account account = accountRepository.getAccountByUsername(accountDto.getUsername());
+//        if(account!=null){
+//            if(accountDto.getPassword().equals(account.getPassword())){
+//                AccountResponse accountResponse = new AccountResponse(true,true,"Đăng nhập thành công!", AccountMapper.toAccountDto(account));
+//                return accountResponse;
+//            }else{
+//                return new AccountResponse(false,false,"Đăng nhập thất bại!", AccountMapper.toAccountDto(account));
+//            }
+//        }else{
+//            System.out.println("tai khoan khong ton tai");
+//            return new AccountResponse(false, false, "Tài khoản không tồn tại!", null);
+//        }
+//    }
     public AccountResponse getAccount(String cookie){
         String cookieSplit[] = cookie.split(";");
         String rememberMeSplit[] = new String[]{};
@@ -232,5 +232,28 @@ public class AccountService {
             accountResponse.setMessage("Cập nhật ảnh thất bại");
             return accountResponse;
         }
+    }
+    public AccountResponse login(AccountDto accountDto){
+        AccountResponse accountResponse = new AccountResponse();
+        Account account = checkOfExists(accountDto);
+        if(account!=null){
+            String passwordSend = EncoderUtils.encoderPassword(accountDto.getPassword());
+            String passwordDb = account.getPassword();
+            if(passwordSend.equals(passwordDb)){
+                accountResponse.setLogin(true);
+                accountResponse.setSuccess(true);
+                accountResponse.setMessage("Đăng nhập thành công");
+                accountResponse.setAccountDto(AccountMapper.toAccountDto(account));
+            }else{
+                accountResponse.setLogin(false);
+                accountResponse.setSuccess(false);
+                accountResponse.setMessage("Sai mật khẩu");
+            }
+        }else{
+            accountResponse.setLogin(false);
+            accountResponse.setSuccess(false);
+            accountResponse.setMessage("Username không tồn tại");
+        }
+        return accountResponse;
     }
 }
