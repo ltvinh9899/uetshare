@@ -40,6 +40,10 @@ public class ExamDocumentMapper {
             }
         }
 
+        if (examDocument.getSubject() != null){
+            examDocumentDto.setSubjectDto(SubjectMapper.toSubjectDto(examDocument.getSubject()));
+        }
+
         if (examDocument.getTime() != null){
             examDocument.getTime().roll(Calendar.HOUR_OF_DAY, 7);
             examDocumentDto.setTime(examDocument.getTime());

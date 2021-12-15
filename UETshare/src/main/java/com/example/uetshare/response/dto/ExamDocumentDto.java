@@ -20,5 +20,6 @@ public class ExamDocumentDto {
     private ExamDocumentType type;
     private Long account_id;
     private Long subject_id;
+    private SubjectDto subjectDto;
     private Calendar time;
 }
