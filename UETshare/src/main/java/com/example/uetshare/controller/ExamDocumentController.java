@@ -38,19 +38,20 @@ public class ExamDocumentController {
     private final Integer limit = 10;
 
     @PostMapping("")
-    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam("file") MultipartFile file, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam(name="file", required = false) MultipartFile file, ExamDocumentResponse examDocumentResponse){
 
         try {
             ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
             examDocument.setTime(Calendar.getInstance());
             ExamDocument examDocumentFromDb = examDocumentServiceInterface.createExamDocument(examDocument);
 
-            if(!file.isEmpty()) {
-                String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
-                String pathFileString = CommentController.writeFile(pathDirectoryString, file);
-                examDocumentFromDb.setLink(pathFileString);
+            if(file != null) {
+                if (!file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+                    examDocumentFromDb.setLink(pathFileString);
+                }
             }
-
             ExamDocument examDocumentAfterUpdate = examDocumentServiceInterface.updateExamDocument(examDocument.getId(),examDocumentFromDb);
 
             examDocumentResponse.setSuccess(true);
@@ -77,6 +78,34 @@ public class ExamDocumentController {
 
             Integer indexToQuery = index*limit;
             List<ExamDocument> examDocumentList = examDocumentServiceInterface.getExamDocumentBySubjectIdAndType(id, type, indexToQuery);
+
+            examDocumentResponse.setSuccess(true);
+            examDocumentResponse.setMessage("get exam document success");
+
+            List<ExamDocumentDto> examDocumentDtoList = new ArrayList<>();
+            for(ExamDocument examDocument : examDocumentList) {
+                examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
+            }
+            examDocumentResponse.setResult_quantity(examDocumentList.size());
+            examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
+
+            return ResponseEntity.ok(examDocumentResponse);
+
+        } catch (Exception e){
+
+            examDocumentResponse.setSuccess(false);
+            examDocumentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(examDocumentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> getExamDocumentByType( @Param("type") String type, @Param("index") Integer index, ExamDocumentResponse examDocumentResponse){
+        try {
+            Integer indexToQuery = (index - 1)*10;
+            List<ExamDocument> examDocumentList = examDocumentServiceInterface.getExamDocumentByType(type, indexToQuery);
 
             examDocumentResponse.setSuccess(true);
             examDocumentResponse.setMessage("get exam document success");
