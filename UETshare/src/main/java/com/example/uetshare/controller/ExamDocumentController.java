@@ -27,6 +27,7 @@ import java.util.TimeZone;
 
 @RestController
 @RequestMapping("/exam-document")
+@CrossOrigin
 public class ExamDocumentController {
 
     @Autowired

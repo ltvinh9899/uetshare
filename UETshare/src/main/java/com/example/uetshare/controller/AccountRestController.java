@@ -25,6 +25,7 @@ import java.util.*;
 
 @Log4j2
 @RestController
+@CrossOrigin
 public class AccountRestController {
     private AccountService accountService;
     @Autowired
