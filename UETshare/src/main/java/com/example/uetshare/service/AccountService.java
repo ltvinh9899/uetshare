@@ -213,7 +213,7 @@ public class AccountService {
             }catch (Exception e){
                 System.out.println("Failure delete avatar");
             }
-            String userPath = dataFolderPath +"/" +username;
+            String userPath = dataFolderPath +"/" + username;
             File f = new File(userPath);
             f.mkdir();
             Path path = Paths.get(userPath,file.getOriginalFilename());

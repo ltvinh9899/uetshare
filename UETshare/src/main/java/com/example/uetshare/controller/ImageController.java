@@ -24,6 +24,22 @@ public class ImageController {
     @Value("${file.upload-dir}")
     String FILE_DIRECTORY;
 
+    @Value("${folder.account.avatar}")
+    String AVATAR_DIRECTORY;
+
+
+    @GetMapping(  "/${folder.account.avatar}/{username}/{file_name}")
+    public ResponseEntity<byte[]> getAvatar(@PathVariable("username") String username,
+                                            @PathVariable("file_name") String file_name) throws IOException{
+
+        String file_path = AVATAR_DIRECTORY + "/" + username + "/"  + file_name;
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(getFile(file_path));
+    }
 
     @GetMapping(  "/${file.upload-dir}account_{account_id}/question_{question_id}/{file_name}")
     public ResponseEntity<byte[]> getImageQuestion(@PathVariable("account_id") Long account_id,
