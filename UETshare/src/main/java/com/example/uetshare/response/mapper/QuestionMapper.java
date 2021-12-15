@@ -48,6 +48,10 @@ public class QuestionMapper {
             }
         }
 
+        if (question.getAccount() != null){
+            questionDto.setAccountDto(AccountMapper.toAccountDto(question.getAccount()));
+        }
+
         return questionDto;
     }
 
