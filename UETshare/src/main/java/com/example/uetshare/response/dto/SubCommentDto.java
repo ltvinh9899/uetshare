@@ -18,5 +18,5 @@ public class SubCommentDto {
     private String image;
     private Long comment_id;
     private Calendar time;
-
+    private AccountDto accountDto;
 }

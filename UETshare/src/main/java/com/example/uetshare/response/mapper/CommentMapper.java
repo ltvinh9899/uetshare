@@ -39,6 +39,10 @@ public class CommentMapper {
             commentDto.setTime(comment.getTime());
         }
 
+        if (comment.getAccount() != null){
+            commentDto.setAccountDto(AccountMapper.toAccountDto(comment.getAccount()));
+        }
+
         return commentDto;
 
     }
