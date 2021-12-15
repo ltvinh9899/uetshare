@@ -19,4 +19,5 @@ public class CommentDto {
     private Long question_id;
     private Long account_id;
     private Calendar time;
+    private AccountDto accountDto;
 }
