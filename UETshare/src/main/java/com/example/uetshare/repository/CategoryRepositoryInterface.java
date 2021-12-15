@@ -15,7 +15,7 @@ public interface CategoryRepositoryInterface extends JpaRepository<Category, Int
     @Query(value = "select * from category where category.id = ?1", nativeQuery = true)
     Category getCategoryById(Long id);
 
-    @Query(value = "select * from category order by category.id desc limit 0, ?1", nativeQuery = true)
+    @Query(value = "select * from category order by category.id desc limit ?1, 10", nativeQuery = true)
     List<Category> getCategoryPagination(Integer index);
 
 }
