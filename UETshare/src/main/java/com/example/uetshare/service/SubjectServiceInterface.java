@@ -12,6 +12,7 @@ public interface SubjectServiceInterface {
     public void createSubject(Subject subject);
     public List<Subject> getAllSubjectByCategoryId(Long category_id, Integer index);
     public List<Subject> getAllSubject(Integer index);
+    public List<Subject> getSubjectByText(Integer index, String text);
     public Subject updateSubject(Long id, Subject subject);
     public Subject deleteSubject(Long id);
 

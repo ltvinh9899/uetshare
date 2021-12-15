@@ -17,4 +17,5 @@ public class SubjectDto {
     private String subject_name;
     private Long category_id;
     private Calendar time;
+    private CategoryDto categoryDto;
 }

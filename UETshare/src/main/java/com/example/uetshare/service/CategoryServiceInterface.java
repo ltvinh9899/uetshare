@@ -10,6 +10,7 @@ public interface CategoryServiceInterface {
     void createCategory(Category category);
     List<Category> getAllCategory();
     List<Category> getCategoryPagination(Integer index);
+    List<Category> getCategoryByText(Integer index, String text);
     Category updateCategory(Long id, Category category);
 
 }
