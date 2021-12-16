@@ -56,6 +56,11 @@ public class CategoryService implements CategoryServiceInterface {
 
     }
 
+    @Override
+    public Integer totalCategory() {
+        return categoryRepositoryInterface.totalCategory();
+    }
+
 //    @Override
 //    public Category findCategoryById(Long categoryId) {
 //        return categoryRepositoryInterface.findById(categoryId);

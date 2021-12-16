@@ -21,4 +21,6 @@ public interface CategoryRepositoryInterface extends JpaRepository<Category, Int
     @Query(value = "select * from category where (category.category like ?2) order by category.time desc limit ?1, 10", nativeQuery = true)
     List<Category> getCategoryByText(Integer index, String text);
 
+    @Query(value = "select count(*) from category", nativeQuery = true)
+    Integer totalCategory();
 }

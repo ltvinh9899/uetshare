@@ -16,5 +16,5 @@ public interface ExamDocumentServiceInterface {
     public List<ExamDocument> searchExamDocument(String type, Integer index, String text);
     public ExamDocument updateExamDocument(Long id, ExamDocument examDocument);
     public ExamDocument deleteExamDocument(Long id);
-
+    public Integer totalExamDocument();
 }
