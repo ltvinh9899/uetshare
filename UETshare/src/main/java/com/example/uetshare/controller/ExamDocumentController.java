@@ -134,8 +134,14 @@ public class ExamDocumentController {
     public ResponseEntity<?> searchExamDocument( @Param("type") String type, @Param("index") Integer index, @Param("text") String text, ExamDocumentResponse examDocumentResponse){
         try {
             Integer indexToQuery = (index - 1)*10;
-            String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
-            List<ExamDocument> examDocumentList = examDocumentServiceInterface.getExamDocumentByType(type, indexToQuery);
+            String textToQuery;
+            if(text != null){
+                textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            } else {
+                textToQuery = "%";
+            }
+
+            List<ExamDocument> examDocumentList = examDocumentServiceInterface.searchExamDocument(type, indexToQuery, textToQuery);
 
             examDocumentResponse.setSuccess(true);
             examDocumentResponse.setMessage("get exam document success");
@@ -144,7 +150,7 @@ public class ExamDocumentController {
             for(ExamDocument examDocument : examDocumentList) {
                 examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
             }
-            examDocumentResponse.setResult_quantity(examDocumentList.size());
+            examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalExamDocument());
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 
             return ResponseEntity.ok(examDocumentResponse);

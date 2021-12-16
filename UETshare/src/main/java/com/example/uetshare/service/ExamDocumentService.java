@@ -33,7 +33,12 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
 
     @Override
     public List<ExamDocument> searchExamDocument(String type, Integer index, String text) {
-        return examDocumentRepositoryInterface.getExamDocumentByText(type, index, text);
+        if(type == null){
+            return examDocumentRepositoryInterface.getExamDocumentByText(index, text);
+        } else {
+            return examDocumentRepositoryInterface.getExamDocumentByTextAndType(type, index, text);
+        }
+
     }
 
     @Override
@@ -74,5 +79,10 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
         examDocumentRepositoryInterface.deleteByExamDocumentId(id);
 
         return examDocument;
+    }
+
+    @Override
+    public Integer totalExamDocument() {
+        return examDocumentRepositoryInterface.totalExamDocument();
     }
 }

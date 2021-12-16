@@ -15,5 +15,6 @@ public interface SubjectServiceInterface {
     public List<Subject> getSubjectByText(Integer index, String text);
     public Subject updateSubject(Long id, Subject subject);
     public Subject deleteSubject(Long id);
+    public Integer totalSubject();
 
 }

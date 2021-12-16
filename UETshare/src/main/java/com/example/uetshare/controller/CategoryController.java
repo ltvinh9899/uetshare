@@ -95,7 +95,7 @@ public class CategoryController {
 
             categoryResponse.setSuccess(true);
             categoryResponse.setMessage("success to get category");
-            categoryResponse.setResult_quantity(categoryDtoList.size());
+            categoryResponse.setResult_quantity(categoryServiceInterface.totalCategory());
             categoryResponse.setCategoryDtoList(categoryDtoList);
 
             return ResponseEntity.ok(categoryResponse);
@@ -125,7 +125,7 @@ public class CategoryController {
 
             categoryResponse.setSuccess(true);
             categoryResponse.setMessage("success to get category");
-            categoryResponse.setResult_quantity(categoryDtoList.size());
+            categoryResponse.setResult_quantity(categoryServiceInterface.totalCategory());
             categoryResponse.setCategoryDtoList(categoryDtoList);
 
             return ResponseEntity.ok(categoryResponse);

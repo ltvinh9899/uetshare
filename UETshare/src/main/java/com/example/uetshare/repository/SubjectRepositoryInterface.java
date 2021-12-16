@@ -28,6 +28,9 @@ public interface SubjectRepositoryInterface extends JpaRepository<Subject, Integ
     @Query(value = "select * from subject where subject.id = ?1", nativeQuery = true)
     Subject getSubjectById(Long id);
 
+    @Query(value = "select count(*) from subject", nativeQuery = true)
+    Integer totalSubject();
+
     @Modifying
     @Transactional
     @Query(value = "delete from subject where subject.id = ?1", nativeQuery = true)

@@ -93,7 +93,7 @@ public class SubjectController {
             for(Subject subject : subjectList) {
                 subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
             }
-            subjectResponse.setResult_quantity(subjectDtoList.size());
+            subjectResponse.setResult_quantity(subjectServiceInterface.totalSubject());
             subjectResponse.setSubjectDtoList(subjectDtoList);
 
             return ResponseEntity.ok(subjectResponse);
@@ -113,7 +113,7 @@ public class SubjectController {
         try {
             Integer indexToQuery = (index - 1)*10;
             String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
-            List<Subject> subjectList = subjectServiceInterface.getAllSubject(indexToQuery);
+            List<Subject> subjectList = subjectServiceInterface.getSubjectByText(indexToQuery, text);
 
             subjectResponse.setSuccess(true);
             subjectResponse.setMessage("get subject success");
@@ -122,7 +122,7 @@ public class SubjectController {
             for(Subject subject : subjectList) {
                 subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
             }
-            subjectResponse.setResult_quantity(subjectDtoList.size());
+            subjectResponse.setResult_quantity(subjectServiceInterface.totalSubject());
             subjectResponse.setSubjectDtoList(subjectDtoList);
 
             return ResponseEntity.ok(subjectResponse);
