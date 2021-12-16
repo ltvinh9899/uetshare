@@ -39,7 +39,7 @@ public class ExamDocumentController {
     private final Integer limit = 10;
 
     @PostMapping("")
-    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam(name="file", required = false) MultipartFile file, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam("file") MultipartFile file, ExamDocumentResponse examDocumentResponse){
 
         try {
             ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
@@ -166,8 +166,18 @@ public class ExamDocumentController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestBody ExamDocument examDocument, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestParam("ExamDocument") String examDocumentJson, @RequestParam("file") MultipartFile file, ExamDocumentResponse examDocumentResponse){
         try {
+            ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
+            examDocument.setTime(Calendar.getInstance());
+
+            if(file != null) {
+                if (!file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocument.getAccount().getId() + "/exam_document_" + id + "/";
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+                    examDocument.setLink(pathFileString);
+                }
+            }
 
             ExamDocument examDocumentFromDb =  examDocumentServiceInterface.updateExamDocument(id, examDocument);
 
