@@ -20,4 +20,7 @@ public class CommentDto {
     private Long account_id;
     private Calendar time;
     private AccountDto accountDto;
+    private Integer like_quantity;
+    private Integer sub_comment_quantity;
+    private Boolean liked;
 }
