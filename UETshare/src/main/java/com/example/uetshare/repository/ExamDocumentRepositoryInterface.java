@@ -25,10 +25,19 @@ public interface ExamDocumentRepositoryInterface extends JpaRepository<ExamDocum
     ExamDocument getExamDocumentById(Long id);
 
     @Query(value = "select * from exam_document" +
-            "inner join subject on exam_document.subject_id = subject.id" +
-            " where (exam_document.name like ?3 or subject.subject_name like ?3) and exam_document.exam_document_type = ?1 " +
+            " inner join subject on exam_document.subject_id = subject.id" +
+            " where (exam_document.name like ?2 or subject.subject_name like ?2)" +
+            " order by exam_document.time desc limit ?1, 10", nativeQuery = true)
+    List<ExamDocument> getExamDocumentByText(Integer index, String text);
+
+    @Query(value = "select * from exam_document" +
+            " inner join subject on exam_document.subject_id = subject.id" +
+            " where ((exam_document.name like ?3 or subject.subject_name like ?3) and exam_document.exam_document_type = ?1) " +
             " order by exam_document.time desc limit ?2, 10", nativeQuery = true)
-    List<ExamDocument> getExamDocumentByText(String type, Integer index, String text);
+    List<ExamDocument> getExamDocumentByTextAndType(String type, Integer index, String text);
+
+    @Query(value = "select count(*) from exam_document", nativeQuery = true)
+    Integer totalExamDocument();
 
     @Modifying
     @Transactional

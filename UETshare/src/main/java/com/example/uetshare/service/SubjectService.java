@@ -62,4 +62,9 @@ public class SubjectService implements SubjectServiceInterface{
 
         return subject;
     }
+
+    @Override
+    public Integer totalSubject() {
+        return subjectRepositoryInterface.totalSubject();
+    }
 }
