@@ -78,6 +78,8 @@ public class AccountService {
     public void addAccount(AccountDto accountDto){
         UserProfile userProfile = new UserProfile();
         userProfile.setUsername(accountDto.getUsername());
+        userProfile.setMssv(accountDto.getUsername());
+        userProfile.setFullname(accountDto.getUsername());
         userProfileRepository.save(userProfile);
         UserProfile userProfileGet = userProfileRepository.getByUsername(accountDto.getUsername());
         Account account = new Account(accountDto.getUsername(), EncoderUtils.encoderPassword(accountDto.getPassword()));
@@ -156,8 +158,8 @@ public class AccountService {
     public List<Account> getAccountByText(Integer index, String text){
         return accountRepository.getAccountByText(index, text);
     }
-    public UserProfileDto getUserProfile(String username){
-        Account account = accountRepository.getAccountByUsername(username);
+    public UserProfileDto getUserProfile(Long id){
+        Account account = accountRepository.getById(id);
         UserProfile userProfile = account.getUserProfile();
         UserProfileDto userProfileDto = UserProfileMapper.toUserProfileDto(userProfile);
         return userProfileDto;
