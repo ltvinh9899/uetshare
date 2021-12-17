@@ -6,6 +6,7 @@ import com.example.uetshare.response.dto.ExamDocumentDto;
 import com.example.uetshare.response.dto.SubjectDto;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class ExamDocumentMapper {
 
@@ -18,6 +19,9 @@ public class ExamDocumentMapper {
 
         if(examDocument.getLink() != null){
             examDocumentDto.setLink(examDocument.getLink());
+            String[] linkSplit = examDocument.getLink().split("/");
+            String file_name = linkSplit[linkSplit.length - 1];
+            examDocumentDto.setFile_name(file_name);
         }
 
         if(examDocument.getName() != null){
@@ -38,6 +42,10 @@ public class ExamDocumentMapper {
             if (examDocument.getSubject().getId() != null){
                 examDocumentDto.setSubject_id(examDocument.getSubject().getId());
             }
+        }
+
+        if (examDocument.getSubject() != null){
+            examDocumentDto.setSubjectDto(SubjectMapper.toSubjectDto(examDocument.getSubject()));
         }
 
         if (examDocument.getTime() != null){

@@ -20,9 +20,9 @@ public class Account extends Base{
     private String avatar;
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private List<AccountRole> accountRole;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_profile_id")
-    @JsonBackReference(value = "userProfile-account")
+//    @JsonBackReference(value = "userProfile-account")
     private UserProfile userProfile;
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 //    private List<Document> document;

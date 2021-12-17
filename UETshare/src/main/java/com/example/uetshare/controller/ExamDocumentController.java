@@ -27,7 +27,7 @@ import java.util.TimeZone;
 
 @RestController
 @RequestMapping("/exam-document")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class ExamDocumentController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class ExamDocumentController {
     private final Integer limit = 10;
 
     @PostMapping("")
-    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam(name="file", required = false) MultipartFile file, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> createExamDocument(@RequestParam("ExamDocument") String examDocumentJson, @RequestParam("file") MultipartFile file, ExamDocumentResponse examDocumentResponse){
 
         try {
             ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
@@ -116,6 +116,45 @@ public class ExamDocumentController {
                 examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
             }
             examDocumentResponse.setResult_quantity(examDocumentList.size());
+            Integer total_page = examDocumentServiceInterface.totalExamDocument()/10 + 1;
+            examDocumentResponse.setTotal_page(total_page);
+            examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
+
+            return ResponseEntity.ok(examDocumentResponse);
+
+        } catch (Exception e){
+
+            examDocumentResponse.setSuccess(false);
+            examDocumentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(examDocumentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchExamDocument( @Param("type") String type, @Param("index") Integer index, @Param("text") String text, ExamDocumentResponse examDocumentResponse){
+        try {
+            Integer indexToQuery = (index - 1)*10;
+            String textToQuery;
+            if(text != null){
+                textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            } else {
+                textToQuery = "%";
+            }
+
+            List<ExamDocument> examDocumentList = examDocumentServiceInterface.searchExamDocument(type, indexToQuery, textToQuery);
+
+            examDocumentResponse.setSuccess(true);
+            examDocumentResponse.setMessage("get exam document success");
+
+            List<ExamDocumentDto> examDocumentDtoList = new ArrayList<>();
+            for(ExamDocument examDocument : examDocumentList) {
+                examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
+            }
+            examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery));
+            Integer total_page = examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery)/10 + 1;
+            examDocumentResponse.setTotal_page(total_page);
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 
             return ResponseEntity.ok(examDocumentResponse);
@@ -131,8 +170,18 @@ public class ExamDocumentController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestBody ExamDocument examDocument, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestParam("ExamDocument") String examDocumentJson, @RequestParam("file") MultipartFile file, ExamDocumentResponse examDocumentResponse){
         try {
+            ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
+            examDocument.setTime(Calendar.getInstance());
+
+            if(file != null) {
+                if (!file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocument.getAccount().getId() + "/exam_document_" + id + "/";
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+                    examDocument.setLink(pathFileString);
+                }
+            }
 
             ExamDocument examDocumentFromDb =  examDocumentServiceInterface.updateExamDocument(id, examDocument);
 

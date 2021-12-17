@@ -16,9 +16,11 @@ public class ExamDocumentDto {
 
     private Long id;
     private String link;
+    private String file_name;
     private String name;
     private ExamDocumentType type;
     private Long account_id;
     private Long subject_id;
+    private SubjectDto subjectDto;
     private Calendar time;
 }

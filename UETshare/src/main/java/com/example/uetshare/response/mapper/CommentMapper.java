@@ -43,6 +43,20 @@ public class CommentMapper {
             commentDto.setAccountDto(AccountMapper.toAccountDto(comment.getAccount()));
         }
 
+        if (comment.getReactIcon() != null) {
+            commentDto.setLike_quantity(comment.getReactIcon().size());
+        }
+        else {
+            commentDto.setLike_quantity(0);
+        }
+
+        if (comment.getSubComment() != null) {
+            commentDto.setSub_comment_quantity(comment.getSubComment().size());
+        }
+        else {
+            commentDto.setSub_comment_quantity(0);
+        }
+
         return commentDto;
 
     }
