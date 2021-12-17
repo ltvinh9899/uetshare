@@ -16,6 +16,7 @@ public class ExamDocumentDto {
 
     private Long id;
     private String link;
+    private String file_name;
     private String name;
     private ExamDocumentType type;
     private Long account_id;

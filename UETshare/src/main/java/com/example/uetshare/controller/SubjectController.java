@@ -94,6 +94,8 @@ public class SubjectController {
                 subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
             }
             subjectResponse.setResult_quantity(subjectServiceInterface.totalSubject());
+            Integer total_page = subjectServiceInterface.totalSubject()/10 + 1;
+            subjectResponse.setTotal_page(total_page);
             subjectResponse.setSubjectDtoList(subjectDtoList);
 
             return ResponseEntity.ok(subjectResponse);
@@ -123,6 +125,8 @@ public class SubjectController {
                 subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
             }
             subjectResponse.setResult_quantity(subjectServiceInterface.totalSubject());
+            Integer total_page = subjectServiceInterface.totalSubject()/10 + 1;
+            subjectResponse.setTotal_page(total_page);
             subjectResponse.setSubjectDtoList(subjectDtoList);
 
             return ResponseEntity.ok(subjectResponse);

@@ -116,6 +116,8 @@ public class ExamDocumentController {
                 examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
             }
             examDocumentResponse.setResult_quantity(examDocumentList.size());
+            Integer total_page = examDocumentServiceInterface.totalExamDocument()/10 + 1;
+            examDocumentResponse.setTotal_page(total_page);
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 
             return ResponseEntity.ok(examDocumentResponse);
@@ -151,6 +153,8 @@ public class ExamDocumentController {
                 examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
             }
             examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalExamDocument());
+            Integer total_page = examDocumentServiceInterface.totalExamDocument()/10 + 1;
+            examDocumentResponse.setTotal_page(total_page);
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 
             return ResponseEntity.ok(examDocumentResponse);

@@ -22,12 +22,12 @@ public class FirebaseService {
 
         for(FirebaseToken token : listToken) {
             if(Objects.equals(token.getToken(), bodyFirebaseToken.getFirebase_token())) {
-                return new Response(false, "Đã tồn tại!", 0);
+                return new Response(false, "Đã tồn tại!", 0, 0);
             }
         }
 
         FirebaseToken firebaseToken = new FirebaseToken(bodyFirebaseToken.getFirebase_token(), bodyFirebaseToken.getUsername());
         firebaseTokenRepository.save(firebaseToken);
-        return new Response(true, "Thành công!", 0);
+        return new Response(true, "Thành công!", 0, 0);
     }
 }
