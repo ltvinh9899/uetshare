@@ -6,6 +6,7 @@ import com.example.uetshare.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/user-profile")
@@ -19,5 +20,9 @@ public class UserController {
     @PutMapping("/update")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserProfileDto userProfileDto){
         return ResponseEntity.ok(accountService.updateUserProfile(userProfileDto));
+    }
+    @PostMapping("/update-avatar")
+    public ResponseEntity<?> updateAvatar(@RequestParam("avatar") MultipartFile file, @RequestParam("id") Long id){
+        return ResponseEntity.ok(accountService.updateAvatar(id, file));
     }
 }

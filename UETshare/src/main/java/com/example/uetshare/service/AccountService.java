@@ -5,6 +5,7 @@ import com.example.uetshare.entity.Role;
 import com.example.uetshare.entity.UserProfile;
 import com.example.uetshare.repository.*;
 import com.example.uetshare.response.AccountResponse;
+import com.example.uetshare.response.UserProfileResponse;
 import com.example.uetshare.response.dto.AccountDto;
 import com.example.uetshare.entity.Account;
 import com.example.uetshare.response.dto.UserProfileDto;
@@ -199,12 +200,12 @@ public class AccountService {
      * @param file
      * @return
      */
-    public AccountResponse updateAvatar(Long id, MultipartFile file){
-        Account oldAccount = accountRepository.getById(id);
-        String username = oldAccount.getUsername();
-        String oldAvatar = oldAccount.getAvatar();
-        AccountResponse accountResponse = new AccountResponse();
-        accountResponse.setLogin(true);
+    public UserProfileResponse updateAvatar(Long id, MultipartFile file){
+//        Account oldAccount = accountRepository.getById(id);
+//        String username = oldAccount.getUsername();
+        UserProfile oldUserProfile = userProfileRepository.getById(id);
+        String oldAvatar = oldUserProfile.getAvatar();
+        UserProfileResponse userProfileResponse = new UserProfileResponse();
 
         try{
             try{
@@ -213,24 +214,24 @@ public class AccountService {
             }catch (Exception e){
                 System.out.println("Failure delete avatar");
             }
-            String userPath = dataFolderPath +"/" + username;
-            File f = new File(userPath);
+            String idPath = dataFolderPath +"/" + String.valueOf(id);
+            File f = new File(idPath);
             f.mkdir();
-            Path path = Paths.get(userPath,file.getOriginalFilename());
+            Path path = Paths.get(idPath,file.getOriginalFilename());
             Files.write(path, file.getBytes());
-            String avatarPath = userPath + "/" + file.getOriginalFilename();
-            accountRepository.updateAvatar(username, avatarPath);
-            Account account = accountRepository.getById(id);
-            AccountDto accountDto = AccountMapper.toAccountDto(account);
-            accountDto.setAvatar(avatarPath);
-            accountResponse.setAccountDto(accountDto);
-            accountResponse.setSuccess(true);
-            accountResponse.setMessage("Cập nhật ảnh thành công");
-            return accountResponse;
+            String avatarPath = idPath + "/" + file.getOriginalFilename();
+            userProfileRepository.updateAvatar(id, avatarPath);
+            UserProfile userProfile = userProfileRepository.getById(id);
+            UserProfileDto userProfileDto = UserProfileMapper.toUserProfileDto(userProfile);
+            userProfileDto.setAvatar(avatarPath);
+            userProfileResponse.setUserProfileDto(userProfileDto);
+            userProfileResponse.setSuccess(true);
+            userProfileResponse.setMessage("Cập nhật ảnh thành công");
+            return userProfileResponse;
         }catch (Exception e){
-            accountResponse.setSuccess(false);
-            accountResponse.setMessage("Cập nhật ảnh thất bại");
-            return accountResponse;
+            userProfileResponse.setSuccess(false);
+            userProfileResponse.setMessage("Cập nhật ảnh thất bại");
+            return userProfileResponse;
         }
     }
     public AccountResponse login(AccountDto accountDto){

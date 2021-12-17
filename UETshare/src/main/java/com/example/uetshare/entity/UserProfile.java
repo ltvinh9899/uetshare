@@ -24,4 +24,6 @@ public class UserProfile extends Base {
     private Account account;
     @Column
     private String email;
+    @Column
+    private String avatar;
 }

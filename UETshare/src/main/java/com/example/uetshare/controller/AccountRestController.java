@@ -142,8 +142,5 @@ public class AccountRestController {
     public ResponseEntity<?> registerFirebaseToken(@RequestBody BodyFirebaseToken requestBody){
         return ResponseEntity.ok(firebaseService.registerFirebaseToken(requestBody));
     }
-    @PostMapping("/update-avatar")
-    public ResponseEntity<?> updateAvatar(@RequestParam("avatar") MultipartFile file, @RequestParam("id") Long id){
-        return ResponseEntity.ok(accountService.updateAvatar(id, file));
-    }
+
 }

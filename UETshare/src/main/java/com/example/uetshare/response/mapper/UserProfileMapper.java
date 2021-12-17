@@ -10,6 +10,7 @@ public class UserProfileMapper {
         userProfileDto.setEmail(userProfile.getEmail());
         userProfileDto.setFullname(userProfile.getFullname());
         userProfileDto.setMssv(userProfile.getMssv());
+        userProfileDto.setAvatar(userProfile.getAvatar());
         return userProfileDto;
     }
     public static UserProfile toUserProfile(UserProfileDto userProfileDto){
@@ -19,6 +20,7 @@ public class UserProfileMapper {
         userProfile.setEmail(userProfileDto.getEmail());
         userProfile.setFullname(userProfileDto.getFullname());
         userProfile.setMssv(userProfileDto.getMssv());
+        userProfile.setAvatar(userProfileDto.getAvatar());
         return userProfile;
     }
 }
