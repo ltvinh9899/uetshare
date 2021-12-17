@@ -23,4 +23,7 @@ public interface CategoryRepositoryInterface extends JpaRepository<Category, Int
 
     @Query(value = "select count(*) from category", nativeQuery = true)
     Integer totalCategory();
+
+    @Query(value = "select (select count(*) from category where (category.category like ?1)) as \"count\" from category limit 1", nativeQuery = true)
+    Integer totalSearchCategory(String text);
 }

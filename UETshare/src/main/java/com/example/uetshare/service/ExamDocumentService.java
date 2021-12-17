@@ -85,4 +85,13 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
     public Integer totalExamDocument() {
         return examDocumentRepositoryInterface.totalExamDocument();
     }
+
+    @Override
+    public Integer totalSearchExamDocument(String type, String text) {
+        if(type == null){
+            return examDocumentRepositoryInterface.totalExamDocumentSearchByText(text);
+        } else {
+            return examDocumentRepositoryInterface.totalExamDocumentSearchByTextType(type, text);
+        }
+    }
 }

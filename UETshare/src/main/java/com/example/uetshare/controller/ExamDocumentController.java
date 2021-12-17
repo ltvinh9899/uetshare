@@ -151,8 +151,8 @@ public class ExamDocumentController {
             for(ExamDocument examDocument : examDocumentList) {
                 examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
             }
-            examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalExamDocument());
-            Integer total_page = examDocumentServiceInterface.totalExamDocument()/10 + 1;
+            examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery));
+            Integer total_page = examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery)/10 + 1;
             examDocumentResponse.setTotal_page(total_page);
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 
