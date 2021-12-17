@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private AccountService accountService;
-    @GetMapping("/get/{username}")
-    public ResponseEntity<?> getUserProfile(@PathVariable(value = "username") String username){
-        return ResponseEntity.ok(accountService.getUserProfile(username));
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getUserProfile(@PathVariable(value = "id") Long id){
+        return ResponseEntity.ok(accountService.getUserProfile(id));
     }
     @PutMapping("/update")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserProfileDto userProfileDto){

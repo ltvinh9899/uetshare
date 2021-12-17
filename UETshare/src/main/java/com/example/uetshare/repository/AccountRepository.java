@@ -13,6 +13,8 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<Account,Long> {
     @Query(value = "select * from account where username= ?1",nativeQuery = true)
     public Account getAccountByUsername(String username);
+    @Query(value = "select * from account where id= ?1",nativeQuery = true)
+    public Account getAccountById(Long id);
 //    @Query(value = "select * from account a inner join ",nativeQuery = true)
 //    public Account getAccountAndRole(String username);
 

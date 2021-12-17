@@ -155,8 +155,8 @@ public class AccountService {
     public List<Account> getAccountByText(Integer index, String text){
         return accountRepository.getAccountByText(index, text);
     }
-    public UserProfileDto getUserProfile(String username){
-        Account account = accountRepository.getAccountByUsername(username);
+    public UserProfileDto getUserProfile(Long id){
+        Account account = accountRepository.getAccountById(id);
         UserProfile userProfile = account.getUserProfile();
         UserProfileDto userProfileDto = UserProfileMapper.toUserProfileDto(userProfile);
         return userProfileDto;

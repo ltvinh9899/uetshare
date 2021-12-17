@@ -10,6 +10,7 @@ public class UserProfileMapper {
         userProfileDto.setEmail(userProfile.getEmail());
         userProfileDto.setFullname(userProfile.getFullname());
         userProfileDto.setMssv(userProfile.getMssv());
+        userProfileDto.setId(userProfile.getId());
         return userProfileDto;
     }
     public static UserProfile toUserProfile(UserProfileDto userProfileDto){
