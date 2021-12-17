@@ -93,6 +93,8 @@ public class CategoryController {
             categoryResponse.setSuccess(true);
             categoryResponse.setMessage("success to get category");
             categoryResponse.setResult_quantity(categoryServiceInterface.totalCategory());
+            Integer total_page = categoryServiceInterface.totalCategory()/10 + 1;
+            categoryResponse.setTotal_page(total_page);
             categoryResponse.setCategoryDtoList(categoryDtoList);
 
             return ResponseEntity.ok(categoryResponse);
@@ -123,6 +125,8 @@ public class CategoryController {
             categoryResponse.setSuccess(true);
             categoryResponse.setMessage("success to get category");
             categoryResponse.setResult_quantity(categoryServiceInterface.totalCategory());
+            Integer total_page = categoryServiceInterface.totalCategory()/10 + 1;
+            categoryResponse.setTotal_page(total_page);
             categoryResponse.setCategoryDtoList(categoryDtoList);
 
             return ResponseEntity.ok(categoryResponse);
