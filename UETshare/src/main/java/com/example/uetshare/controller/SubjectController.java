@@ -114,7 +114,7 @@ public class SubjectController {
         try {
             Integer indexToQuery = (index - 1)*10;
             String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
-            List<Subject> subjectList = subjectServiceInterface.getSubjectByText(indexToQuery, text);
+            List<Subject> subjectList = subjectServiceInterface.getSubjectByText(indexToQuery, textToQuery);
 
             subjectResponse.setSuccess(true);
             subjectResponse.setMessage("get subject success");
@@ -123,8 +123,8 @@ public class SubjectController {
             for(Subject subject : subjectList) {
                 subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
             }
-            subjectResponse.setResult_quantity(subjectServiceInterface.totalSubject());
-            Integer total_page = subjectServiceInterface.totalSubject()/10 + 1;
+            subjectResponse.setResult_quantity(subjectServiceInterface.totalSearchSubject(textToQuery));
+            Integer total_page = subjectServiceInterface.totalSearchSubject(textToQuery)/10 + 1;
             subjectResponse.setTotal_page(total_page);
             subjectResponse.setSubjectDtoList(subjectDtoList);
 

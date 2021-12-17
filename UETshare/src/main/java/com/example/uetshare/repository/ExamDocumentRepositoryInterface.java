@@ -30,7 +30,8 @@ public interface ExamDocumentRepositoryInterface extends JpaRepository<ExamDocum
             " order by exam_document.time desc limit ?1, 10", nativeQuery = true)
     List<ExamDocument> getExamDocumentByText(Integer index, String text);
 
-    @Query(value = "select * from exam_document" +
+    @Query(value = "select * " +
+            "from exam_document" +
             " inner join subject on exam_document.subject_id = subject.id" +
             " where ((exam_document.name like ?3 or subject.subject_name like ?3) and exam_document.exam_document_type = ?1) " +
             " order by exam_document.time desc limit ?2, 10", nativeQuery = true)
@@ -38,6 +39,20 @@ public interface ExamDocumentRepositoryInterface extends JpaRepository<ExamDocum
 
     @Query(value = "select count(*) from exam_document", nativeQuery = true)
     Integer totalExamDocument();
+
+    @Query(value = "select (select count(*) from exam_document " +
+            " inner join subject on exam_document.subject_id = subject.id " +
+            "where (exam_document.name like ?1 or subject.subject_name like ?1)) " +
+            "from exam_document limit 1", nativeQuery = true)
+    Integer totalExamDocumentSearchByText(String text);
+
+
+    @Query(value = "select " +
+            "(select count(*) from exam_document " +
+            "inner join subject on exam_document.subject_id = subject.id " +
+            "where ((exam_document.name like ?2 or uetshare.subject.subject_name like ?2) and uetshare.exam_document.exam_document_type = ?1)) " +
+            "as \"count\" from uetshare.exam_document limit 1", nativeQuery = true)
+    Integer totalExamDocumentSearchByTextType(String type, String text);
 
     @Modifying
     @Transactional

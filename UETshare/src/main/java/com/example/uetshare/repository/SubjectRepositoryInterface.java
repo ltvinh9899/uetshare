@@ -20,9 +20,9 @@ public interface SubjectRepositoryInterface extends JpaRepository<Subject, Integ
     @Query(value = "select * from subject order by subject.time desc limit ?1, 10", nativeQuery = true)
     List<Subject> getAllSubject(Integer index);
 
-    @Query(value = "select * from subject" +
-            "inner join category on subject.category_id = category.id" +
-            " where (subject.subject_name like ?2 or category.category like ?2) order by subject.time desc limit ?1, 10", nativeQuery = true)
+    @Query(value = "select * from subject " +
+            "inner join category on subject.category_id = category.id " +
+            "where (subject.subject_name like ?2 or category.category like ?2) order by subject.time desc limit ?1, 10 ", nativeQuery = true)
     List<Subject> getSubjectByText(Integer index, String text);
 
     @Query(value = "select * from subject where subject.id = ?1", nativeQuery = true)
@@ -30,6 +30,13 @@ public interface SubjectRepositoryInterface extends JpaRepository<Subject, Integ
 
     @Query(value = "select count(*) from subject", nativeQuery = true)
     Integer totalSubject();
+
+    @Query(value = "select " +
+            "(select count(*) from subject " +
+            "inner join category on subject.category_id = category.id " +
+            "where (subject.subject_name like ?1 or category.category like ?1)) " +
+            "as \"count\" from subject limit 1", nativeQuery = true)
+    Integer totalSearchSubject(String text);
 
     @Modifying
     @Transactional
