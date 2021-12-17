@@ -127,8 +127,8 @@ public class CategoryController {
 
             categoryResponse.setSuccess(true);
             categoryResponse.setMessage("success to get category");
-            categoryResponse.setResult_quantity(categoryServiceInterface.totalCategory());
-            Integer total_page = categoryServiceInterface.totalCategory()/10 + 1;
+            categoryResponse.setResult_quantity(categoryServiceInterface.totalSearchCategory(textToQuery));
+            Integer total_page = categoryServiceInterface.totalSearchCategory(textToQuery)/10 + 1;
             categoryResponse.setTotal_page(total_page);
             categoryResponse.setCategoryDtoList(categoryDtoList);
 

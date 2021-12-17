@@ -13,4 +13,5 @@ public interface CategoryServiceInterface {
     List<Category> getCategoryByText(Integer index, String text);
     Category updateCategory(Long id, Category category);
     Integer totalCategory();
+    Integer totalSearchCategory(String text);
 }
