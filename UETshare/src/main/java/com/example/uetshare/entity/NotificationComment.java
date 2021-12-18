@@ -28,4 +28,7 @@ public class NotificationComment extends Base{
     @Column
     private Boolean seen;
 
+    @Column
+    private String owner_username;
+
 }

@@ -26,7 +26,7 @@ public class NotificationQuestionService extends BaseSendFCMService implements N
     public void createNotificationQuestion(NotificationQuestion notificationQuestion) {
         notificationQuestionRepositoryInterface.save(notificationQuestion);
 
-        sendFCMNotification(notificationQuestion.getUsername(), notificationQuestion.getAction_type());
+        sendFCMNotification(notificationQuestion.getOwner_username(), notificationQuestion.getAction_type());
     }
 
     @Override
