@@ -24,8 +24,8 @@ public class ReactIconQuestionService implements ReactIconQuestionServiceInterfa
     @Override
     public ResponseEntity<?> createReactIcon(ReactIconQuestion reactIcon, ReactIconQuestionResponse reactIconQuestionResponse) {
         try {
-            if (reactIcon.getAccount().getId() == null || reactIcon.getQuestion().getId() == null) {
-                if (reactIconQuestionRepositoryInterface.getReactIconQuestionByByAccountAndQuestion(reactIcon.getAccount().getId(), reactIcon.getQuestion().getId()) != null) {
+            if (reactIcon.getAccount().getId() != null && reactIcon.getQuestion().getId() != null) {
+                if (reactIconQuestionRepositoryInterface.getReactIconQuestionByByAccountAndQuestion(reactIcon.getAccount().getId(), reactIcon.getQuestion().getId()) == null) {
                     reactIcon.setTime(Calendar.getInstance());
                     reactIconQuestionRepositoryInterface.save(reactIcon);
 
