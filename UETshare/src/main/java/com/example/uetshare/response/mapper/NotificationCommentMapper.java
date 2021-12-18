@@ -43,6 +43,10 @@ public class NotificationCommentMapper {
             notificationCommentDto.setTime(notificationComment.getTime());
         }
 
+        if (notificationComment.getOwner_username() != null){
+            notificationCommentDto.setOwner_username(notificationComment.getOwner_username());
+        }
+
         return notificationCommentDto;
 
     }
