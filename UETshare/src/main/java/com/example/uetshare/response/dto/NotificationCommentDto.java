@@ -21,5 +21,6 @@ public class NotificationCommentDto {
     private Boolean seen;
     private ActionType action_type;
     private Calendar time;
+    private String owner_username;
 
 }
