@@ -28,7 +28,7 @@ public class NotificationCommentService extends BaseSendFCMService implements No
     public void createNotificationComment(NotificationComment notificationComment) {
         notificationCommentRepositoryInterface.save(notificationComment);
 
-        sendFCMNotification(notificationComment.getUsername(), notificationComment.getAction_type());
+        sendFCMNotification(notificationComment.getOwner_username(), notificationComment.getAction_type());
     }
 
     @Override
