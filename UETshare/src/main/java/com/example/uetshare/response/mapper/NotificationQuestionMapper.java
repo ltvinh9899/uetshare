@@ -41,6 +41,10 @@ public class NotificationQuestionMapper {
             notificationQuestionDto.setTime(notificationQuestion.getTime());
         }
 
+        if (notificationQuestion.getOwner_username() != null){
+            notificationQuestionDto.setOwner_username(notificationQuestion.getOwner_username());
+        }
+
         return notificationQuestionDto;
 
     }

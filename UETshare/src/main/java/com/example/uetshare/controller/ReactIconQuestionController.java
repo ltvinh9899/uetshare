@@ -31,28 +31,7 @@ public class ReactIconQuestionController {
     @PostMapping("/create")
     public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconQuestionResponse reactIconQuestionResponse) {
 
-        try {
-            reactIcon.setTime(Calendar.getInstance());
-            reactIconQuestionServiceInterface.createReactIcon(reactIcon);
-
-            reactIconQuestionResponse.setSuccess(true);
-            reactIconQuestionResponse.setMessage("create success");
-
-            List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
-            reactIconQuestionDtoList.add(ReactIconQuestionMapper.toReactIconDto(reactIcon));
-            reactIconQuestionResponse.setReactIconQuestionDtoList(reactIconQuestionDtoList);
-
-            return ResponseEntity.ok(reactIconQuestionResponse);
-
-        } catch (Exception e){
-
-            reactIconQuestionResponse.setSuccess(false);
-            reactIconQuestionResponse.setMessage(e.toString());
-
-
-            return new ResponseEntity<>(reactIconQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        return reactIconQuestionServiceInterface.createReactIcon(reactIcon, reactIconQuestionResponse);
 
     }
 
