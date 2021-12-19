@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @RestController
 @RequestMapping("/image")
@@ -34,11 +35,7 @@ public class ImageController {
 
         String file_path = AVATAR_DIRECTORY + "/" + username + "/"  + file_name;
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(getFile(file_path));
+        return getFile(file_path, file_name);
     }
 
     @GetMapping(  "/${file.upload-dir}account_{account_id}/question_{question_id}/{file_name}")
@@ -47,11 +44,9 @@ public class ImageController {
 
         String file_path = FILE_DIRECTORY + "account_" + account_id + "/question_" + question_id + "/"  + file_name;
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(getFile(file_path));
+
+        return getFile(file_path, file_name);
+
     }
 
     @GetMapping("/${file.upload-dir}account_{account_id}/comment_{comment_id}/{file_name}")
@@ -60,11 +55,7 @@ public class ImageController {
 
         String file_path = FILE_DIRECTORY + "account_" + account_id + "/comment_" + comment_id + "/"  + file_name;
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(getFile(file_path));
+        return getFile(file_path, file_name);
     }
 
     @GetMapping("/${file.upload-dir}account_{account_id}/sub_comment_{sub_comment_id}/{file_name}")
@@ -73,11 +64,7 @@ public class ImageController {
 
         String file_path = FILE_DIRECTORY + "account_" + account_id + "/sub_comment_" + sub_comment_id + "/"  + file_name;
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(getFile(file_path));
+        return getFile(file_path, file_name);
     }
 
     @GetMapping("/${file.upload-dir}account_{account_id}/exam_document_{exam_document_id}/{file_name}")
@@ -86,13 +73,10 @@ public class ImageController {
 
         String file_path = FILE_DIRECTORY + "account_" + account_id + "/exam_document_" + exam_document_id + "/"  + file_name;
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(getFile(file_path));
+        return getFile(file_path, file_name);
     }
 
-    private byte[] getFile(String file_path) throws IOException {
+    private ResponseEntity<byte[]> getFile(String file_path, String file_name) throws IOException {
         File file = new File(file_path);
 
         FileInputStream fileInputStream = new FileInputStream(file);
@@ -101,6 +85,23 @@ public class ImageController {
         fileInputStream.read(bytes);
         fileInputStream.close();
 
-        return bytes;
+        String[] file_name_string = file_name.split("\\.");
+        String type_file = "";
+        if (file_name_string.length > 1) {
+            type_file = file_name_string[file_name_string.length - 1];
+        }
+        if(type_file.equals("pdf")){
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(bytes);
+        } else {
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(bytes);
+        }
+
     }
 }
