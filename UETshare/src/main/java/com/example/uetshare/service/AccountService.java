@@ -223,6 +223,7 @@ public class AccountService {
             Files.write(path, file.getBytes());
             String avatarPath = idPath + "/" + file.getOriginalFilename();
             userProfileRepository.updateAvatar(id, avatarPath);
+            accountRepository.updateAvatar(id, avatarPath);
             UserProfile userProfile = userProfileRepository.getById(id);
             UserProfileDto userProfileDto = UserProfileMapper.toUserProfileDto(userProfile);
             userProfileDto.setAvatar(avatarPath);
