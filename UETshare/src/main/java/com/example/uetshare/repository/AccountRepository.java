@@ -22,8 +22,8 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     List<Account> getAccountByText(Integer index, String text);
     @Modifying
     @Transactional
-    @Query(value = "update account set password = ?2 where username = ?1", nativeQuery = true)
-    public void changePassword(String username, String password);
+    @Query(value = "update account set password = ?2 where id = ?1", nativeQuery = true)
+    public void changePassword(Long id, String password);
 //    @Modifying
 //    @Transactional
 //    @Query(value = "update account set avatar = ?2 where username = ?1", nativeQuery = true)

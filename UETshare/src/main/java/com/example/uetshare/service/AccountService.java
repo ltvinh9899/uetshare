@@ -78,7 +78,7 @@ public class AccountService {
     public void addAccount(AccountDto accountDto){
         UserProfile userProfile = new UserProfile();
         userProfile.setUsername(accountDto.getUsername());
-        userProfile.setMssv(accountDto.getUsername());
+        userProfile.setMssv("********");
         userProfile.setFullname(accountDto.getUsername());
         userProfileRepository.save(userProfile);
         UserProfile userProfileGet = userProfileRepository.getByUsername(accountDto.getUsername());
@@ -164,27 +164,38 @@ public class AccountService {
         UserProfileDto userProfileDto = UserProfileMapper.toUserProfileDto(userProfile);
         return userProfileDto;
     }
-    public AccountResponse updateUserProfile(UserProfileDto userProfileDto){
-        AccountResponse accountResponse = new AccountResponse();
-        accountResponse.setLogin(true);
+    public UserProfileResponse updateUserProfile(UserProfileDto userProfileDto){
+        UserProfileResponse userProfileResponse = new UserProfileResponse();
         try{
-            UserProfile userProfile = UserProfileMapper.toUserProfile(userProfileDto);
-            userProfileRepository.save(userProfile);
-            accountResponse.setSuccess(true);
-            accountResponse.setMessage("Cập nhật thành công!");
-            return accountResponse;
+            if(userProfileDto.getAvatar() != null){
+                userProfileRepository.updateAvatar(userProfileDto.getId(),userProfileDto.getAvatar());
+            }
+            if(userProfileDto.getDepartment() != null){
+                userProfileRepository.updateDepartment(userProfileDto.getId(),userProfileDto.getDepartment());
+            }
+            if(userProfileDto.getFullname() != null){
+                userProfileRepository.updateFullname(userProfileDto.getId(),userProfileDto.getFullname());
+            }
+            if(userProfileDto.getEmail() != null){
+                userProfileRepository.updateEmail(userProfileDto.getId(),userProfileDto.getEmail());
+            }
+            if(userProfileDto.getMssv() != null){
+                userProfileRepository.updateMssv(userProfileDto.getId(),userProfileDto.getMssv());
+            }
+            userProfileResponse.setSuccess(true);
+            userProfileResponse.setMessage("Cập nhật thành công!");
+            return userProfileResponse;
         }catch (Exception e){
-            accountResponse.setSuccess(false);
-            accountResponse.setMessage("Cập nhật thất bại!");
-            return accountResponse;
+            userProfileResponse.setSuccess(false);
+            userProfileResponse.setMessage("Cập nhật thất bại!");
+            return userProfileResponse;
         }
     }
     public AccountResponse changePassword(AccountDto accountDto){
         AccountResponse accountResponse = new AccountResponse();
         accountResponse.setLogin(true);
         try{
-            String encodePassword = EncoderUtils.encoderPassword(accountDto.getPassword());
-            accountRepository.changePassword(accountDto.getUsername(), encodePassword);
+            accountRepository.changePassword(accountDto.getId(), accountDto.getPassword());
             accountResponse.setSuccess(true);
             accountResponse.setMessage("Thay đổi mật khẩu thành công");
             return accountResponse;

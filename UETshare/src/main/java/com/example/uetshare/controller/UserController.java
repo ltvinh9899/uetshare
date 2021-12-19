@@ -17,7 +17,7 @@ public class UserController {
     public ResponseEntity<?> getUserProfile(@PathVariable(value = "id") Long id){
         return ResponseEntity.ok(accountService.getUserProfile(id));
     }
-    @PutMapping("/update")
+    @PostMapping("/update")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserProfileDto userProfileDto){
         return ResponseEntity.ok(accountService.updateUserProfile(userProfileDto));
     }
