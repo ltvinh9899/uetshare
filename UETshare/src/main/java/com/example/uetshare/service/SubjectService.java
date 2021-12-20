@@ -33,8 +33,8 @@ public class SubjectService implements SubjectServiceInterface{
     }
 
     @Override
-    public List<Subject> getAllSubject(Integer index) {
-        return subjectRepositoryInterface.getAllSubject(index);
+    public List<Subject> getAllSubject() {
+        return subjectRepositoryInterface.findAll();
     }
 
     @Override
