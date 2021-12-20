@@ -113,7 +113,15 @@ public class SubjectController {
     public ResponseEntity<?> searchSubject(@Param("index") Integer index, @Param("text") String text, SubjectResponse subjectResponse) {
         try {
             Integer indexToQuery = (index - 1)*10;
-            String textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+
+            String textToQuery;
+
+            if (text != null){
+                textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            } else {
+                textToQuery = "%";
+            }
+
             List<Subject> subjectList = subjectServiceInterface.getSubjectByText(indexToQuery, textToQuery);
 
             subjectResponse.setSuccess(true);
