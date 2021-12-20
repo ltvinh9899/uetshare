@@ -195,9 +195,16 @@ public class AccountService {
         AccountResponse accountResponse = new AccountResponse();
         accountResponse.setLogin(true);
         try{
-            accountRepository.changePassword(accountDto.getId(), accountDto.getPassword());
-            accountResponse.setSuccess(true);
-            accountResponse.setMessage("Thay đổi mật khẩu thành công");
+            Account account = accountRepository.getById(accountDto.getId());
+            if(account.getPassword().equals(accountDto.getPassword())){
+                accountRepository.changePassword(accountDto.getId(), accountDto.getNewPassword());
+                accountResponse.setSuccess(true);
+                accountResponse.setMessage("Thay đổi mật khẩu thành công");
+            }else{
+                accountResponse.setSuccess(false);
+                accountResponse.setMessage("Sai mật khẩu");
+            }
+
             return accountResponse;
         }catch (Exception e){
             accountResponse.setSuccess(false);
