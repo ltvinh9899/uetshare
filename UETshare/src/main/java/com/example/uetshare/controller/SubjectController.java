@@ -165,7 +165,7 @@ public class SubjectController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSubject(@PathVariable("id") Long id, SubjectResponse subjectResponse){
         return subjectServiceInterface.deleteSubject(id, subjectResponse);
     }
