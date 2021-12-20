@@ -2,9 +2,15 @@ package com.example.uetshare.service;
 
 import com.example.uetshare.entity.Subject;
 import com.example.uetshare.repository.SubjectRepositoryInterface;
+import com.example.uetshare.response.SubjectResponse;
+import com.example.uetshare.response.dto.SubjectDto;
+import com.example.uetshare.response.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -56,11 +62,39 @@ public class SubjectService implements SubjectServiceInterface{
     }
 
     @Override
-    public Subject deleteSubject(Long id) {
-        Subject subject = subjectRepositoryInterface.getSubjectById(id);
-        subjectRepositoryInterface.deleteBySubjectId(id);
+    public ResponseEntity<?> deleteSubject(Long id, SubjectResponse subjectResponse) {
 
-        return subject;
+        try {
+
+            Subject subjectUsed = subjectRepositoryInterface.getSubjectUsed(id);
+
+            if(subjectUsed != null) {
+
+                subjectResponse.setSuccess(false);
+                subjectResponse.setMessage("this subject is used");
+
+            } else {
+                Subject subject = subjectRepositoryInterface.getSubjectById(id);
+                subjectRepositoryInterface.deleteBySubjectId(id);
+
+                subjectResponse.setSuccess(true);
+                subjectResponse.setMessage("delete subject success");
+
+                List<SubjectDto> subjectDtoList = new ArrayList<>();
+                subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+                subjectResponse.setSubjectDtoList(subjectDtoList);
+            }
+
+            return ResponseEntity.ok(subjectResponse);
+
+        } catch (Exception e){
+
+            subjectResponse.setSuccess(false);
+            subjectResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 
     @Override
