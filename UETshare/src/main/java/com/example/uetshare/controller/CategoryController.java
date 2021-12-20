@@ -149,7 +149,6 @@ public class CategoryController {
 
        try {
 
-           System.out.println(category.getCategory());
            Category categoryAfterUpdate = categoryServiceInterface.updateCategory(id, category);
 
 
@@ -172,6 +171,10 @@ public class CategoryController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCategory(@PathVariable("id") Long id, CategoryResponse categoryResponse){
+        return categoryServiceInterface.deleteCategory(id, categoryResponse);
+    }
 
 //    @GetMapping("id/{id}")
 //    public  ResponseEntity<?> getCategoryById()
