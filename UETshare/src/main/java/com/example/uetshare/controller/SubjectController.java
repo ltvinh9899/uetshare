@@ -167,27 +167,7 @@ public class SubjectController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteSubject(@PathVariable("id") Long id, SubjectResponse subjectResponse){
-        try {
-
-            Subject subject = subjectServiceInterface.deleteSubject(id);
-
-            subjectResponse.setSuccess(true);
-            subjectResponse.setMessage("delete subject success");
-
-            List<SubjectDto> subjectDtoList = new ArrayList<>();
-            subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
-            subjectResponse.setSubjectDtoList(subjectDtoList);
-
-            return ResponseEntity.ok(subjectResponse);
-
-        } catch (Exception e){
-
-            subjectResponse.setSuccess(false);
-            subjectResponse.setMessage(e.toString());
-
-            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        return subjectServiceInterface.deleteSubject(id, subjectResponse);
     }
 
 }
