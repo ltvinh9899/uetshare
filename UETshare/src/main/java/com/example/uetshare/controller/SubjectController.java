@@ -81,10 +81,10 @@ public class SubjectController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getAllSubject(@Param("index") Integer index, SubjectResponse subjectResponse) {
+    public ResponseEntity<?> getAllSubject(SubjectResponse subjectResponse) {
         try {
-            Integer indexToQuery = (index - 1)*10;
-            List<Subject> subjectList = subjectServiceInterface.getAllSubject(indexToQuery);
+
+            List<Subject> subjectList = subjectServiceInterface.getAllSubject();
 
             subjectResponse.setSuccess(true);
             subjectResponse.setMessage("get subject success");
@@ -166,29 +166,9 @@ public class SubjectController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSubject(@PathVariable("id") Long id, SubjectResponse subjectResponse){
-        try {
-
-            Subject subject = subjectServiceInterface.deleteSubject(id);
-
-            subjectResponse.setSuccess(true);
-            subjectResponse.setMessage("delete subject success");
-
-            List<SubjectDto> subjectDtoList = new ArrayList<>();
-            subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
-            subjectResponse.setSubjectDtoList(subjectDtoList);
-
-            return ResponseEntity.ok(subjectResponse);
-
-        } catch (Exception e){
-
-            subjectResponse.setSuccess(false);
-            subjectResponse.setMessage(e.toString());
-
-            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        return subjectServiceInterface.deleteSubject(id, subjectResponse);
     }
 
 }
