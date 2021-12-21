@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface SubjectServiceInterface {
 
-    public void createSubject(Subject subject);
+    public Subject createSubject(Subject subject);
     public List<Subject> getAllSubjectByCategoryId(Long category_id, Integer index);
     public List<Subject> getAllSubject();
     public List<Subject> getSubjectByText(Integer index, String text);

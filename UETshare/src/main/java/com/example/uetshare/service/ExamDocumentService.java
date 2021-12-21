@@ -66,7 +66,7 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
             examDocumentData.setAccount(examDocument.getAccount());
         }
 
-        examDocumentData.setTime(Calendar.getInstance());
+//        examDocumentData.setTime(Calendar.getInstance());
 
         return examDocumentRepositoryInterface.save(examDocumentData);
 
