@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/search_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/vien_tron_nen_trang"
+                android:hint=" Tìm Kiếm"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text=""
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:defaultFocusHighlightEnabled="false"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:drawableLeft="@drawable/ic_search_24"
+                android:id="@+id/search_timkiem"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_height="60dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/select_chip"
+                    app:singleSelection="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/search_forum"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:text="Forum"
+                            android:checked="true"
+                            android:textSize="18sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            app:chipBackgroundColor="#6574C8"
+                            android:theme="@style/Theme.MaterialComponents.Light"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/search_uettalk"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:text="UET TALK"
+                            android:textSize="18sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            app:chipBackgroundColor="#6574C8"
+                            android:theme="@style/Theme.MaterialComponents.Light"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/search_person"
+                            android:layout_marginLeft="10dp"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="PERSON"
+                            android:textSize="18sp"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            app:chipBackgroundColor="#6574C8"
+                            android:theme="@style/Theme.MaterialComponents.Light"/>
+                    </LinearLayout>
+
+
+                </com.google.android.material.chip.ChipGroup>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_recyclerview"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</LinearLayout>
