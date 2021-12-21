@@ -91,6 +91,7 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
         if(type == null){
             return examDocumentRepositoryInterface.totalExamDocumentSearchByText(text);
         } else {
+            Integer test = examDocumentRepositoryInterface.totalExamDocumentSearchByTextType(type, text);
             return examDocumentRepositoryInterface.totalExamDocumentSearchByTextType(type, text);
         }
     }
