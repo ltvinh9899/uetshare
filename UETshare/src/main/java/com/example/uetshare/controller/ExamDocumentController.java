@@ -171,7 +171,7 @@ public class ExamDocumentController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestParam(value="ExamDocument", required = false) String examDocumentJson, @RequestParam(value = "file", required = false) MultipartFile file, ExamDocumentResponse examDocumentResponse){
+    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestParam("ExamDocument") String examDocumentJson, @RequestParam(value = "file", required = false) MultipartFile file, ExamDocumentResponse examDocumentResponse){
         try {
             ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
             examDocument.setTime(Calendar.getInstance());
