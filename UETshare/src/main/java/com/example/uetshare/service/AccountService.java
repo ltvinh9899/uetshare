@@ -78,7 +78,6 @@ public class AccountService {
     public void addAccount(AccountDto accountDto){
         UserProfile userProfile = new UserProfile();
         userProfile.setUsername(accountDto.getUsername());
-        userProfile.setMssv("********");
         userProfile.setFullname(accountDto.getUsername());
         userProfileRepository.save(userProfile);
         UserProfile userProfileGet = userProfileRepository.getByUsername(accountDto.getUsername());

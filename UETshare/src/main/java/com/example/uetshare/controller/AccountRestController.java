@@ -100,7 +100,7 @@ public class AccountRestController {
         return ResponseEntity.ok(accountService.getAccount(cookie));
 
     }
-    @PutMapping("/change-password")
+    @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody AccountDto accountDto) {
         return ResponseEntity.ok(accountService.changePassword(accountDto));
 
