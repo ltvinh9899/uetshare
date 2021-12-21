@@ -21,9 +21,9 @@ public class SubjectService implements SubjectServiceInterface{
     private SubjectRepositoryInterface subjectRepositoryInterface;
 
     @Override
-    public void createSubject(Subject subject) {
+    public Subject createSubject(Subject subject) {
 
-        subjectRepositoryInterface.save(subject);
+        return subjectRepositoryInterface.save(subject);
 
     }
 
@@ -54,7 +54,7 @@ public class SubjectService implements SubjectServiceInterface{
             subjectData.setCategory(subject.getCategory());
         }
 
-        subjectData.setTime(Calendar.getInstance());
+//        subjectData.setTime(Calendar.getInstance());
 
         return subjectRepositoryInterface.save(subjectData);
 
