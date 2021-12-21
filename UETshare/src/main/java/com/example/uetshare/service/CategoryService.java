@@ -53,11 +53,7 @@ public class CategoryService implements CategoryServiceInterface {
             categoryData.setCategory(category.getCategory());
         }
 
-        categoryData.setTime(Calendar.getInstance());
-
-        System.out.println("hello");
-        System.out.println(category.getCategory());
-        System.out.println(categoryData);
+//        categoryData.setTime(Calendar.getInstance());
 
         return categoryRepositoryInterface.save(categoryData);
 

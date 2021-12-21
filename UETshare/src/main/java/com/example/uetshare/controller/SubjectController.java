@@ -28,13 +28,13 @@ public class SubjectController {
     public ResponseEntity<?> createSubject(@RequestBody Subject subject, SubjectResponse subjectResponse){
         try {
             subject.setTime(Calendar.getInstance());
-            subjectServiceInterface.createSubject(subject);
+            Subject subjectCreated =  subjectServiceInterface.createSubject(subject);
 
             subjectResponse.setSuccess(true);
             subjectResponse.setMessage("create subject success");
 
             List<SubjectDto> subjectDtoList = new ArrayList<>();
-            subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+            subjectDtoList.add(SubjectMapper.toSubjectDto(subjectCreated));
             subjectResponse.setSubjectDtoList(subjectDtoList);
 
             return ResponseEntity.ok(subjectResponse);
