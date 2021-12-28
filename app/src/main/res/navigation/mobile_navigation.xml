@@ -68,6 +68,12 @@
         <action
             android:id="@+id/action_nav_uettalk_to_detailForumFragment"
             app:destination="@id/detailForumFragment" />
+        <action
+            android:id="@+id/action_nav_uettalk_to_action_profile"
+            app:destination="@id/action_profile" />
+        <action
+            android:id="@+id/action_nav_uettalk_to_imageFragment"
+            app:destination="@id/imageFragment" />
     </fragment>
     <fragment android:id="@+id/write_fragment"
         android:name="ie.app.uetstudents.ui.diendan.Write.WriteFragment"
@@ -83,9 +89,19 @@
         tools:layout="@layout/activity_signin" />
     <fragment
         android:id="@+id/detailForumFragment"
-        android:name="ie.app.uetstudents.ui.diendan.detailForum.DetailForumFragment"
+        android:name="ie.app.uetstudents.ui.detailForum.DetailForumFragment"
         android:label="Bài Viết"
-        tools:layout="@layout/fragment_detail_forum" />
+        tools:layout="@layout/fragment_detail_forum" >
+        <action
+            android:id="@+id/action_detailForumFragment_to_action_profile"
+            app:destination="@id/action_profile" />
+        <action
+            android:id="@+id/action_detailForumFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/action_detailForumFragment_self"
+            app:destination="@id/detailForumFragment" />
+    </fragment>
     <fragment
         android:id="@+id/writingStatusFragment"
         android:name="ie.app.uetstudents.ui.uettalk.WritingStatusFragment"
@@ -124,6 +140,12 @@
         <action
             android:id="@+id/action_action_profile_to_changeFragment"
             app:destination="@id/changeFragment" />
+        <action
+            android:id="@+id/action_action_profile_self"
+            app:destination="@id/action_profile" />
+        <action
+            android:id="@+id/action_action_profile_to_imageFragment"
+            app:destination="@id/imageFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailNotiFragment"
@@ -146,6 +168,11 @@
             android:id="@+id/action_writeNotificationFragment_to_nav_notifications"
             app:destination="@id/nav_notifications" />
     </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="ie.app.uetstudents.ui.detailForum.ImageFragment"
+        android:label="Ảnh"
+        tools:layout="@layout/fragment_image" />
 
 
 </navigation>

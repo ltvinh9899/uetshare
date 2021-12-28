@@ -21,12 +21,12 @@ import com.google.gson.Gson
 import ie.app.uetstudents.R
 import ie.app.uetstudents.adapter.OnclickItem_deleteanh
 import ie.app.uetstudents.adapter.adapter_anhwrite
-import ie.app.uetstudents.ui.API.ApiClient
-import ie.app.uetstudents.ui.Entity.Question.get.question
-import ie.app.uetstudents.ui.Entity.Question.post.Account
-import ie.app.uetstudents.ui.Entity.Question.post.Category
-import ie.app.uetstudents.ui.Entity.Question.post.QuestionPost
-import ie.app.uetstudents.ui.Entity.Question.post.TypeContent
+import ie.app.uetstudents.API.ApiClient
+import ie.app.uetstudents.Entity.Question.get.question
+import ie.app.uetstudents.Entity.Question.post.Account
+import ie.app.uetstudents.Entity.Question.post.Category
+import ie.app.uetstudents.Entity.Question.post.QuestionPost
+import ie.app.uetstudents.Entity.Question.post.TypeContent
 import ie.app.uetstudents.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_writing_status.*
 import kotlinx.android.synthetic.main.fragment_writing_status.view.*
@@ -211,11 +211,9 @@ class WritingStatusFragment : Fragment(), OnclickItem_deleteanh {
     private fun callApi(writeContent: String, listUri: List<Uri>, user: Int) {
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
-
-        val category = Category(1)
         val typeContent = TypeContent(2)
         val account = Account(user)
-        val question = QuestionPost(account, category, writeContent, writeContent, typeContent)
+        val question = QuestionPost(account, null, writeContent, writeContent, typeContent)
         val gson = Gson()
         val questionString = gson.toJson(question).toString()
 

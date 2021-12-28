@@ -4,15 +4,27 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.*
+import android.widget.AdapterView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
@@ -21,26 +33,33 @@ import ie.app.uetstudents.RealPathUtil.RealPathUtil
 import ie.app.uetstudents.Repository.Repository
 import ie.app.uetstudents.adapter.*
 import ie.app.uetstudents.databinding.FragmentUettalkBinding
-import ie.app.uetstudents.ui.API.ApiClient
-import ie.app.uetstudents.ui.API.ApiClient.BASE_URL
-import ie.app.uetstudents.ui.Entity.Comment.get.CommentDto
-import ie.app.uetstudents.ui.Entity.Comment.post.Question
-import ie.app.uetstudents.ui.Entity.Comment.post.comment_post
-import ie.app.uetstudents.ui.Entity.Question.get.ImageDto
-import ie.app.uetstudents.ui.Entity.Question.get.QuestionDtoX
-import ie.app.uetstudents.ui.Entity.Question.get.question
-import ie.app.uetstudents.ui.Entity.like.Post.Account
-import ie.app.uetstudents.ui.Entity.like.Post.Comment
-import ie.app.uetstudents.ui.Entity.like.Post.like_comment
-import ie.app.uetstudents.ui.Entity.like_question.post.like_question
-import ie.app.uetstudents.ui.Entity.notifications_comment.post.post_notifi_comment
-import ie.app.uetstudents.ui.Entity.notifications_question.post.notification_question_post
-import ie.app.uetstudents.ui.diendan.detailForum.DetailForumContract
-import ie.app.uetstudents.ui.diendan.detailForum.DetailForumPresenter
+import ie.app.uetstudents.API.ApiClient
+import ie.app.uetstudents.API.ApiClient.BASE_URL
+import ie.app.uetstudents.Entity.Comment.get.CommentDto
+import ie.app.uetstudents.Entity.Comment.post.Question
+import ie.app.uetstudents.Entity.Comment.post.comment_post
+import ie.app.uetstudents.Entity.Question.get.ImageDto
+import ie.app.uetstudents.Entity.Question.get.QuestionDtoX
+import ie.app.uetstudents.Entity.Question.get.question
+import ie.app.uetstudents.Entity.Search.person.person
+import ie.app.uetstudents.Entity.like.Post.Account
+import ie.app.uetstudents.Entity.like.Post.Comment
+import ie.app.uetstudents.Entity.like.Post.like_comment
+import ie.app.uetstudents.Entity.like_question.post.like_question
+import ie.app.uetstudents.Entity.notifications_comment.post.post_notifi_comment
+import ie.app.uetstudents.Entity.notifications_question.post.notification_question_post
+import ie.app.uetstudents.Entity.subcomment.get.SubcommentDto
+import ie.app.uetstudents.Entity.subcomment.get.getsubcomment
+import ie.app.uetstudents.Entity.subcomment.post.Subcomment_post
+import ie.app.uetstudents.Entity.userProfile.get.userprofile
+import ie.app.uetstudents.data.response.AccountDto
+import ie.app.uetstudents.ui.detailForum.DetailForumContract
+import ie.app.uetstudents.ui.detailForum.DetailForumPresenter
 import ie.app.uetstudents.ui.diendan.forum_main.forumContract
 import ie.app.uetstudents.ui.diendan.forum_main.forumPresenter
 import ie.app.uetstudents.ui.tailieu.detailPDF
 import ie.app.uetstudents.utils.PreferenceUtils
+import kotlinx.android.synthetic.main.fragment_detail_forum.*
 import kotlinx.android.synthetic.main.fragment_uettalk.*
 import kotlinx.android.synthetic.main.fragment_uettalk.view.*
 import kotlinx.android.synthetic.main.layout_bottomsheet.*
@@ -56,7 +75,7 @@ import java.io.File
 
 class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
     DetailForumContract.View,
-    ClickItemCommentLike, BaseAdapter.OnclickPdf<ImageDto> {
+    ClickItemCommentLike, BaseAdapter.OnclickPdf<ImageDto>,Clicktext {
 
     private val CAMERA_REQUEST: Int = 8888
     private var _binding: FragmentUettalkBinding? = null
@@ -158,13 +177,12 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
     }
 
     /*-----------------------Click vào btn thích------------------------------------*/
-    override fun ClickItem_like(QuestionDto: QuestionDtoX) {
-        if (QuestionDto.liked == false) {
-            QuestionDto.liked = true
+    override fun ClickItem_like(QuestionDto: QuestionDtoX,liked: Boolean) {
+        if (liked == true) {
+
             PostApiLike(QuestionDto.id, QuestionDto.accountDto?.username ?: "", id_user!!)
             // update_notification("LIKE", QuestionDto.id!!, PreferenceUtils.getUser().username.toString(), QuestionDto.accountDto?.username ?: "")
         } else {
-            QuestionDto.liked = false
             deleteLikeQuestion(id_user!!, QuestionDto.id)
         }
 
@@ -177,7 +195,7 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
         //presenter_uettalk_comment = DetailForumPresenter(this, Repository(requireContext()))
 
 
-        adapter_comment_uettalk = CommentAdapter(this)
+        adapter_comment_uettalk = CommentAdapter(this,this)
 
 
         bottomSheetDialog = BottomSheetDialog(
@@ -197,6 +215,248 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
         bottomSheetView.comment_recyclerview_uettalk.isNestedScrollingEnabled = false
         bottomSheetView.comment_recyclerview_uettalk.adapter = adapter_comment_uettalk
         bottomSheetView.comment_recyclerview_uettalk.adapter?.notifyDataSetChanged()
+
+        bottomSheetView.edt_comment_uettalk.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                Log.e("call person","Thành công")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString().toLowerCase().contains("@user/"))
+                {
+                    val str: String = s.toString()
+                    val begin = str.indexOf("@user/")
+                    val startkitu = str.lastIndexOf("/", s.toString().length)
+                    val end = str.indexOf(" ", begin)
+                    if (end<0)
+                    {
+                        val text = s?.substring(startkitu+1,s?.length).toString()
+                        val call : Call<person> = ApiClient.getClient.getPerSonSearch(1,text!!)
+                        call.enqueue(object : Callback<person>{
+                            override fun onResponse(
+                                call: Call<person>,
+                                response: Response<person>
+                            ) {
+                                if (response.isSuccessful)
+                                {
+                                    val person : person = response.body()!!
+                                    val adapterperson = adapter_person(person.accountDtoList)
+                                    bottomSheetView.listperson_uet.adapter = adapterperson
+                                    Log.e("call person","Thành công")
+                                }
+                            }
+
+                            override fun onFailure(call: Call<person>, t: Throwable) {
+                                TODO("Not yet implemented")
+                            }
+                        })
+                    }
+                }
+                /*else if (s.toString().toLowerCase().contains("@forum/"))
+                {
+                    val str: String = s.toString()
+                    val begin = str.indexOf("@forum/")
+                    val startkitu = str.lastIndexOf("/", s.toString().length)
+                    val end = str.indexOf(" ", begin)
+                    if (end>0)
+                    {
+                        val spanned = SpannableString(s.toString())
+                        val fcolor = ForegroundColorSpan(Color.BLUE)
+                        spanned.setSpan(
+                            RelativeSizeSpan(1.0f),
+                            begin,
+                            end,
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
+                        spanned.setSpan(
+                            fcolor,
+                            begin,
+                            end,
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
+                        spanned.setSpan(
+                            StyleSpan(Typeface.BOLD),
+                            begin,
+                            end,
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
+                        bottomSheetView.edt_comment_uettalk.setText(spanned)
+                    }
+
+
+                } else if (s.toString().toLowerCase().contains("@uettalk/"))
+                {
+                    val str: String = s.toString()
+                    val begin = str.indexOf("@uettalk/")
+                    val startkitu = str.lastIndexOf("/", s.toString().length)
+                    val end = str.indexOf(" ", begin)
+                    if (end>0)
+                    {
+                        val spanned = SpannableString(s.toString())
+                        val fcolor = ForegroundColorSpan(Color.BLUE)
+                        spanned.setSpan(
+                            RelativeSizeSpan(1.0f),
+                            begin,
+                            end,
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
+                        spanned.setSpan(
+                            fcolor,
+                            begin,
+                            end,
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
+                        spanned.setSpan(
+                            StyleSpan(Typeface.BOLD),
+                            begin,
+                            end,
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
+                        bottomSheetView.edt_comment_uettalk.setText(spanned)
+                    }
+                } */
+
+                bottomSheetView.listperson_uet.setOnItemClickListener(object : AdapterView.OnItemClickListener
+                {
+                    override fun onItemClick(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val startkitu = s.toString().lastIndexOf("/", s.toString().length)
+                        val p = bottomSheetView.listperson_uet.getItemAtPosition(position) as AccountDto
+                        val str = s.toString()?.substring(0,startkitu)
+                        var string = ""
+                        if (str.contains("@user/"))
+                        {
+
+                            string = str + p.username+" "
+                        }else
+                        {
+                            string = str+"/" + p.username+" "
+                        }
+                        val begin = string.indexOf("@user/")
+                        val end = string.indexOf(" ", begin)
+                        bottomSheetView.edt_comment_uettalk.text.clear()
+
+                        val stringspanner = SpannableString(string)
+                        val fcolor = ForegroundColorSpan(Color.BLUE)
+                        stringspanner.setSpan(RelativeSizeSpan(1.0f),begin,end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                        stringspanner.setSpan(fcolor,begin,end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                        stringspanner.setSpan(StyleSpan(Typeface.BOLD),begin,end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+
+                        bottomSheetView.edt_comment_uettalk.setText(stringspanner)
+                        bottomSheetView.listperson_uet.visibility = View.GONE
+                        bottomSheetView.edt_comment_uettalk.setSelection(bottomSheetView.edt_comment_uettalk.text.length)
+                        bottomSheetView.edt_comment_uettalk.requestFocus()
+                        bottomSheetView.edt_comment_uettalk.setOnClickListener {
+                            bottomSheetView.edt_comment_uettalk.setSelection(begin,end)
+                            val bundle = Bundle()
+                            bundle.putInt("id_user",p.id)
+                            this@UETTalkFragment.findNavController().navigate(R.id.action_nav_uettalk_to_action_profile,bundle)
+                            bottomSheetDialog!!.dismiss()
+                        }
+
+                    }
+                })
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                Log.e("call person","Thành công")
+            }
+        })
+
+        adapter_comment_uettalk.listener(object : truyen_name_account{
+            override fun truyen_name_account(
+                id_account: Int,
+                id_comment: Int,
+                recyclerView: RecyclerView
+            ) {
+                val call : Call<userprofile> = ApiClient.getClient.getUserProfile(id_account)
+                call.enqueue(object : Callback<userprofile>{
+                    override fun onResponse(
+                        call: Call<userprofile>,
+                        response: Response<userprofile>
+                    ) {
+                        if (response.isSuccessful)
+                        {
+                            val username : String = response.body()!!.fullname.toString()
+                            val stringspanner = SpannableString("@user/$username ")
+                            val fcolor = ForegroundColorSpan(Color.BLUE)
+                            stringspanner.setSpan(RelativeSizeSpan(1.0f),0,stringspanner.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                            stringspanner.setSpan(fcolor,0,stringspanner.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                            stringspanner.setSpan(StyleSpan(Typeface.BOLD),0,stringspanner.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+
+                            bottomSheetView.edt_comment_uettalk.setText(stringspanner, TextView.BufferType.EDITABLE)
+
+                            bottomSheetView.edt_comment_uettalk.setSelection(bottomSheetView.edt_comment_uettalk.text.length)
+                            bottomSheetView.edt_comment_uettalk.requestFocus()
+                            if (bottomSheetView.edt_comment_uettalk.text.toString().contains("@user/"))
+                            {
+                                val begin : Int = bottomSheetView.edt_comment_uettalk.text.toString().indexOf("@user/")
+                                val end : Int = bottomSheetView.edt_comment_uettalk.text.toString().indexOf(" ",begin)
+                                bottomSheetView.edt_comment_uettalk.setOnClickListener {
+                                    bottomSheetView.edt_comment_uettalk.setSelection(begin,end)
+                                    val bundle = Bundle()
+                                    bundle.putInt("id_user",id_account)
+                                    this@UETTalkFragment.findNavController().navigate(R.id.action_nav_uettalk_to_action_profile,bundle)
+                                    bottomSheetDialog!!.dismiss()
+                                }
+                            }
+
+                            bottomSheetView.btn_update_comment_uettalk.setOnClickListener {
+                                CallApiSubComment(edt_detail_forum.text.toString(), PreferenceUtils.getUser().id, id_comment!!, uri)
+                                bottomSheetView.edt_comment_uettalk.text.clear()
+                                val call : Call<getsubcomment> = ApiClient.getClient.getSubComment(id_comment,1)
+                                call.enqueue(object : Callback<getsubcomment>, Clicktext {
+                                    override fun onResponse(
+                                        call: Call<getsubcomment>,
+                                        response: Response<getsubcomment>
+                                    ) {
+                                        val adapter = SubCommentAdapter(id_comment,this)
+                                        adapter.setData(response.body()!!.subCommentDtoList as ArrayList<SubcommentDto>)
+                                        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                                        recyclerView.adapter= adapter
+                                        Log.e("lay subcomment","Thành công")
+                                        presenter_uettalk_comment.getDetailComment(QuestionDto.id!!,page_comment,id_user!!)
+                                    }
+
+                                    override fun onFailure(
+                                        call: Call<getsubcomment>,
+                                        t: Throwable
+                                    ) {
+                                        Log.e("lay subcomment","thất bại")
+                                    }
+
+                                    override fun clicktext(name_account: String,type: String) {
+                                        if (type.equals("person"))
+                                        {
+                                            chuyentrangprofile(name_account)
+                                        }else
+                                            if (type.equals("forum")|| type.equals("uettalk"))
+                                            {
+                                                val id = name_account.toInt()
+                                                val bundle = Bundle()
+                                                bundle.putInt("id_question",id)
+                                                this@UETTalkFragment.findNavController().navigate(R.id.action_nav_uettalk_to_detailForumFragment,bundle)
+                                                bottomSheetDialog?.dismiss()
+                                            }
+
+                                    }
+                                })
+                            }
+
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<userprofile>, t: Throwable) {
+                        Log.e("lấy username comment","Thất bại")
+                    }
+                })
+            }
+        })
 
         bottomSheetView.comment_scrollview.setOnScrollChangeListener(object :
             NestedScrollView.OnScrollChangeListener {
@@ -221,9 +481,6 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
         })
 
         bottomSheetView.comment_uet_camera.setOnClickListener {
-//            val cameraIntent =
-//                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//            startActivityForResult(cameraIntent, CAMERA_REQUEST)
             if (activity?.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 openGallery()
             } else {
@@ -232,9 +489,6 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
         }
 
         bottomSheetView.btn_update_comment_uettalk.setOnClickListener {
-
-
-            Log.e("uri", uri.toString())
             xulybtncommemt(QuestionDto.id, QuestionDto.accountDto?.username ?: "", uri)
         }
 
@@ -247,15 +501,61 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
             uri = data.data
             Toast.makeText(context, "Đã thêm ảnh vào bình luận!", Toast.LENGTH_LONG).show()
-            Log.e("uri", uri.toString())
         }
+    }
+    private fun CallApiSubComment(content: String, id_account: Int, idComment: Int, uri: Uri?) {
+        val account = ie.app.uetstudents.Entity.subcomment.post.Account(id_account)
+        val comment = ie.app.uetstudents.Entity.subcomment.post.Comment(idComment)
+        val subcommentpost = Subcomment_post(account,comment,content)
+        val gson = Gson()
+        val comment_to_json = gson.toJson(subcommentpost).toString()
+
+        val builder = MultipartBody.Builder()
+        builder.setType(MultipartBody.FORM)
+        builder.addFormDataPart("SubComment", comment_to_json)
+
+        uri?.let {
+            val strRealPath = RealPathUtil.getRealPath(requireContext(), uri)
+            val file = File(strRealPath)
+            builder.addFormDataPart("image_file", file.name, RequestBody.create(MediaType.parse("multipart/form-data"), file))
+            this.uri = null
+        }
+
+        val call: Call<getsubcomment> = ApiClient.getClient.postSubcomment(builder.build())
+        call.enqueue(object : Callback<getsubcomment> {
+            override fun onResponse(
+                call: Call<getsubcomment>,
+                response: Response<getsubcomment>
+            ) {
+                if (response.isSuccessful) {
+
+                    Toast.makeText(context, "Bình luận thành công", Toast.LENGTH_SHORT).show()
+
+                    val notifiItem = post_notifi_comment(
+                        "COMMENT",
+                        PreferenceUtils.getUser().avatar,
+                        ie.app.uetstudents.Entity.notifications_comment.post.Comment(idComment),
+                        PreferenceUtils.getUser().toString()
+                    )
+                    Repository(requireContext()).updateNotifi_Comment(notifiItem)
+                }
+            }
+
+            override fun onFailure(
+                call: Call<getsubcomment>,
+                t: Throwable
+            ) {
+                Log.e("Đăng comment", "Thất bại")
+            }
+        })
+
+
     }
 
     /*------------------------Click vao itemUet chuyển sang DetailFragment-------------------------------*/
     override fun ClickItem_uettalk(QuestionDto: QuestionDtoX) {
         val bundle = Bundle()
         bundle.putInt("id_question", QuestionDto.id!!)
-        Toast.makeText(context, QuestionDto.id.toString(), Toast.LENGTH_SHORT).show()
         this.findNavController().navigate(R.id.action_nav_uettalk_to_detailForumFragment, bundle)
     }
 
@@ -264,44 +564,49 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
     }
 
     /*------------------------update data comment----------------------------------------*/
-    override fun getDataViewComment(datacomment: ie.app.uetstudents.ui.Entity.Comment.get.Comment) {
+    override fun getDataViewComment(datacomment: ie.app.uetstudents.Entity.Comment.get.Comment) {
         // bottomSheetView.comment_processbar.progress = View.GONE
         bottomSheetView.comment_progressbar.visibility = View.GONE
         if (datacomment.commentDtoList.isEmpty()) {
-            Toast.makeText(context, "trống", Toast.LENGTH_LONG).show()
             bottomSheetView.txt_comment_chuacobinhluan.text = "Chưa có bình luận nào!"
         } else {
             adapter_comment_uettalk.setData(datacomment.commentDtoList as ArrayList<CommentDto>)
-            Toast.makeText(context, "đã có dữ liệu", Toast.LENGTH_LONG).show()
             bottomSheetView.comment_recyclerview_uettalk.adapter?.notifyDataSetChanged()
         }
     }
 
 
     /*--------------------Post Like comment------------------------------*/
-    override fun clickOnItem(m: ie.app.uetstudents.ui.Entity.Comment.get.CommentDto) {
-        val idcomment = Comment(m.id!!.toInt())
-        val account = Account(null)
-        val likeComment = like_comment(account, idcomment)
-        val call: Call<like_comment> = ApiClient.getClient.setLikeComment(likeComment)
-        call.enqueue(object : Callback<like_comment> {
-            override fun onResponse(call: Call<like_comment>, response: Response<like_comment>) {
-                if (response.isSuccessful) {
-                    val notifi_item = post_notifi_comment(
-                        "LIKE",
-                        "",
-                        ie.app.uetstudents.ui.Entity.notifications_comment.post.Comment(m.id),
-                        PreferenceUtils.getUser().username.toString()
-                    )
-                    presenter_uettalk_comment.setNotificationComment(notifi_item)
+    override fun clickOnItem(m: ie.app.uetstudents.Entity.Comment.get.CommentDto,liked : Boolean) {
+        if (liked == true)
+        {
+            val idcomment = Comment(m.id!!.toInt())
+            val account = Account(null)
+            val likeComment = like_comment(account, idcomment)
+            val call: Call<like_comment> = ApiClient.getClient.setLikeComment(likeComment)
+            call.enqueue(object : Callback<like_comment> {
+                override fun onResponse(call: Call<like_comment>, response: Response<like_comment>) {
+                    if (response.isSuccessful) {
+                        val notifi_item = post_notifi_comment(
+                            "LIKE",
+                            "",
+                            ie.app.uetstudents.Entity.notifications_comment.post.Comment(m.id),
+                            PreferenceUtils.getUser().username.toString()
+                        )
+                        presenter_uettalk_comment.setNotificationComment(notifi_item)
+                    }
+                    Log.e("Test_API_Like_Comment", "Thành công")
                 }
-                Log.e("Test_API_Like_Comment", "Thành công")
-            }
 
-            override fun onFailure(call: Call<like_comment>, t: Throwable) {
-                Log.e("Test_API_Like_Comment", "Thất bại")
-            }
-        })
+                override fun onFailure(call: Call<like_comment>, t: Throwable) {
+                    Log.e("Test_API_Like_Comment", "Thất bại")
+                }
+            })
+        }else
+        {
+            Repository(requireContext()).deletelike_comment(id_user!!,m.id!!)
+        }
+
     }
 
     /*--------------------------------Xử lý khi click btn đăng binh luận-----------------------------------------*/
@@ -310,7 +615,7 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
             Toast.makeText(context, "Bạn Chưa nhập bình luận!", Toast.LENGTH_LONG).show()
         } else {
             val commentpost = comment_post(
-                ie.app.uetstudents.ui.Entity.Comment.post.Account(PreferenceUtils.getUser().id),
+                ie.app.uetstudents.Entity.Comment.post.Account(PreferenceUtils.getUser().id),
                 bottomSheetView.edt_comment_uettalk.text.toString(),
                 Question(id_question)
             )
@@ -332,12 +637,12 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
             }
 
 
-            val call: Call<ie.app.uetstudents.ui.Entity.Comment.get.Comment> =
+            val call: Call<ie.app.uetstudents.Entity.Comment.get.Comment> =
                 ApiClient.getClient.setCommentQuestion(builder.build())
-            call.enqueue(object : Callback<ie.app.uetstudents.ui.Entity.Comment.get.Comment> {
+            call.enqueue(object : Callback<ie.app.uetstudents.Entity.Comment.get.Comment> {
                 override fun onResponse(
-                    call: Call<ie.app.uetstudents.ui.Entity.Comment.get.Comment>,
-                    response: Response<ie.app.uetstudents.ui.Entity.Comment.get.Comment>
+                    call: Call<ie.app.uetstudents.Entity.Comment.get.Comment>,
+                    response: Response<ie.app.uetstudents.Entity.Comment.get.Comment>
                 ) {
                     Log.e("Test", "thành công")
                     Toast.makeText(context, "bình luận thành công!", Toast.LENGTH_LONG).show()
@@ -352,7 +657,7 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
                 }
 
                 override fun onFailure(
-                    call: Call<ie.app.uetstudents.ui.Entity.Comment.get.Comment>,
+                    call: Call<ie.app.uetstudents.Entity.Comment.get.Comment>,
                     t: Throwable
                 ) {
                     Log.e("Test", "thất bại")
@@ -363,12 +668,12 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
 
             bottomSheetView.comment_progressbar.visibility = View.VISIBLE
 
-            val call_get: Call<ie.app.uetstudents.ui.Entity.Comment.get.Comment> =
+            val call_get: Call<ie.app.uetstudents.Entity.Comment.get.Comment> =
                 ApiClient.getClient.getCommentQuestion(id_question, page_comment, id_user!!)
-            call_get.enqueue(object : Callback<ie.app.uetstudents.ui.Entity.Comment.get.Comment> {
+            call_get.enqueue(object : Callback<ie.app.uetstudents.Entity.Comment.get.Comment> {
                 override fun onResponse(
-                    call: Call<ie.app.uetstudents.ui.Entity.Comment.get.Comment>,
-                    response: Response<ie.app.uetstudents.ui.Entity.Comment.get.Comment>
+                    call: Call<ie.app.uetstudents.Entity.Comment.get.Comment>,
+                    response: Response<ie.app.uetstudents.Entity.Comment.get.Comment>
                 ) {
                     if (response.isSuccessful) {
                         adapter_comment_uettalk.setData(response.body()?.commentDtoList!! as ArrayList<CommentDto>)
@@ -378,7 +683,7 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
                 }
 
                 override fun onFailure(
-                    call: Call<ie.app.uetstudents.ui.Entity.Comment.get.Comment>,
+                    call: Call<ie.app.uetstudents.Entity.Comment.get.Comment>,
                     t: Throwable
                 ) {
                     Log.e("Test", "lỗi rồi")
@@ -400,7 +705,7 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
             val notifi_item = notification_question_post(
                 type_action,
                 PreferenceUtils.getUser().avatar.toString(),
-                ie.app.uetstudents.ui.Entity.notifications_question.post.Question(id_question),
+                ie.app.uetstudents.Entity.notifications_question.post.Question(id_question),
                 username,
                 owner_username
             )
@@ -409,7 +714,7 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
             val notifi_item = notification_question_post(
                 type_action,
                 null,
-                ie.app.uetstudents.ui.Entity.notifications_question.post.Question(id_question),
+                ie.app.uetstudents.Entity.notifications_question.post.Question(id_question),
                 username,
                 owner_username
             )
@@ -428,8 +733,8 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
 
     /*-----------------Post like lên server-------------------*/
     fun PostApiLike(id_question: Int, owner_username: String, id_account: Int) {
-        val account = ie.app.uetstudents.ui.Entity.like_question.post.Account(id_account)
-        val question = ie.app.uetstudents.ui.Entity.like_question.post.Question(id_question)
+        val account = ie.app.uetstudents.Entity.like_question.post.Account(id_account)
+        val question = ie.app.uetstudents.Entity.like_question.post.Question(id_question)
         val likeQuestion = like_question(account, question)
         val call: Call<like_question> = ApiClient.getClient.postlikequestion(likeQuestion)
         call.enqueue(object : Callback<like_question> {
@@ -478,5 +783,48 @@ class UETTalkFragment : Fragment(), forumContract.View, OnClickItem_UetTalk,
         startActivity(intent)
     }
 
+    override fun clicktext(name_account: String,type : String) {
+        if (type.equals("person"))
+        {
+            chuyentrangprofile(name_account)
+        }else
+            if (type.equals("forum")|| type.equals("uettalk"))
+            {
+                val id = name_account.toInt()
+                val bundle = Bundle()
+                bundle.putInt("id_question",id)
+                this.findNavController().navigate(R.id.action_nav_uettalk_to_detailForumFragment,bundle)
+                bottomSheetDialog?.dismiss()
+            }
+
+    }
+
+    fun chuyentrangprofile(username: String)
+    {
+        val call : Call<userprofile> = ApiClient.getClient.getUserProfile(username)
+        call.enqueue(object : Callback<userprofile>{
+            override fun onResponse(call: Call<userprofile>, response: Response<userprofile>) {
+                if (response.isSuccessful)
+                {
+                    bottomSheetDialog?.dismiss()
+                    val id_account = response.body()!!.id
+                    val bundle = Bundle()
+                    bundle.putInt("id_user",id_account)
+                    this@UETTalkFragment.findNavController().navigate(R.id.action_nav_uettalk_to_action_profile,bundle)
+
+                }
+            }
+
+            override fun onFailure(call: Call<userprofile>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    override fun onItemCLickImage(position: Int, item: ImageDto) {
+        val bundle : Bundle = Bundle()
+        bundle.putString("image",item.image)
+        this.findNavController().navigate(R.id.action_nav_uettalk_to_imageFragment,bundle)
+    }
 
 }

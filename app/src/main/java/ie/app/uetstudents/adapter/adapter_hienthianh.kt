@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ie.app.uetstudents.R
-import ie.app.uetstudents.ui.API.ApiClient
+import ie.app.uetstudents.API.ApiClient
 import kotlinx.android.synthetic.main.anh_detail.view.*
 
 class adapter_hienthianh(var listanh: ArrayList<String>,var onclick : click_pdf) :
@@ -41,6 +41,9 @@ class adapter_hienthianh(var listanh: ArrayList<String>,var onclick : click_pdf)
             if (datamode.contains(".pdf"))
             {
                 onclick.Onclick_Pdf(datamode)
+            }else
+            {
+                onclick.OnclickAnh(datamode)
             }
         }
     }
@@ -52,4 +55,5 @@ class adapter_hienthianh(var listanh: ArrayList<String>,var onclick : click_pdf)
 
 interface click_pdf{
     fun Onclick_Pdf(anh : String)
+    fun OnclickAnh(anh: String)
 }

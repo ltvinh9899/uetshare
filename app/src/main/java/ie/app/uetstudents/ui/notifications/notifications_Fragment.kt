@@ -12,15 +12,15 @@ import ie.app.uetstudents.Repository.Repository
 import ie.app.uetstudents.adapter.OnClickItem_Notification
 import ie.app.uetstudents.adapter.adapter_notification
 import ie.app.uetstudents.service.FirebaseService.Companion.UPDATE_NOTIFICATION
-import ie.app.uetstudents.ui.API.ApiClient
-import ie.app.uetstudents.ui.Entity.Question.get.QuestionX
-import ie.app.uetstudents.ui.Entity.notifications_comment.get.NotificationCommentDto
-import ie.app.uetstudents.ui.Entity.notifications_comment.get.get_notifi_comment
-import ie.app.uetstudents.ui.Entity.notifications_comment.put.request.comment_id_put
-import ie.app.uetstudents.ui.Entity.notifications_question.get.NotificationQuestionDto
-import ie.app.uetstudents.ui.Entity.notifications_question.get.notification_question
-import ie.app.uetstudents.ui.Entity.notifications_question.notification_item
-import ie.app.uetstudents.ui.Entity.notifications_question.put.request.question_id_put
+import ie.app.uetstudents.API.ApiClient
+import ie.app.uetstudents.Entity.Question.get.QuestionX
+import ie.app.uetstudents.Entity.notifications_comment.get.NotificationCommentDto
+import ie.app.uetstudents.Entity.notifications_comment.get.get_notifi_comment
+import ie.app.uetstudents.Entity.notifications_comment.put.request.comment_id_put
+import ie.app.uetstudents.Entity.notifications_question.get.NotificationQuestionDto
+import ie.app.uetstudents.Entity.notifications_question.get.notification_question
+import ie.app.uetstudents.Entity.notifications_question.notification_item
+import ie.app.uetstudents.Entity.notifications_question.put.request.question_id_put
 import ie.app.uetstudents.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_notifications.*
 import org.greenrobot.eventbus.EventBus
@@ -67,6 +67,20 @@ class notifications_Fragment : Fragment() , OnClickItem_Notification,notificatio
         notification_recyclerview.adapter = adapterNotification
         adapterNotification.listnotifi_item?.sortedByDescending { notificationItem: notification_item -> notificationItem.time   }
         adapterNotification?.notifyDataSetChanged()
+
+     /*   if (adapterNotification.itemCount % 10 != 0)
+        {
+            search_more.visibility = View.GONE
+        }*/
+        /*search_more.setOnClickListener {
+            progress_bar_notifi.visibility = View.VISIBLE
+            page++
+            presenter.getNotificationQuestion(id_user!!,page)
+            presenter.getNotificationComment(id_user!!,page)
+            progress_bar_notifi.visibility = View.GONE
+            adapterNotification.listnotifi_item?.sortedByDescending { notificationItem: notification_item -> notificationItem.time   }
+            adapterNotification?.notifyDataSetChanged()
+        }*/
       notification_scrollview.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener{
             override fun onScrollChange(
                 v: NestedScrollView?,
@@ -79,9 +93,11 @@ class notifications_Fragment : Fragment() , OnClickItem_Notification,notificatio
                 {
                     progress_bar_notifi.visibility = View.VISIBLE
                     page++
+                    adapterNotification.resetList()
                     presenter.getNotificationQuestion(id_user!!,page)
                     presenter.getNotificationComment(id_user!!,page)
                     progress_bar_notifi.visibility = View.GONE
+
                     adapterNotification.listnotifi_item?.sortedByDescending { notificationItem: notification_item -> notificationItem.time   }
                     adapterNotification?.notifyDataSetChanged()
                 }
@@ -153,12 +169,27 @@ class notifications_Fragment : Fragment() , OnClickItem_Notification,notificatio
     }
 
     override fun updateViewNotification_question(notification_question: notification_question) {
+
+        val listnotifi : ArrayList<NotificationQuestionDto> = ArrayList<NotificationQuestionDto>()
+        notification_question.notificationQuestionDtoList.forEach {
+            if (it.username.equals(PreferenceUtils.getUser().username) == false)
+            {
+                listnotifi.add(it)
+            }
+        }
         adapterNotification.setData_question(notification_question.notificationQuestionDtoList)
        adapterNotification.listnotifi_item?.sortedByDescending { notificationItem: notification_item -> notificationItem.time   }
         notification_recyclerview.adapter?.notifyDataSetChanged()
     }
 
     override fun updateViewNotification_comment(notification_comment: get_notifi_comment) {
+        val listnotifi : ArrayList<NotificationCommentDto> = ArrayList()
+        notification_comment.notificationCommentDtoList.forEach {
+            if (it.username.equals(PreferenceUtils.getUser().username)== false)
+            {
+                listnotifi.add(it)
+            }
+        }
         adapterNotification.setdata_comment(notification_comment.notificationCommentDtoList)
         adapterNotification.listnotifi_item?.sortedByDescending { notificationItem: notification_item -> notificationItem.time }
         notification_recyclerview.adapter?.notifyDataSetChanged()

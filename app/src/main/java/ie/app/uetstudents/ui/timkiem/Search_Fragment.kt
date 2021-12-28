@@ -3,19 +3,20 @@ package ie.app.uetstudents.ui.timkiem
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.ChipGroup
 import ie.app.uetstudents.R
 import ie.app.uetstudents.Repository.Repository
 import ie.app.uetstudents.data.response.AccountDto
-import ie.app.uetstudents.ui.Entity.Search.Question.QuestionDto
-import ie.app.uetstudents.ui.Entity.Search.Question.search_question
-import ie.app.uetstudents.ui.Entity.Search.person.person
+import ie.app.uetstudents.Entity.Search.Question.QuestionDto
+import ie.app.uetstudents.Entity.Search.Question.search_question
+import ie.app.uetstudents.Entity.Search.person.person
 import ie.app.uetstudents.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.searchdialog_fullscreen.*
 
@@ -75,14 +76,17 @@ class Search_Fragment: Fragment() ,OnCLickItem_search , OnClickItem_SearchPerson
 
         presenter = SearchPresenter(this, Repository(requireContext()))
 
-        search_timkiem.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                s: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-                getdulieusearch(page_search,"",type_content_id)
+
+
+        searchview.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                getdulieusearch(page_search,query!!,type_content_id)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                getdulieusearch(page_search,newText!!,type_content_id)
+
                 search_scrollview.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener{
                     override fun onScrollChange(
                         v: NestedScrollView?,
@@ -94,59 +98,16 @@ class Search_Fragment: Fragment() ,OnCLickItem_search , OnClickItem_SearchPerson
                         if (scrollY == v?.getChildAt(0)?.measuredHeight?.minus(v!!?.measuredHeight) ?: Int)
                         {
                             page_search++
-                            getdulieusearch(page_search,"",type_content_id)
+                            getdulieusearch(page_search,newText,type_content_id)
 
                         }
                     }
                 })
+
+                return false
             }
-
-            override fun onTextChanged(
-                s: CharSequence?,
-                start: Int,
-                before: Int,
-                count: Int
-            ) {
-                getdulieusearch(page_search,s.toString(),type_content_id)
-                search_scrollview.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener{
-                    override fun onScrollChange(
-                        v: NestedScrollView?,
-                        scrollX: Int,
-                        scrollY: Int,
-                        oldScrollX: Int,
-                        oldScrollY: Int
-                    ) {
-                        if (scrollY == v?.getChildAt(0)?.measuredHeight?.minus(v!!?.measuredHeight) ?: Int)
-                        {
-                            page_search++
-                            getdulieusearch(page_search,s.toString(),type_content_id)
-
-                        }
-                    }
-                })
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                getdulieusearch(page_search,s.toString(),type_content_id)
-                search_scrollview.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener{
-                    override fun onScrollChange(
-                        v: NestedScrollView?,
-                        scrollX: Int,
-                        scrollY: Int,
-                        oldScrollX: Int,
-                        oldScrollY: Int
-                    ) {
-                        if (scrollY == v?.getChildAt(0)?.measuredHeight?.minus(v!!?.measuredHeight) ?: Int)
-                        {
-                            page_search++
-                            getdulieusearch(page_search,s.toString(),type_content_id)
-
-                        }
-                    }
-                })
-            }
-
         })
+
 
     }
 /*---------------------------------Lấy dữ liệu search------------------------------------*/
