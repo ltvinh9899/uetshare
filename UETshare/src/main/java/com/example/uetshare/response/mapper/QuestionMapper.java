@@ -48,6 +48,24 @@ public class QuestionMapper {
             }
         }
 
+        if (question.getAccount() != null){
+            questionDto.setAccountDto(AccountMapper.toAccountDto(question.getAccount()));
+        }
+
+        if (question.getReactIconQuestions() != null) {
+            questionDto.setLike_quantity(question.getReactIconQuestions().size());
+        }
+        else {
+            questionDto.setLike_quantity(0);
+        }
+
+        if (question.getComment() != null) {
+            questionDto.setComment_quantity(question.getComment().size());
+        }
+        else {
+            questionDto.setComment_quantity(0);
+        }
+
         return questionDto;
     }
 

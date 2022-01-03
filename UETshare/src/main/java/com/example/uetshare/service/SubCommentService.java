@@ -32,6 +32,8 @@ public class SubCommentService implements SubCommentServiceInterface{
             subCommentData.setImage(subComment.getImage());
         }
 
+        subCommentRepositoryInterface.save(subCommentData);
+
         return subCommentData;
     }
 }

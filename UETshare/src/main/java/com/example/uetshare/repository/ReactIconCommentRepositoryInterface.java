@@ -13,10 +13,10 @@ import java.util.List;
 @Repository
 public interface ReactIconCommentRepositoryInterface extends JpaRepository<ReactIconComment, Integer> {
 
-    @Query(value = "select * from react_icon_comment where react_icon_comment.comment_id = ?1 order by react_icon_comment.id desc limit 0, ?2", nativeQuery = true)
+    @Query(value = "select * from react_icon_comment where react_icon_comment.comment_id = ?1 order by react_icon_comment.time desc limit 0, ?2", nativeQuery = true)
     List<ReactIconComment> getReactIconByCommentId(Long comment_id, Integer index);
 
-    @Query(value = "select * from react_icon_comment where react_icon_comment.account_id = ?1 and react_icon_comment.comment_id = ?2", nativeQuery = true)
+    @Query(value = "select * from react_icon_comment where react_icon_comment.account_id = ?1 and react_icon_comment.comment_id = ?2 limit 1", nativeQuery = true)
     ReactIconComment getReactIconCommentByAccountAndComment(Long account_id, Long comment_id);
 
     @Modifying

@@ -23,5 +23,8 @@ public class QuestionDto {
     private Long type_content_id;
     private Long category_id;
     private List<ImageDto> imageDtoList;
-
+    private AccountDto accountDto;
+    private Integer like_quantity;
+    private Integer comment_quantity;
+    private Boolean liked;
 }

@@ -30,6 +30,10 @@ public class SubjectMapper {
             subjectDto.setTime(subject.getTime());
         }
 
+        if(subject.getCategory() != null){
+            subjectDto.setCategoryDto(CategoryMapper.toCategoryDto(subject.getCategory()));
+        }
+
         return subjectDto;
 
     }

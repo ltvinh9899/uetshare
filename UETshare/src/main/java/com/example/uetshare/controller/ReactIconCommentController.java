@@ -32,29 +32,7 @@ public class ReactIconCommentController {
     @PostMapping("/create")
     public ResponseEntity<?> createReactIconInComment(@RequestBody ReactIconComment reactIcon, ReactIconCommentResponse reactIconCommentResponse) {
 
-        try {
-
-            reactIcon.setTime(Calendar.getInstance());
-            reactIconCommentServiceInterface.createReactIcon(reactIcon);
-
-            reactIconCommentResponse.setSuccess(true);
-            reactIconCommentResponse.setMessage("create success");
-
-            List<ReactIconCommentDto> reactIconCommentDtoList = new ArrayList<>();
-            reactIconCommentDtoList.add(ReactIconCommentMapper.toReactIconCommentDto(reactIcon));
-            reactIconCommentResponse.setReactIconCommentDtoList(reactIconCommentDtoList);
-
-            return ResponseEntity.ok(reactIconCommentResponse);
-
-        } catch (Exception e){
-
-            reactIconCommentResponse.setSuccess(false);
-            reactIconCommentResponse.setMessage(e.toString());
-
-
-            return new ResponseEntity<>(reactIconCommentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        return reactIconCommentServiceInterface.createReactIcon(reactIcon, reactIconCommentResponse);
 
     }
 
@@ -89,6 +67,25 @@ public class ReactIconCommentController {
             return new ResponseEntity<>(reactIconCommentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping("/liked/account/{account_id}/comment/{comment_id}")
+    public ResponseEntity<Boolean> liked(@PathVariable("account_id") Long account_id, @PathVariable("comment_id") Long comment_id, ReactIconQuestionResponse reactIconQuestionResponse){
+        try {
+
+            Boolean liked = reactIconCommentServiceInterface.liked(account_id, comment_id);
+
+            System.out.println(liked);
+
+            return ResponseEntity.ok().body(liked);
+
+
+        } catch (Exception e){
+
+
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("account/{account_id}/comment/{comment_id}")

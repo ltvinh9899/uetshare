@@ -27,6 +27,21 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
     }
 
     @Override
+    public List<ExamDocument> getExamDocumentByType(String type, Integer index) {
+        return examDocumentRepositoryInterface.getExamDocumentByType(type, index);
+    }
+
+    @Override
+    public List<ExamDocument> searchExamDocument(String type, Integer index, String text) {
+        if(type == null){
+            return examDocumentRepositoryInterface.getExamDocumentByText(index, text);
+        } else {
+            return examDocumentRepositoryInterface.getExamDocumentByTextAndType(type, index, text);
+        }
+
+    }
+
+    @Override
     public ExamDocument updateExamDocument(Long id, ExamDocument examDocument) {
 
         ExamDocument examDocumentData = examDocumentRepositoryInterface.getExamDocumentById(id);
@@ -51,7 +66,7 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
             examDocumentData.setAccount(examDocument.getAccount());
         }
 
-        examDocumentData.setTime(Calendar.getInstance());
+//        examDocumentData.setTime(Calendar.getInstance());
 
         return examDocumentRepositoryInterface.save(examDocumentData);
 
@@ -64,5 +79,19 @@ public class ExamDocumentService implements ExamDocumentServiceInterface {
         examDocumentRepositoryInterface.deleteByExamDocumentId(id);
 
         return examDocument;
+    }
+
+    @Override
+    public Integer totalExamDocument() {
+        return examDocumentRepositoryInterface.totalExamDocument();
+    }
+
+    @Override
+    public Integer totalSearchExamDocument(String type, String text) {
+        if(type == null){
+            return examDocumentRepositoryInterface.totalExamDocumentSearchByText(text);
+        } else {
+            return examDocumentRepositoryInterface.totalExamDocumentSearchByTextType(type, text);
+        }
     }
 }

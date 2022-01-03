@@ -1,10 +1,12 @@
 package com.example.uetshare.controller;
 
 import com.example.uetshare.entity.Comment;
+import com.example.uetshare.entity.ReactIconComment;
 import com.example.uetshare.response.CommentResponse;
 import com.example.uetshare.response.dto.CommentDto;
 import com.example.uetshare.response.mapper.CommentMapper;
 import com.example.uetshare.service.CommentServiceInterface;
+import com.example.uetshare.service.ReactIconCommentServiceInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,13 +33,16 @@ public class CommentController {
     @Autowired
     private CommentServiceInterface commentServiceInterface;
 
+    @Autowired
+    private ReactIconCommentServiceInterface reactIconCommentServiceInterface;
+
     @Value("${file.upload-dir}")
     String FILE_DIRECTORY;
 
     private final Integer limit = 10;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createComment(@RequestParam("Comment") String commentJson, @RequestParam("image_file") MultipartFile image_file, CommentResponse commentResponse) throws IOException {
+    public ResponseEntity<?> createComment(@RequestParam("Comment") String commentJson, @RequestParam(name="image_file", required = false) MultipartFile image_file, CommentResponse commentResponse) throws IOException {
 
         try {
 
@@ -45,19 +50,22 @@ public class CommentController {
             comment.setTime(Calendar.getInstance());
             Comment commentFromBb = commentServiceInterface.createComment(comment);
 
-            if (!image_file.isEmpty()) {
-                String pathDirectoryString = FILE_DIRECTORY + "account_" + commentFromBb.getAccount().getId() + "/comment_" + commentFromBb.getId() + "/";
-                String pathFileString = writeFile(pathDirectoryString, image_file);
-                commentFromBb.setImage(pathFileString);
+            if(image_file != null) {
+                if (!image_file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + commentFromBb.getAccount().getId() + "/comment_" + commentFromBb.getId() + "/";
+                    String pathFileString = writeFile(pathDirectoryString, image_file);
+                    commentFromBb.setImage(pathFileString);
+                }
             }
-
             Comment commentAfterUpdate = commentServiceInterface.updateComment(commentFromBb.getId(),commentFromBb);
 
             commentResponse.setSuccess(true);
             commentResponse.setMessage("Create comment success");
 
             List<CommentDto> commentDtoList = new ArrayList<>();
-            commentDtoList.add(CommentMapper.toCommentDto(commentAfterUpdate));
+            CommentDto commentDto = CommentMapper.toCommentDto(commentAfterUpdate);
+            commentDto.setLiked(reactIconCommentServiceInterface.liked(comment.getAccount().getId(), comment.getId()));
+            commentDtoList.add(commentDto);
             commentResponse.setCommentDtoList(commentDtoList);
 
             return ResponseEntity.ok(commentResponse);
@@ -87,14 +95,16 @@ public class CommentController {
     }
 
     @GetMapping("/question/{id}")
-    public ResponseEntity<?> getCommentByQuestionId(CommentResponse commentResponse, @Param("index") Integer index, @PathVariable Long id){
+    public ResponseEntity<?> getCommentByQuestionId(CommentResponse commentResponse, @Param("index") Integer index, @PathVariable Long id, @RequestParam("account_id") Long account_id){
         try {
             Integer indexToQuery = index*limit;
             List<Comment> commentList = commentServiceInterface.getCommentByQuestionId(indexToQuery, id);
             List<CommentDto> commentDtoList = new ArrayList<>();
 
             for(Comment comment : commentList){
-                commentDtoList.add(CommentMapper.toCommentDto(comment));
+                CommentDto commentDto = CommentMapper.toCommentDto(comment);
+                commentDto.setLiked(reactIconCommentServiceInterface.liked(account_id, comment.getId()));
+                commentDtoList.add(commentDto);
             }
 
             commentResponse.setSuccess(true);

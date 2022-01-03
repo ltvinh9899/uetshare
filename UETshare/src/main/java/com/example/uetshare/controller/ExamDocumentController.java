@@ -45,12 +45,13 @@ public class ExamDocumentController {
             examDocument.setTime(Calendar.getInstance());
             ExamDocument examDocumentFromDb = examDocumentServiceInterface.createExamDocument(examDocument);
 
-            if(!file.isEmpty()) {
-                String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
-                String pathFileString = CommentController.writeFile(pathDirectoryString, file);
-                examDocumentFromDb.setLink(pathFileString);
+            if(file != null) {
+                if (!file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocumentFromDb.getAccount().getId() + "/exam_document_" + examDocumentFromDb.getId() + "/";
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+                    examDocumentFromDb.setLink(pathFileString);
+                }
             }
-
             ExamDocument examDocumentAfterUpdate = examDocumentServiceInterface.updateExamDocument(examDocument.getId(),examDocumentFromDb);
 
             examDocumentResponse.setSuccess(true);
@@ -100,9 +101,86 @@ public class ExamDocumentController {
         }
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestBody ExamDocument examDocument, ExamDocumentResponse examDocumentResponse){
+    @GetMapping("")
+    public ResponseEntity<?> getExamDocumentByType( @Param("type") String type, @Param("index") Integer index, ExamDocumentResponse examDocumentResponse){
         try {
+            Integer indexToQuery = (index - 1)*10;
+            List<ExamDocument> examDocumentList = examDocumentServiceInterface.getExamDocumentByType(type, indexToQuery);
+
+            examDocumentResponse.setSuccess(true);
+            examDocumentResponse.setMessage("get exam document success");
+
+            List<ExamDocumentDto> examDocumentDtoList = new ArrayList<>();
+            for(ExamDocument examDocument : examDocumentList) {
+                examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
+            }
+            examDocumentResponse.setResult_quantity(examDocumentList.size());
+            Integer total_page = examDocumentServiceInterface.totalExamDocument()/10 + 1;
+            examDocumentResponse.setTotal_page(total_page);
+            examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
+
+            return ResponseEntity.ok(examDocumentResponse);
+
+        } catch (Exception e){
+
+            examDocumentResponse.setSuccess(false);
+            examDocumentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(examDocumentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchExamDocument( @Param("type") String type, @Param("index") Integer index, @Param("text") String text, ExamDocumentResponse examDocumentResponse){
+        try {
+            Integer indexToQuery = (index - 1)*10;
+            String textToQuery;
+            if(text != null){
+                textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            } else {
+                textToQuery = "%";
+            }
+
+            List<ExamDocument> examDocumentList = examDocumentServiceInterface.searchExamDocument(type, indexToQuery, textToQuery);
+
+            examDocumentResponse.setSuccess(true);
+            examDocumentResponse.setMessage("get exam document success");
+
+            List<ExamDocumentDto> examDocumentDtoList = new ArrayList<>();
+            for(ExamDocument examDocument : examDocumentList) {
+                examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
+            }
+            examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery));
+            Integer total_page = examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery)/10 + 1;
+            examDocumentResponse.setTotal_page(total_page);
+            examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
+
+            return ResponseEntity.ok(examDocumentResponse);
+
+        } catch (Exception e){
+
+            examDocumentResponse.setSuccess(false);
+            examDocumentResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(examDocumentResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, @RequestParam("ExamDocument") String examDocumentJson, @RequestParam(value = "file", required = false) MultipartFile file, ExamDocumentResponse examDocumentResponse){
+        try {
+            ExamDocument examDocument = new ObjectMapper().readValue(examDocumentJson, ExamDocument.class);
+            examDocument.setTime(Calendar.getInstance());
+
+            if(file != null) {
+                if (!file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + examDocument.getAccount().getId() + "/exam_document_" + id + "/";
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, file);
+                    examDocument.setLink(pathFileString);
+                }
+            }
 
             ExamDocument examDocumentFromDb =  examDocumentServiceInterface.updateExamDocument(id, examDocument);
 

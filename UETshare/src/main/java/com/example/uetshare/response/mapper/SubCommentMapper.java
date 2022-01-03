@@ -33,6 +33,10 @@ public class SubCommentMapper {
             subCommentDto.setTime(subComment.getTime());
         }
 
+        if (subComment.getAccount() != null){
+            subCommentDto.setAccountDto(AccountMapper.toAccountDto(subComment.getAccount()));
+        }
+
         return subCommentDto;
 
     }

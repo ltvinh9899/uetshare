@@ -28,13 +28,13 @@ public class SubjectController {
     public ResponseEntity<?> createSubject(@RequestBody Subject subject, SubjectResponse subjectResponse){
         try {
             subject.setTime(Calendar.getInstance());
-            subjectServiceInterface.createSubject(subject);
+            Subject subjectCreated =  subjectServiceInterface.createSubject(subject);
 
             subjectResponse.setSuccess(true);
             subjectResponse.setMessage("create subject success");
 
             List<SubjectDto> subjectDtoList = new ArrayList<>();
-            subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+            subjectDtoList.add(SubjectMapper.toSubjectDto(subjectCreated));
             subjectResponse.setSubjectDtoList(subjectDtoList);
 
             return ResponseEntity.ok(subjectResponse);
@@ -79,6 +79,75 @@ public class SubjectController {
         }
     }
 
+    @GetMapping("")
+    public ResponseEntity<?> getAllSubject(SubjectResponse subjectResponse) {
+        try {
+
+            List<Subject> subjectList = subjectServiceInterface.getAllSubject();
+
+            subjectResponse.setSuccess(true);
+            subjectResponse.setMessage("get subject success");
+
+            List<SubjectDto> subjectDtoList = new ArrayList<>();
+            for(Subject subject : subjectList) {
+                subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+            }
+            subjectResponse.setResult_quantity(subjectServiceInterface.totalSubject());
+            Integer total_page = subjectServiceInterface.totalSubject()/10 + 1;
+            subjectResponse.setTotal_page(total_page);
+            subjectResponse.setSubjectDtoList(subjectDtoList);
+
+            return ResponseEntity.ok(subjectResponse);
+
+        } catch (Exception e){
+
+            subjectResponse.setSuccess(false);
+            subjectResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchSubject(@Param("index") Integer index, @Param("text") String text, SubjectResponse subjectResponse) {
+        try {
+            Integer indexToQuery = (index - 1)*10;
+
+            String textToQuery;
+
+            if (text != null){
+                textToQuery = "%" + String.join("%", text.split(" ")) + "%";
+            } else {
+                textToQuery = "%";
+            }
+
+            List<Subject> subjectList = subjectServiceInterface.getSubjectByText(indexToQuery, textToQuery);
+
+            subjectResponse.setSuccess(true);
+            subjectResponse.setMessage("get subject success");
+
+            List<SubjectDto> subjectDtoList = new ArrayList<>();
+            for(Subject subject : subjectList) {
+                subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
+            }
+            subjectResponse.setResult_quantity(subjectServiceInterface.totalSearchSubject(textToQuery));
+            Integer total_page = subjectServiceInterface.totalSearchSubject(textToQuery)/10 + 1;
+            subjectResponse.setTotal_page(total_page);
+            subjectResponse.setSubjectDtoList(subjectDtoList);
+
+            return ResponseEntity.ok(subjectResponse);
+
+        } catch (Exception e){
+
+            subjectResponse.setSuccess(false);
+            subjectResponse.setMessage(e.toString());
+
+            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<?> updateSubject(@PathVariable("id") Long id,@RequestBody Subject subject, SubjectResponse subjectResponse){
         try {
@@ -104,29 +173,9 @@ public class SubjectController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSubject(@PathVariable("id") Long id, SubjectResponse subjectResponse){
-        try {
-
-            Subject subject = subjectServiceInterface.deleteSubject(id);
-
-            subjectResponse.setSuccess(true);
-            subjectResponse.setMessage("delete subject success");
-
-            List<SubjectDto> subjectDtoList = new ArrayList<>();
-            subjectDtoList.add(SubjectMapper.toSubjectDto(subject));
-            subjectResponse.setSubjectDtoList(subjectDtoList);
-
-            return ResponseEntity.ok(subjectResponse);
-
-        } catch (Exception e){
-
-            subjectResponse.setSuccess(false);
-            subjectResponse.setMessage(e.toString());
-
-            return new ResponseEntity<>(subjectResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        return subjectServiceInterface.deleteSubject(id, subjectResponse);
     }
 
 }

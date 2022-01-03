@@ -31,28 +31,7 @@ public class ReactIconQuestionController {
     @PostMapping("/create")
     public ResponseEntity<?> createReactIconInQuestion(@RequestBody ReactIconQuestion reactIcon, ReactIconQuestionResponse reactIconQuestionResponse) {
 
-        try {
-            reactIcon.setTime(Calendar.getInstance());
-            reactIconQuestionServiceInterface.createReactIcon(reactIcon);
-
-            reactIconQuestionResponse.setSuccess(true);
-            reactIconQuestionResponse.setMessage("create success");
-
-            List<ReactIconQuestionDto> reactIconQuestionDtoList = new ArrayList<>();
-            reactIconQuestionDtoList.add(ReactIconQuestionMapper.toReactIconDto(reactIcon));
-            reactIconQuestionResponse.setReactIconQuestionDtoList(reactIconQuestionDtoList);
-
-            return ResponseEntity.ok(reactIconQuestionResponse);
-
-        } catch (Exception e){
-
-            reactIconQuestionResponse.setSuccess(false);
-            reactIconQuestionResponse.setMessage(e.toString());
-
-
-            return new ResponseEntity<>(reactIconQuestionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+        return reactIconQuestionServiceInterface.createReactIcon(reactIcon, reactIconQuestionResponse);
 
     }
 
@@ -93,7 +72,27 @@ public class ReactIconQuestionController {
         }
     }
 
-    @DeleteMapping("account/{account_id}/comment/{question_id}")
+    @GetMapping("/liked/account/{account_id}/question/{question_id}")
+    public ResponseEntity<Boolean> liked(@PathVariable("account_id") Long account_id, @PathVariable("question_id") Long question_id, ReactIconQuestionResponse reactIconQuestionResponse){
+        try {
+
+            Boolean liked = reactIconQuestionServiceInterface.liked(account_id, question_id);
+
+            System.out.println(liked);
+
+            return ResponseEntity.ok().body(liked);
+
+
+        } catch (Exception e){
+
+
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @DeleteMapping("account/{account_id}/question/{question_id}")
     public ResponseEntity<?> deleteReactIcon(@PathVariable("account_id") Long account_id, @PathVariable("question_id") Long question_id, ReactIconQuestionResponse reactIconQuestionResponse){
         try {
 

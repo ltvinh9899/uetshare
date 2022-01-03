@@ -40,19 +40,20 @@ public class SubCommentController {
     private final Integer limit = 10;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createSubComment(@RequestParam("SubComment") String subCommentJson, @RequestParam("image_file") MultipartFile image_file, SubCommentResponse subCommentResponse){
+    public ResponseEntity<?> createSubComment(@RequestParam("SubComment") String subCommentJson, @RequestParam(name="image_file", required = false) MultipartFile image_file, SubCommentResponse subCommentResponse){
         try {
 
             SubComment subComment = new ObjectMapper().readValue(subCommentJson, SubComment.class);
             subComment.setTime(Calendar.getInstance());
             SubComment subCommentFromDb = subCommentServiceInterface.createSubComment(subComment);
 
-            if (!image_file.isEmpty()) {
-                String pathDirectoryString = FILE_DIRECTORY + "account_" + subCommentFromDb.getAccount().getId() + "/sub_comment_" + subCommentFromDb.getId() + "/";
-                String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
-                subCommentFromDb.setImage(pathFileString);
+            if (image_file != null) {
+                if (!image_file.isEmpty()) {
+                    String pathDirectoryString = FILE_DIRECTORY + "account_" + subCommentFromDb.getAccount().getId() + "/sub_comment_" + subCommentFromDb.getId() + "/";
+                    String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
+                    subCommentFromDb.setImage(pathFileString);
+                }
             }
-
             SubComment subCommentAfterUpdate = subCommentServiceInterface.updateSubComment(subCommentFromDb.getId(),subCommentFromDb);
 
             subCommentResponse.setSuccess(true);

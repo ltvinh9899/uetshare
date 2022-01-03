@@ -10,6 +10,7 @@ import com.example.uetshare.response.mapper.ImageMapper;
 import com.example.uetshare.response.mapper.QuestionMapper;
 import com.example.uetshare.service.ImageServiceInterface;
 import com.example.uetshare.service.QuestionServiceInterface;
+import com.example.uetshare.service.ReactIconQuestionServiceInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,6 +43,9 @@ public class QuestionController {
     @Autowired
     private ImageServiceInterface imageServiceInterface;
 
+    @Autowired
+    private ReactIconQuestionServiceInterface reactIconQuestionServiceInterface;
+
     @Value("${file.upload-dir}")
     String FILE_DIRECTORY;
 
@@ -50,7 +54,7 @@ public class QuestionController {
 //    private QuestionResponse  questionResponse;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createQuestion(@RequestParam("Question") String questionJson, @RequestParam("image_files") List<MultipartFile> image_files, QuestionResponse  questionResponse){
+    public ResponseEntity<?> createQuestion(@RequestParam("Question") String questionJson, @RequestParam(name="image_files", required = false) List<MultipartFile> image_files, QuestionResponse  questionResponse){
 
         try {
 
@@ -58,37 +62,32 @@ public class QuestionController {
             question.setTime(Calendar.getInstance());
             Question questionInDb = questionServiceInterface.createQuestion(question);
 
-            System.out.println(image_files);
-            System.out.println(image_files.size());
-            System.out.println(image_files.isEmpty());
-            System.out.println(image_files.get(0).getOriginalFilename());
-
             String pathDirectoryString = FILE_DIRECTORY + "account_" + questionInDb.getAccount().getId() + "/question_" + questionInDb.getId() + "/";
-            List<Image> imageList = new ArrayList<>();
-            for (MultipartFile image_file : image_files) {
-                if(!image_file.isEmpty()){
-                    System.out.println(image_file.isEmpty());
-                    String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
+            if (image_files != null) {
+                List<Image> imageList = new ArrayList<>();
+                for (MultipartFile image_file : image_files) {
+                    if (!image_file.isEmpty()) {
+                        System.out.println(image_file.isEmpty());
+                        String pathFileString = CommentController.writeFile(pathDirectoryString, image_file);
 
-                    Image image = new Image();
-                    image.setImage(pathFileString);
-                    imageList.add(image);
+                        Image image = new Image();
+                        image.setImage(pathFileString);
+                        imageList.add(image);
+                    }
+                }
+
+                questionInDb.setImage(imageList);
+
+                for (Image image : question.getImage()) {
+                    image.setQuestion(questionInDb);
+                    imageServiceInterface.createImage(image);
                 }
             }
-
-            questionInDb.setImage(imageList);
-
-            for (Image image : question.getImage()) {
-                image.setQuestion(questionInDb);
-                imageServiceInterface.createImage(image);
-            }
-
-
             questionResponse.setSuccess(true);
             questionResponse.setMessage("Create question success");
 
             List<QuestionDto> questionDtoList = new ArrayList<>();
-            questionDtoList.add(mapperDto(questionInDb));
+            questionDtoList.add(mapperDto(questionInDb, question.getAccount().getId()));
             questionResponse.setQuestionDtoList(questionDtoList);
 
             return ResponseEntity.ok(questionResponse);
@@ -104,7 +103,7 @@ public class QuestionController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getAllQuestion(QuestionResponse  questionResponse, @Param("index") Integer index){
+    public ResponseEntity<?> getAllQuestion(QuestionResponse  questionResponse, @Param("index") Integer index, @RequestParam("account_id") Long account_id){
 
         try {
             Integer indexToQuery = index*limit;
@@ -114,7 +113,7 @@ public class QuestionController {
             if(questionList.size() > 0){
                 for(Question question : questionList){
 
-                    questionDtoList.add(mapperDto(question));
+                    questionDtoList.add(mapperDto(question, account_id));
                 }
             }
 
@@ -138,7 +137,7 @@ public class QuestionController {
 
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<?> getQuestionById(@PathVariable Long id, QuestionResponse  questionResponse){
+    public ResponseEntity<?> getQuestionById(@RequestParam("account_id") Long account_id, @PathVariable Long id, QuestionResponse  questionResponse){
         try {
             Question question = questionServiceInterface.getQuestionById(id);
 
@@ -147,7 +146,7 @@ public class QuestionController {
 
             List<QuestionDto> questionDtoList = new ArrayList<>();
             if(question != null){
-                questionDtoList.add(mapperDto(question));
+                questionDtoList.add(mapperDto(question, account_id));
             }
 
             questionResponse.setQuestionDtoList(questionDtoList);
@@ -164,7 +163,7 @@ public class QuestionController {
     }
 
     @GetMapping("/category/{category_id}")
-    public ResponseEntity<?> getQuestionByCategory(@PathVariable Long category_id, QuestionResponse  questionResponse, @Param("index") Integer index) {
+    public ResponseEntity<?> getQuestionByCategory(@RequestParam("account_id") Long account_id, @PathVariable Long category_id, QuestionResponse  questionResponse, @Param("index") Integer index) {
 
         try {
             Integer indexToQuery = index*limit;
@@ -173,7 +172,7 @@ public class QuestionController {
 
             if (questionList.size() > 0) {
                 for (Question question : questionList) {
-                    questionDtoList.add(mapperDto(question));
+                    questionDtoList.add(mapperDto(question, account_id));
                 }
             }
             questionResponse.setSuccess(true);
@@ -193,7 +192,7 @@ public class QuestionController {
     }
 
     @GetMapping("/type-content/{id}")
-    public ResponseEntity<?> getQuestionByTypeContent(@PathVariable Long id, QuestionResponse questionResponse, @Param("index") Integer index){
+    public ResponseEntity<?> getQuestionByTypeContent(@RequestParam("account_id") Long account_id, @PathVariable Long id, QuestionResponse questionResponse, @Param("index") Integer index){
 
         try {
 
@@ -203,7 +202,7 @@ public class QuestionController {
 
             if (questionList.size() >= 0) {
                 for (Question question : questionList) {
-                    questionDtoList.add(mapperDto(question));
+                    questionDtoList.add(mapperDto(question, account_id));
                 }
             }
             questionResponse.setSuccess(true);
@@ -226,7 +225,7 @@ public class QuestionController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> getQuestionByText(QuestionResponse questionResponse, @Param("index") Integer index, @Param("text") String text, @Param("type_content_id") Long type_content_id){
+    public ResponseEntity<?> getQuestionByText(QuestionResponse questionResponse, @RequestParam("account_id") Long account_id, @Param("index") Integer index, @Param("text") String text, @Param("type_content_id") Long type_content_id){
         try {
             Integer indexToQuery = index*limit;
 
@@ -239,7 +238,7 @@ public class QuestionController {
 
             if (questionList.size() > 0) {
                 for (Question question : questionList) {
-                    questionDtoList.add(mapperDto(question));
+                    questionDtoList.add(mapperDto(question, account_id));
                 }
             }
 
@@ -262,17 +261,17 @@ public class QuestionController {
     }
 
     @GetMapping("/account/{id}")
-    public ResponseEntity<?> getQuestionByAccountId(@PathVariable("id") Long id, QuestionResponse questionResponse, @Param("index") Integer index){
+    public ResponseEntity<?> getQuestionByAccountId(@RequestParam("account_id") Long account_id, @PathVariable("id") Long id, QuestionResponse questionResponse, @Param("index") Integer index, @Param("type_content_id") Long type_content_id){
 
         try {
 
             Integer indexToQuery = index*limit;
-            List<Question> questionList = questionServiceInterface.getQuestionByAccountId(id, indexToQuery);
+            List<Question> questionList = questionServiceInterface.getQuestionByAccountId(id, indexToQuery, type_content_id);
             List<QuestionDto> questionDtoList = new ArrayList<>();
 
             if (questionList.size() > 0) {
                 for (Question question : questionList) {
-                    questionDtoList.add(mapperDto(question));
+                    questionDtoList.add(mapperDto(question, account_id));
                 }
             }
             questionResponse.setSuccess(true);
@@ -295,7 +294,7 @@ public class QuestionController {
     }
 
     @GetMapping("/comment/{id}")
-    public ResponseEntity<?> getQuestionByCommentId(@PathVariable("id") Long id, QuestionResponse questionResponse){
+    public ResponseEntity<?> getQuestionByCommentId(@RequestParam("account_id") Long account_id, @PathVariable("id") Long id, QuestionResponse questionResponse){
 
         try {
 
@@ -306,7 +305,7 @@ public class QuestionController {
 
             List<QuestionDto> questionDtoList = new ArrayList<>();
             if (question != null){
-                questionDtoList.add(mapperDto(question));
+                questionDtoList.add(mapperDto(question, account_id));
             }
 
             questionResponse.setResult_quantity(questionDtoList.size());
@@ -327,7 +326,7 @@ public class QuestionController {
     }
 
 
-    private QuestionDto mapperDto(Question question) {
+    private QuestionDto mapperDto(Question question, Long account_id) {
 
         List<Image> imageList = imageServiceInterface.getImageByQuestionId(question.getId());
         QuestionDto questionDto = QuestionMapper.toQuestionDto(question);
@@ -338,9 +337,10 @@ public class QuestionController {
         }
         questionDto.setImageDtoList(imageDtoList);
 
-
+        questionDto.setLiked(reactIconQuestionServiceInterface.liked(account_id, question.getId()));
 
         return questionDto;
     }
+
 
 }

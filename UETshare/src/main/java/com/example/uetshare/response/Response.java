@@ -16,4 +16,5 @@ public class Response {
     private boolean success;
     private String message;
     private Integer result_quantity;
+    private Integer total_page;
 }
