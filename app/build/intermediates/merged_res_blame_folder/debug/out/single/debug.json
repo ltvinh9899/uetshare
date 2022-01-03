@@ -1,0 +1,566 @@
+[
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_banner_rev_2021_1_263x263.png.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\banner_rev_2021_1_263x263.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_favorite_border_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_favorite_border_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_person_pin_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_person_pin_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_search_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_search_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_anh_detail.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\anh_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_pdf.png.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\pdf.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_image.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_image.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_itemnotificationuet.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\itemnotificationuet.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vienvuongtrang.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vienvuongtrang.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_change.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_change.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_forum_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_forum_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_back.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_back.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_desktop_windows_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_desktop_windows_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\menu_activity_main_drawer.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_login_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_login_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vienxanh.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vienxanh.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_downward.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_downward.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_logo__1_.png.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\logo__1_.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_menu_camera.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_menu_camera.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_uettalk.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_uettalk.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_unnamed.png.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\unnamed.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_dialoglink.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\dialoglink.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_img_default.png.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\img_default.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_folder.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_folder.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_change.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\change.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_document.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_document.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vnu_the_subjects_2021_2_263x263.jpg.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vnu_the_subjects_2021_2_263x263.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_favorite_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_favorite_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_searchdialog_fullscreen.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\searchdialog_fullscreen.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_sheetbottom_comment_uettalk.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\sheetbottom_comment_uettalk.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_write.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_write.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_search__person.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_search__person.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_search.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_uettalk.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_uettalk.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_send_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_send_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_content_main.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\content_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_itemcoment.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\itemcoment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_write_notification.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_write_notification.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_popular_item.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\popular_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_arrow_forward_ios_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_forward_ios_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vien_tron_nen_trang.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vien_tron_nen_trang.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_nen_comment_background.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\nen_comment_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_arrow_back_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_back_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_d_t_v_t2.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_d_t_v_t2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_side_nav_bar.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\menu_link.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\menu\\link.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_shape_notification.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\shape_notification.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\menu_main.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_img_default_user.png.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\img_default_user.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_notification.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_notification.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_documents.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_documents.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_update_anh_profile.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\dialog_update_anh_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_detail_forum.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_detail_forum.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_detail_write.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_detail_write.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_c_n_t_t.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_c_n_t_t.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_search__u_e_t__talk.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_search__u_e_t__talk.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_layout_bottomsheet.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\layout_bottomsheet.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_nav_header_main.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\nav_header_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_login.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\xml_provider_paths.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_search3.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_search3.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_notifications.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_thuapi.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_thuapi.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_folder_shared_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_folder_shared_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_ro_bot2.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_ro_bot2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_exam.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_exam.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable__60279747_1127526494354946_6683273208343303265_n.jpg.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\_60279747_1127526494354946_6683273208343303265_n.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_mau_thong_bao_chung_moi_va_chuan_nhat.jpg.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\mau_thong_bao_chung_moi_va_chuan_nhat.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_writing_status.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_writing_status.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\menu_chude_select.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\menu\\chude_select.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_notifications_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_notifications_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_d_t_v_t.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_d_t_v_t.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_person.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\person.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_search.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_cancel_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_cancel_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_cv_263x263.jpg.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\cv_263x263.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_change_password.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\change_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_search_fragment_test.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\search_fragment_test.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\toolbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_app_bar_main.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\app_bar_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_logout.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_logout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_forum2.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_forum2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_forum.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_forum.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_anh_write.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_anh_write.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_menu_book_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_menu_book_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_search2.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_search2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_co__k_t.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_co__k_t.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_home_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_home_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_menu_gallery.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_menu_gallery.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_co__k_t2.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_co__k_t2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_hinh_nen_trang_10_263x263.jpg.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\hinh_nen_trang_10_263x263.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_folder_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_folder_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_search_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_search_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_custom_action_bar_item.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\custom_action_bar_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_link_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_link_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_detail_document_exam.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_detail_document_exam.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_news.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_news.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_folder.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_folder.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_image.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_image.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vienvuong.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vienvuong.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_notifications.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_notifications.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vien.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vien.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\xml_network_security_config.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\anim_sequential.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\anim\\sequential.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_itemsub_comment.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\itemsub_comment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_c_n_t_t2.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_c_n_t_t2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_itemdatasubject.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\itemdatasubject.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_like_select.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\like_select.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_detail_notifi.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_detail_notifi.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_ro_bot.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_ro_bot.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_vien_button.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\vien_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_uet.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_uet.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_anhnentdoc.jpg.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\anhnentdoc.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\navigation_signin_navigation.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\navigation\\signin_navigation.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_chude.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_chude.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_comment_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_comment_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_item_forum.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\item_forum.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\navigation_mobile_navigation.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\navigation\\mobile_navigation.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_news.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\fragment_news.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_listtailieudethi.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\dialog_listtailieudethi.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_start_app.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_start_app.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_layout_bottomsheet_anh.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\layout_bottomsheet_anh.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_signin.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\layout\\activity_signin.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_arrow_forward_24.xml.flat",
+        "source": "C:\\Users\\Admin\\Documents\\codemoiduan\\lecong\\lecong\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_forward_24.xml"
+    }
+]

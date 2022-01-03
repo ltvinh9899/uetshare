@@ -1,0 +1,357 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="ie.app.uetstudents"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:6:5-67
+11-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:7:5-80
+12-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:7:22-77
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:8:5-81
+13-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:9:5-77
+14-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:9:22-74
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:10:5-78
+15-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:10:22-76
+16    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+16-->[net.gotev:uploadservice:2.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\28484c8b24c130881aa3f6353694d8f6\transformed\jetified-uploadservice-2.1\AndroidManifest.xml:13:5-68
+16-->[net.gotev:uploadservice:2.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\28484c8b24c130881aa3f6353694d8f6\transformed\jetified-uploadservice-2.1\AndroidManifest.xml:13:22-65
+17    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+17-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:25:5-82
+17-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:25:22-79
+18
+19    <application
+19-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:12:5-84:19
+20        android:name="ie.app.uetstudents.ui.notifications.MyApplication"
+20-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:13:9-55
+21        android:allowBackup="true"
+21-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:14:9-35
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.6.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\e15dea0066e4efe669b6aaa7079388e5\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:extractNativeLibs="false"
+25        android:icon="@drawable/unnamed"
+25-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:15:9-41
+26        android:label="@string/app_name"
+26-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:16:9-41
+27        android:networkSecurityConfig="@xml/network_security_config"
+27-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:17:9-69
+28        android:requestLegacyExternalStorage="true"
+28-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:18:9-52
+29        android:roundIcon="@drawable/unnamed"
+29-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:19:9-46
+30        android:supportsRtl="true"
+30-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:20:9-35
+31        android:testOnly="true"
+32        android:theme="@style/Theme.UETStudents"
+32-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:21:9-49
+33        android:usesCleartextTraffic="true" >
+33-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:22:9-44
+34        <activity
+34-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:23:9-31:20
+35            android:name="ie.app.Start_app"
+35-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:24:13-44
+36            android:exported="true" >
+36-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:25:13-36
+37            <intent-filter>
+37-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:26:13-30:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:27:17-69
+38-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:27:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:29:17-77
+40-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:29:27-74
+41            </intent-filter>
+42        </activity>
+43        <activity
+43-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:32:9-34:39
+44            android:name="ie.app.uetstudents.ui.tailieu.DetailDocumentExamActivity"
+44-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:33:13-66
+45            android:exported="true" />
+45-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:34:13-36
+46        <activity
+46-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:35:9-37:39
+47            android:name="ie.app.uetstudents.ui.login.SigninActivity"
+47-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:36:13-52
+48            android:exported="true" />
+48-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:37:13-36
+49        <activity
+49-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:38:9-40:39
+50            android:name="ie.app.uetstudents.ui.profile.ProfileActivity"
+50-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:39:13-55
+51            android:exported="true" />
+51-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:40:13-36
+52        <activity
+52-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:41:9-47:20
+53            android:name="ie.app.uetstudents.MainActivity"
+53-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:42:13-41
+54            android:exported="true"
+54-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:43:13-36
+55            android:label="@string/app_name"
+55-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:44:13-45
+56            android:theme="@style/Theme.UETStudents.NoActionBar" >
+56-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:45:13-65
+57        </activity>
+58
+59        <service
+59-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:49:9-51:39
+60            android:name="ie.app.uetstudents.ui.notifications.notification_service"
+60-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:50:13-66
+61            android:exported="true" />
+61-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:51:13-36
+62
+63        <receiver android:name="ie.app.uetstudents.ui.notifications.notifications_Fragment$" >
+63-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:53:9-59:20
+63-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:54:13-69
+64            <intent-filter>
+64-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:56:13-58:29
+65                <action android:name="STRING_BROADCAST_ACTION" />
+65-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:57:17-66
+65-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:57:25-63
+66            </intent-filter>
+67        </receiver>
+68
+69        <activity android:name="ie.app.uetstudents.ui.uettalk.writestatusactivity" />
+69-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:61:9-67
+69-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:61:19-65
+70
+71        <service
+71-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:63:9-68:19
+72            android:name="ie.app.uetstudents.service.FirebaseService"
+72-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:63:18-57
+73            android:exported="false" >
+73-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:64:13-37
+74            <intent-filter>
+74-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:65:13-67:29
+75                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+75-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:66:17-78
+75-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:66:25-75
+76            </intent-filter>
+77        </service>
+78
+79        <meta-data
+79-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:70:9-72:52
+80            android:name="com.google.firebase.messaging.default_notification_icon"
+80-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:71:13-83
+81            android:resource="@drawable/unnamed" />
+81-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:72:13-49
+82
+83        <activity
+83-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:73:9-81
+84            android:name="ie.app.uetstudents.ui.tailieu.detailPDF"
+84-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:73:19-55
+85            android:exported="true" />
+85-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:73:56-79
+86
+87        <provider
+88            android:name="androidx.core.content.FileProvider"
+88-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:76:13-62
+89            android:authorities="ie.app.uetstudents.provider"
+89-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:77:13-60
+90            android:exported="false"
+90-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:78:13-37
+91            android:grantUriPermissions="true" >
+91-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:79:13-47
+92            <meta-data
+92-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:80:13-82:58
+93                android:name="android.support.FILE_PROVIDER_PATHS"
+93-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:81:17-67
+94                android:resource="@xml/provider_paths" />
+94-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:82:17-55
+95        </provider>
+96
+97        <service
+97-->[net.gotev:uploadservice:2.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\28484c8b24c130881aa3f6353694d8f6\transformed\jetified-uploadservice-2.1\AndroidManifest.xml:16:9-20:19
+98            android:name="net.gotev.uploadservice.UploadService"
+98-->[net.gotev:uploadservice:2.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\28484c8b24c130881aa3f6353694d8f6\transformed\jetified-uploadservice-2.1\AndroidManifest.xml:17:13-65
+99            android:enabled="true"
+99-->[net.gotev:uploadservice:2.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\28484c8b24c130881aa3f6353694d8f6\transformed\jetified-uploadservice-2.1\AndroidManifest.xml:18:13-35
+100            android:exported="true" >
+100-->[net.gotev:uploadservice:2.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\28484c8b24c130881aa3f6353694d8f6\transformed\jetified-uploadservice-2.1\AndroidManifest.xml:19:13-36
+101        </service>
+102
+103        <activity
+103-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:10:9-14:67
+104            android:name="com.gun0912.tedpermission.TedPermissionActivity"
+104-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:11:13-75
+105            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
+105-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:12:13-144
+106            android:screenOrientation="unspecified"
+106-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:13:13-52
+107            android:theme="@style/Theme.Transparent.Permission" />
+107-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:14:13-64
+108
+109        <provider
+109-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:16:9-19:40
+110            android:name="com.gun0912.tedpermission.provider.TedPermissionProvider"
+110-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:17:13-84
+111            android:authorities="ie.app.uetstudents.tedpermissionprovider"
+111-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:18:13-73
+112            android:exported="false" />
+112-->[io.github.ParkSangGwon:tedpermission:3.3.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\90ddb738249c2234f4cc0528d106ea83\transformed\jetified-tedpermission-3.3.0\AndroidManifest.xml:19:13-37
+113
+114        <activity
+114-->[gun0912.ted:tedonactivityresult:1.0.6] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\d56f53821d3ac460827f030465b101a1\transformed\jetified-tedonactivityresult-1.0.6\AndroidManifest.xml:10:9-14:75
+115            android:name="com.gun0912.tedonactivityresult.ProxyActivity"
+115-->[gun0912.ted:tedonactivityresult:1.0.6] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\d56f53821d3ac460827f030465b101a1\transformed\jetified-tedonactivityresult-1.0.6\AndroidManifest.xml:11:13-73
+116            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
+116-->[gun0912.ted:tedonactivityresult:1.0.6] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\d56f53821d3ac460827f030465b101a1\transformed\jetified-tedonactivityresult-1.0.6\AndroidManifest.xml:12:13-144
+117            android:screenOrientation="unspecified"
+117-->[gun0912.ted:tedonactivityresult:1.0.6] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\d56f53821d3ac460827f030465b101a1\transformed\jetified-tedonactivityresult-1.0.6\AndroidManifest.xml:13:13-52
+118            android:theme="@style/android:Theme.Translucent.NoTitleBar" />
+118-->[gun0912.ted:tedonactivityresult:1.0.6] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\d56f53821d3ac460827f030465b101a1\transformed\jetified-tedonactivityresult-1.0.6\AndroidManifest.xml:14:13-72
+119
+120        <provider
+120-->[com.squareup.picasso:picasso:2.71828] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\f0b6fe8b8449e1557894a6cd7ec52d98\transformed\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+121            android:name="com.squareup.picasso.PicassoProvider"
+121-->[com.squareup.picasso:picasso:2.71828] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\f0b6fe8b8449e1557894a6cd7ec52d98\transformed\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+122            android:authorities="ie.app.uetstudents.com.squareup.picasso"
+122-->[com.squareup.picasso:picasso:2.71828] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\f0b6fe8b8449e1557894a6cd7ec52d98\transformed\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+123            android:exported="false" />
+123-->[com.squareup.picasso:picasso:2.71828] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\f0b6fe8b8449e1557894a6cd7ec52d98\transformed\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+124
+125        <receiver
+125-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:28:9-35:20
+126            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+126-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:29:13-78
+127            android:exported="true"
+127-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:30:13-36
+128            android:permission="com.google.android.c2dm.permission.SEND" >
+128-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:31:13-73
+129            <intent-filter>
+129-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:32:13-34:29
+130                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+130-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:33:17-81
+130-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:33:25-78
+131            </intent-filter>
+132        </receiver>
+133        <!--
+134             FirebaseMessagingService performs security checks at runtime,
+135             but set to not exported to explicitly avoid allowing another app to call it.
+136        -->
+137        <service
+137-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:41:9-48:19
+138            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+138-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:42:13-82
+139            android:directBootAware="true"
+139-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:43:13-43
+140            android:exported="false" >
+140-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:44:13-37
+141            <intent-filter android:priority="-500" >
+141-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:65:13-67:29
+142                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+142-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:66:17-78
+142-->C:\Users\Admin\Documents\codemoiduan\lecong\lecong\app\src\main\AndroidManifest.xml:66:25-75
+143            </intent-filter>
+144        </service>
+145        <service
+145-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:49:9-55:19
+146            android:name="com.google.firebase.components.ComponentDiscoveryService"
+146-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:50:13-84
+147            android:directBootAware="true"
+147-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
+148            android:exported="false" >
+148-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:51:13-37
+149            <meta-data
+149-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:52:13-54:85
+150                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+150-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:53:17-119
+151                android:value="com.google.firebase.components.ComponentRegistrar" />
+151-->[com.google.firebase:firebase-messaging:23.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\efcfce00d390b4c8cd9d730a889c1506\transformed\jetified-firebase-messaging-23.0.0\AndroidManifest.xml:54:17-82
+152            <meta-data
+152-->[com.google.firebase:firebase-crashlytics-ktx:18.2.5] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\cf43f1c6c3fe0c0551f4bf10fcb6aa59\transformed\jetified-firebase-crashlytics-ktx-18.2.5\AndroidManifest.xml:27:13-29:85
+153                android:name="com.google.firebase.components:com.google.firebase.crashlytics.ktx.FirebaseCrashlyticsKtxRegistrar"
+153-->[com.google.firebase:firebase-crashlytics-ktx:18.2.5] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\cf43f1c6c3fe0c0551f4bf10fcb6aa59\transformed\jetified-firebase-crashlytics-ktx-18.2.5\AndroidManifest.xml:28:17-130
+154                android:value="com.google.firebase.components.ComponentRegistrar" />
+154-->[com.google.firebase:firebase-crashlytics-ktx:18.2.5] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\cf43f1c6c3fe0c0551f4bf10fcb6aa59\transformed\jetified-firebase-crashlytics-ktx-18.2.5\AndroidManifest.xml:29:17-82
+155            <meta-data
+155-->[com.google.firebase:firebase-datatransport:18.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\30c8af4954f96558b8923ba9abdf42dc\transformed\jetified-firebase-datatransport-18.0.0\AndroidManifest.xml:28:13-30:85
+156                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+156-->[com.google.firebase:firebase-datatransport:18.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\30c8af4954f96558b8923ba9abdf42dc\transformed\jetified-firebase-datatransport-18.0.0\AndroidManifest.xml:29:17-115
+157                android:value="com.google.firebase.components.ComponentRegistrar" />
+157-->[com.google.firebase:firebase-datatransport:18.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\30c8af4954f96558b8923ba9abdf42dc\transformed\jetified-firebase-datatransport-18.0.0\AndroidManifest.xml:30:17-82
+158            <meta-data
+158-->[com.google.firebase:firebase-crashlytics:18.2.5] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0207a166d90c09070b8357f18961fa55\transformed\jetified-firebase-crashlytics-18.2.5\AndroidManifest.xml:18:13-20:85
+159                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+159-->[com.google.firebase:firebase-crashlytics:18.2.5] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0207a166d90c09070b8357f18961fa55\transformed\jetified-firebase-crashlytics-18.2.5\AndroidManifest.xml:19:17-115
+160                android:value="com.google.firebase.components.ComponentRegistrar" />
+160-->[com.google.firebase:firebase-crashlytics:18.2.5] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0207a166d90c09070b8357f18961fa55\transformed\jetified-firebase-crashlytics-18.2.5\AndroidManifest.xml:20:17-82
+161            <meta-data
+161-->[com.google.firebase:firebase-installations:17.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\5ec3750a2b526a0431761fba4d86ba1c\transformed\jetified-firebase-installations-17.0.0\AndroidManifest.xml:18:13-20:85
+162                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+162-->[com.google.firebase:firebase-installations:17.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\5ec3750a2b526a0431761fba4d86ba1c\transformed\jetified-firebase-installations-17.0.0\AndroidManifest.xml:19:17-127
+163                android:value="com.google.firebase.components.ComponentRegistrar" />
+163-->[com.google.firebase:firebase-installations:17.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\5ec3750a2b526a0431761fba4d86ba1c\transformed\jetified-firebase-installations-17.0.0\AndroidManifest.xml:20:17-82
+164            <meta-data
+164-->[com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\3fcd36dc846a561a2c538013c07c578b\transformed\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:15:13-17:85
+165                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+165-->[com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\3fcd36dc846a561a2c538013c07c578b\transformed\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:16:17-113
+166                android:value="com.google.firebase.components.ComponentRegistrar" />
+166-->[com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\3fcd36dc846a561a2c538013c07c578b\transformed\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:17:17-82
+167        </service>
+168
+169        <provider
+169-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:26:9-31:39
+170            android:name="com.google.firebase.provider.FirebaseInitProvider"
+170-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:27:13-77
+171            android:authorities="ie.app.uetstudents.firebaseinitprovider"
+171-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:28:13-72
+172            android:directBootAware="true"
+172-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:29:13-43
+173            android:exported="false"
+173-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:30:13-37
+174            android:initOrder="100" />
+174-->[com.google.firebase:firebase-common:20.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\0b8234262ac4c8d0f7b5a5b4f95d4c4e\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:31:13-36
+175
+176        <meta-data
+176-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\343792d4e1c67c89da678f58237dfc8f\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+177            android:name="com.google.android.gms.version"
+177-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\343792d4e1c67c89da678f58237dfc8f\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+178            android:value="@integer/google_play_services_version" />
+178-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\343792d4e1c67c89da678f58237dfc8f\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+179
+180        <service
+180-->[com.google.android.datatransport:transport-backend-cct:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\47233f560f591463bb55392a732d178a\transformed\jetified-transport-backend-cct-3.1.1\AndroidManifest.xml:29:9-35:19
+181            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+181-->[com.google.android.datatransport:transport-backend-cct:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\47233f560f591463bb55392a732d178a\transformed\jetified-transport-backend-cct-3.1.1\AndroidManifest.xml:30:13-103
+182            android:exported="false" >
+182-->[com.google.android.datatransport:transport-backend-cct:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\47233f560f591463bb55392a732d178a\transformed\jetified-transport-backend-cct-3.1.1\AndroidManifest.xml:31:13-37
+183            <meta-data
+183-->[com.google.android.datatransport:transport-backend-cct:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\47233f560f591463bb55392a732d178a\transformed\jetified-transport-backend-cct-3.1.1\AndroidManifest.xml:32:13-34:39
+184                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+184-->[com.google.android.datatransport:transport-backend-cct:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\47233f560f591463bb55392a732d178a\transformed\jetified-transport-backend-cct-3.1.1\AndroidManifest.xml:33:17-94
+185                android:value="cct" />
+185-->[com.google.android.datatransport:transport-backend-cct:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\47233f560f591463bb55392a732d178a\transformed\jetified-transport-backend-cct-3.1.1\AndroidManifest.xml:34:17-36
+186        </service>
+187        <service
+187-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:26:9-30:19
+188            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+188-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:27:13-117
+189            android:exported="false"
+189-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:28:13-37
+190            android:permission="android.permission.BIND_JOB_SERVICE" >
+190-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:29:13-69
+191        </service>
+192
+193        <receiver
+193-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:32:9-34:40
+194            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+194-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:33:13-132
+195            android:exported="false" />
+195-->[com.google.android.datatransport:transport-runtime:3.1.1] C:\Users\Admin\AndroidStudioProjects\Duan_Home\gradle\caches\transforms-3\a8d1cd878cdc10340d3693e610fb990c\transformed\jetified-transport-runtime-3.1.1\AndroidManifest.xml:34:13-37
+196    </application>
+197
+198</manifest>
