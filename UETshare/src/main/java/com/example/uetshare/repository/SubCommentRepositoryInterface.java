@@ -15,7 +15,7 @@ public interface SubCommentRepositoryInterface extends JpaRepository<SubComment,
     @Query(value = "select * from sub_comment where sub_comment.comment_id = ?1 order by sub_comment.time desc limit 0, ?2", nativeQuery = true)
     List<SubComment> getSubCommentByCommentId(Long comment_id, Integer index);
 
-    @Query(value = "select * from sub_comment where sub_comment.time = ?1", nativeQuery = true)
+    @Query(value = "select * from sub_comment where sub_comment.id = ?1", nativeQuery = true)
     SubComment getSubCommentById(Long id);
 
 

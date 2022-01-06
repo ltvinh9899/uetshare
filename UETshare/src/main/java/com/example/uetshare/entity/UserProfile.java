@@ -20,8 +20,10 @@ public class UserProfile extends Base {
     @Column
     private String department;
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "userProfile")
-    @JsonBackReference(value = "account-userProfile")
+//    @JsonBackReference(value = "account-userProfile")
     private Account account;
     @Column
     private String email;
+    @Column
+    private String avatar;
 }

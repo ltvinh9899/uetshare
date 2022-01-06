@@ -18,4 +18,5 @@ public class AccountDto {
     private String email;
     private String avatar;
     private Calendar time;
+    private String newPassword;
 }

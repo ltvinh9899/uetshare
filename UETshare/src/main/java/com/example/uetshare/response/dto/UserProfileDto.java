@@ -20,4 +20,5 @@ public class UserProfileDto {
     private String mssv;
     private String department;
     private String email;
+    private String avatar;
 }

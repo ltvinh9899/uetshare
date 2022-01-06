@@ -27,6 +27,7 @@ import java.util.TimeZone;
 
 @RestController
 @RequestMapping("/exam-document")
+@CrossOrigin(origins = "*")
 public class ExamDocumentController {
 
     @Autowired
@@ -151,8 +152,9 @@ public class ExamDocumentController {
             for(ExamDocument examDocument : examDocumentList) {
                 examDocumentDtoList.add(ExamDocumentMapper.toExamDocumentDto(examDocument));
             }
-            examDocumentResponse.setResult_quantity(examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery));
-            Integer total_page = examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery)/10 + 1;
+            Integer total_result = examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery) == null ? 0 : examDocumentServiceInterface.totalSearchExamDocument(type, textToQuery);
+            examDocumentResponse.setResult_quantity(total_result);
+            Integer total_page = total_result/10 + 1;
             examDocumentResponse.setTotal_page(total_page);
             examDocumentResponse.setExamDocumentDtoList(examDocumentDtoList);
 

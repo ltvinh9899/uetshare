@@ -25,6 +25,7 @@ import java.util.*;
 
 @Log4j2
 @RestController
+@CrossOrigin
 public class AccountRestController {
     private AccountService accountService;
     @Autowired
@@ -99,7 +100,7 @@ public class AccountRestController {
         return ResponseEntity.ok(accountService.getAccount(cookie));
 
     }
-    @PutMapping("/change-password")
+    @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody AccountDto accountDto) {
         return ResponseEntity.ok(accountService.changePassword(accountDto));
 
@@ -141,8 +142,5 @@ public class AccountRestController {
     public ResponseEntity<?> registerFirebaseToken(@RequestBody BodyFirebaseToken requestBody){
         return ResponseEntity.ok(firebaseService.registerFirebaseToken(requestBody));
     }
-    @PostMapping("/update-avatar")
-    public ResponseEntity<?> updateAvatar(@RequestParam("avatar") MultipartFile file, @RequestParam("id") Long id){
-        return ResponseEntity.ok(accountService.updateAvatar(id, file));
-    }
+
 }

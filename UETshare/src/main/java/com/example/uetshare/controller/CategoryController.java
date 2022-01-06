@@ -20,6 +20,7 @@ import java.util.List;
 ////
 @RestController
 @RequestMapping("/category")
+@CrossOrigin(origins = "*")
 public class CategoryController {
 
     @Autowired
@@ -82,8 +83,10 @@ public class CategoryController {
     public ResponseEntity<?> getCategoryPagination(CategoryResponse categoryResponse, @Param("index") Integer index){
 
         try {
+
             Integer indexToQuery = (index - 1)*10;
             List<Category> categoryList = categoryServiceInterface.getCategoryPagination(indexToQuery);
+
             List<CategoryDto> categoryDtoList = new ArrayList<>();
 
             for(Category category : categoryList){
